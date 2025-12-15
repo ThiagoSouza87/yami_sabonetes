@@ -8,210 +8,210 @@ export default function Index() {
     {
       name: 'Sabonete de Lavanda',
       description: 'Anti-inflamatório e relaxante',
-      price: 'R$ 28,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-lavanda.jpg',
       benefits: ['Relaxante', 'Anti-inflamatório', 'Calmante'],
     },
     {
       name: 'Sabonete de Carvão Ativado',
       description: 'Peles sensíveis e calmante',
-      price: 'R$ 30,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0054.jpg',
       benefits: ['Hidratante', 'Esfoliante', 'Nutritivo'],
     },
     {
       name: 'Sabonete de Argila Verde',
       description: 'Calmante e firmador',
-      price: 'R$ 32,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0055.jpg',
       benefits: ['Purificante', 'Detox', 'Firmador'],
     },
     {
       name: 'Sabonete de Calêndula',
       description: 'Anti-inflamatório e cicatrizante',
-      price: 'R$ 29,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-calendula.jpg',
       benefits: ['Cicatrizante', 'Anti-inflamatório', 'Sensível'],
     },
     {
       name: 'Sabonete de Alecrim',
       description: 'Antioleosidade',
-      price: 'R$ 27,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-alecrim.jpg',
       benefits: ['Estimulante', 'Antioleosidade', 'Aromático'],
     },
     {
       name: 'Sabonete de Rosa Mosqueta',
       description: 'Anti-idade e regenerador celular',
-      price: 'R$ 35,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0058.jpg',
       benefits: ['Anti-idade', 'Regenerador', 'Hidratante'],
     },
     {
       name: 'Sabonete de Camomila',
       description: 'Cicatrizante, relaxante e calmante',
-      price: 'R$ 28,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-camomila.jpg',
       benefits: ['Suave', 'Calmante', 'Cicatrizante'],
     },
     {
       name: 'Sabonete de Açafrão',
       description: 'Antifoliculite e cicatrizante',
-      price: 'R$ 33,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0060.jpg',
       benefits: ['Iluminador', 'Cicatrizante', 'Natural'],
     },
     {
       name: 'Sabonete de Argila Verde',
       description: 'Antioleosidade e antiacne',
-      price: 'R$ 31,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0061.jpg',
       benefits: ['Adstringente', 'Purificante', 'Antiacne'],
     },
     {
       name: 'Sabonete de Própolis',
       description: 'Antibacteriano e cicatrizante natural',
-      price: 'R$ 34,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0062.jpg',
       benefits: ['Antibacteriano', 'Cicatrizante', 'Protetor'],
     },
     {
       name: 'Sabonete de Hortelã',
       description: 'Refrescante e revigorante',
-      price: 'R$ 26,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0063.jpg',
       benefits: ['Refrescante', 'Revigorante', 'Aromático'],
     },
     {
       name: 'Sabonete de Café',
       description: 'Esfoliante e anti-celulite',
-      price: 'R$ 32,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0064.jpg',
       benefits: ['Esfoliante', 'Energizante', 'Firmador'],
     },
     {
       name: 'Sabonete de Coco',
       description: 'Hidratação tropical para sua pele',
-      price: 'R$ 29,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0065.jpg',
       benefits: ['Hidratante', 'Nutritivo', 'Suave'],
     },
     {
       name: 'Sabonete de Manjericão',
       description: 'Purificante e aromático',
-      price: 'R$ 27,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0066.jpg',
       benefits: ['Purificante', 'Aromático', 'Refrescante'],
     },
     {
       name: 'Sabonete de Cenoura',
       description: 'Rico em vitamina A para pele radiante',
-      price: 'R$ 30,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0067.jpg',
       benefits: ['Nutritivo', 'Iluminador', 'Antioxidante'],
     },
     {
       name: 'Sabonete de Eucalipto',
       description: 'Descongestionante e refrescante',
-      price: 'R$ 28,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0068.jpg',
       benefits: ['Refrescante', 'Descongestionante', 'Aromático'],
     },
     {
       name: 'Sabonete de Aloe Vera (Babosa)',
       description: 'Cicatrizante e refrescante',
-      price: 'R$ 31,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-babosa.jpg',
       benefits: ['Hidratante', 'Regenerador', 'Calmante'],
     },
     {
       name: 'Sabonete de Limão',
       description: 'Hidratante',
-      price: 'R$ 27,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-limao.jpg',
       benefits: ['Clareador', 'Adstringente', 'Refrescante'],
     },
     {
       name: 'Sabonete de Canela',
       description: 'Estimulante e aromático',
-      price: 'R$ 29,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0074.jpg',
       benefits: ['Estimulante', 'Aromático', 'Aquecedor'],
     },
     {
       name: 'Sabonete de Açúcar Mascavo',
       description: 'Esfoliação suave e hidratação',
-      price: 'R$ 30,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0075.jpg',
       benefits: ['Esfoliante', 'Hidratante', 'Suave'],
     },
     {
       name: 'Sabonete de Chá Verde',
       description: 'Antioxidante e rejuvenescedor',
-      price: 'R$ 32,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0076.jpg',
       benefits: ['Antioxidante', 'Rejuvenescedor', 'Protetor'],
     },
     {
       name: 'Sabonete de Argila Branca',
       description: 'Cicatrizante, suavizante e clareador',
-      price: 'R$ 31,00',
+      price: 'R$ 15,00',
       image: '/assets/IMG-20251121-WA0053.jpg',
       benefits: ['Cicatrizante', 'Suavizante', 'Clareador'],
     },
     {
       name: 'Sabonete de Amêndoas',
       description: 'Hidratante e para dias frios',
-      price: 'R$ 33,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-almonds.jpg',
       benefits: ['Hidratante', 'Nutritivo', 'Protetor'],
     },
     {
       name: 'Sabonete de Dolomita',
       description: 'Pele de porcelana',
-      price: 'R$ 34,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-dolomita.jpg',
       benefits: ['Clareador', 'Suavizante', 'Uniformizador'],
     },
     {
       name: 'Sabonete de Melaleuca',
       description: 'Antisséptico, antifúngico e antibacteriano',
-      price: 'R$ 32,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-melaleuca.jpg',
       benefits: ['Antisséptico', 'Antifúngico', 'Antibacteriano'],
     },
     {
       name: 'Sabonete de Limpeza Energética',
       description: 'Antioleosidade e energizante',
-      price: 'R$ 35,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-limpeza-energetica.jpg',
       benefits: ['Energizante', 'Purificante', 'Espiritual'],
     },
     {
       name: 'Sabonete de Erva Doce',
       description: 'Calmante e nutritivo',
-      price: 'R$ 28,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-erva-doce.jpg',
       benefits: ['Calmante', 'Nutritivo', 'Aromático'],
     },
     {
       name: 'Sabonete de Maracujá',
       description: 'Hidratante',
-      price: 'R$ 29,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-maracuja.jpg',
       benefits: ['Hidratante', 'Calmante', 'Aromático'],
     },
     {
       name: 'Sabonete de Melancia',
       description: 'Hidratante',
-      price: 'R$ 28,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-melancia.jpg',
       benefits: ['Hidratante', 'Refrescante', 'Revitalizante'],
     },
     {
       name: 'Sabonete de Uva',
       description: 'Hidratante',
-      price: 'R$ 30,00',
+      price: 'R$ 15,00',
       image: '/assets/soap-uva.jpg',
       benefits: ['Hidratante', 'Antioxidante', 'Nutritivo'],
     },
@@ -225,7 +225,7 @@ export default function Index() {
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
               <img 
-                src="/assets/yami-logo-main.png" 
+                src="/assets/yami-logo-main.jpg" 
                 alt="Yami Sabonetes" 
                 className="w-16 h-16 rounded-full object-cover border-2 border-white"
               />
@@ -288,7 +288,7 @@ export default function Index() {
             <div className="relative">
               <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8">
                 <img 
-                  src="/assets/yami-logo-main_variant_1.png" 
+                  src="/assets/yami-logo-main_variant_1.jpg" 
                   alt="Yami Sabonetes" 
                   className="w-full h-auto rounded-2xl shadow-2xl"
                 />
@@ -533,7 +533,7 @@ export default function Index() {
                           Sabonetes Artesanais
                         </p>
                         <Badge className="bg-[#c26072] text-white text-base" style={{ fontFamily: 'Aileron, sans-serif' }}>
-                          PDF • 2024
+                          PDF • 2025
                         </Badge>
                       </div>
                     </div>

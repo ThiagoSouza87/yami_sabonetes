@@ -48,7 +48,7 @@ Edit the `products` array in `src/pages/Index.tsx`:
 {
   name: 'Sabonete de Lavanda',
   description: 'Anti-inflamatório e relaxante',
-  price: 'R$ 28,00',
+  price: 'R$ 15,00',
   image: '/assets/soap-lavanda.jpg',
   benefits: ['Relaxante', 'Anti-inflamatório', 'Calmante'],
 }
