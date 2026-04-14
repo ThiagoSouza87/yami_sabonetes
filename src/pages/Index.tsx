@@ -260,8 +260,8 @@ export default function Index() {
             </Button>
             <Button
               size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white/10 px-8"
+              className="bg-white font-semibold px-8"
+              style={{ color: PINK }}
               onClick={() => {
                 window.open("https://wa.me/5519991743043?text=Olá! Gostaria de conhecer os produtos Yami.", "_blank");
               }}
