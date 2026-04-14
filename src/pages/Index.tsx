@@ -43,36 +43,35 @@ const sabonetes = [
 ];
 
 const bodySplash = [
-  { id: 1, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8174_azul2/IMG_8174_azul.PNG" },
-  { id: 2, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8174_azul2/IMG_8174_mini.PNG" },
+  { id: 1, codigo: "BS01", nome: "Body Splash Azul - Lavanda & Baunilha", aroma: "Lavanda & Baunilha", desc: "Relaxante e duradouro, aroma clássico que acalma.", tamanho: "Grande (160ml)", beneficio: "Relaxante", cor: "#3498db", preco: "R$ 70,00", imagem: "/assets/body_splash/8174_azul2/IMG_8174_azul.PNG" },
+  { id: 2, codigo: "BS02", nome: "Body Splash Azul - Lavanda & Baunilha", aroma: "Lavanda & Baunilha", desc: "Relaxante e duradouro, aroma clássico que acalma.", tamanho: "Mini (30ml)", beneficio: "Relaxante", cor: "#3498db", preco: "R$ 25,00", imagem: "/assets/body_splash/8174_azul2/IMG_8174_mini.PNG" },
 
-  { id: 3, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8175_laranja/IMG_8175_laranja.PNG" },
-  { id: 4, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8175_laranja/IMG_8175_laranja_mini.PNG" },
+  { id: 3, codigo: "BS03", nome: "Body Splash Laranja - Citrus & Mel", aroma: "Citrus & Mel", desc: "Energizante e doce, perfeito para o dia.", tamanho: "Grande (160ml)", beneficio: "Energizante", cor: "#e67e22", preco: "R$ 70,00", imagem: "/assets/body_splash/8175_laranja/IMG_8175_laranja.PNG" },
+  { id: 4, codigo: "BS04", nome: "Body Splash Laranja - Citrus & Mel", aroma: "Citrus & Mel", desc: "Energizante e doce, perfeito para o dia.", tamanho: "Mini (30ml)", beneficio: "Energizante", cor: "#e67e22", preco: "R$ 25,00", imagem: "/assets/body_splash/8175_laranja/IMG_8175_laranja_mini.PNG" },
 
-  { id: 5, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8179_roxo/IMG_8179_roxo.PNG" },
-  { id: 6, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8179_roxo/IMG_8179_roxo_mini.PNG" },
+  { id: 5, codigo: "BS05", nome: "Body Splash Roxo - Floral & Lavanda", aroma: "Floral & Lavanda", desc: "Sofisticado e elegante, aroma floral suave.", tamanho: "Grande (160ml)", beneficio: "Relaxante", cor: "#9b59b6", preco: "R$ 70,00", imagem: "/assets/body_splash/8179_roxo/IMG_8179_roxo.PNG" },
+  { id: 6, codigo: "BS06", nome: "Body Splash Roxo - Floral & Lavanda", aroma: "Floral & Lavanda", desc: "Sofisticado e elegante, aroma floral suave.", tamanho: "Mini (30ml)", beneficio: "Relaxante", cor: "#9b59b6", preco: "R$ 25,00", imagem: "/assets/body_splash/8179_roxo/IMG_8179_roxo_mini.PNG" },
 
-  { id: 7, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo.PNG" },
-  { id: 8, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo_mini.PNG" },
+  { id: 7, codigo: "BS07", nome: "Body Splash Amarelo - Limão & Vanilla", aroma: "Limão & Vanilla", desc: "Refrescante com doçura, aroma balanceado.", tamanho: "Grande (160ml)", beneficio: "Refrescante", cor: "#f1c40f", preco: "R$ 70,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo.PNG" },
+  { id: 8, codigo: "BS08", nome: "Body Splash Amarelo - Limão & Vanilla", aroma: "Limão & Vanilla", desc: "Refrescante com doçura, aroma balanceado.", tamanho: "Mini (30ml)", beneficio: "Refrescante", cor: "#f1c40f", preco: "R$ 25,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo_mini.PNG" },
 
-  { id: 9, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo2.PNG" },
-  { id: 10, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo_mini2.PNG" },
+  { id: 9, codigo: "BS09", nome: "Body Splash Amarelo - Limão & Vanilla", aroma: "Limão & Vanilla", desc: "Refrescante com doçura, aroma balanceado.", tamanho: "Grande (160ml)", beneficio: "Refrescante", cor: "#f1c40f", preco: "R$ 70,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo2.PNG" },
+  { id: 10, codigo: "BS10", nome: "Body Splash Amarelo - Limão & Vanilla", aroma: "Limão & Vanilla", desc: "Refrescante com doçura, aroma balanceado.", tamanho: "Mini (30ml)", beneficio: "Refrescante", cor: "#f1c40f", preco: "R$ 25,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo_mini2.PNG" },
 
-  { id: 11, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8181_rosa/IMG_8181_rosa.PNG" },
-  { id: 12, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8181_rosa/IMG_8181_rosa_mini.PNG" },
+  { id: 11, codigo: "BS11", nome: "Body Splash Rosa - Morango & Rosa", aroma: "Morango & Rosa", desc: "Doce e feminino, aroma frutado irresistível.", tamanho: "Grande (160ml)", beneficio: "Hidratante", cor: "#ff69b4", preco: "R$ 70,00", imagem: "/assets/body_splash/8181_rosa/IMG_8181_rosa.PNG" },
+  { id: 12, codigo: "BS12", nome: "Body Splash Rosa - Morango & Rosa", aroma: "Morango & Rosa", desc: "Doce e feminino, aroma frutado irresistível.", tamanho: "Mini (30ml)", beneficio: "Hidratante", cor: "#ff69b4", preco: "R$ 25,00", imagem: "/assets/body_splash/8181_rosa/IMG_8181_rosa_mini.PNG" },
 
-  { id: 13, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8181_rosa/IMG_8181_rosa.PNG" },
-  { id: 14, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8181_rosa/IMG_8181_rosa%20mini2.PNG" },
+  { id: 13, codigo: "BS13", nome: "Body Splash Rosa - Morango & Rosa", aroma: "Morango & Rosa", desc: "Doce e feminino, aroma frutado irresistível.", tamanho: "Grande (160ml)", beneficio: "Hidratante", cor: "#ff69b4", preco: "R$ 70,00", imagem: "/assets/body_splash/8181_rosa/IMG_8181_rosa.PNG" },
+  { id: 14, codigo: "BS14", nome: "Body Splash Rosa - Morango & Rosa", aroma: "Morango & Rosa", desc: "Doce e feminino, aroma frutado irresistível.", tamanho: "Mini (30ml)", beneficio: "Hidratante", cor: "#ff69b4", preco: "R$ 25,00", imagem: "/assets/body_splash/8181_rosa/IMG_8181_rosa%20mini2.PNG" },
 
-  { id: 15, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8183_verde/IMG_8183_verde.PNG" },
-  { id: 16, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8183_verde/IMG_8183_verde_mini.PNG" },
+  { id: 15, codigo: "BS15", nome: "Body Splash Verde - Hortelã & Eucalipto", aroma: "Hortelã & Eucalipto", desc: "Refrescante e tonificante, aroma mentolado puro.", tamanho: "Grande (160ml)", beneficio: "Energizante", cor: "#27ae60", preco: "R$ 70,00", imagem: "/assets/body_splash/8183_verde/IMG_8183_verde.PNG" },
+  { id: 16, codigo: "BS16", nome: "Body Splash Verde - Hortelã & Eucalipto", aroma: "Hortelã & Eucalipto", desc: "Refrescante e tonificante, aroma mentolado puro.", tamanho: "Mini (30ml)", beneficio: "Energizante", cor: "#27ae60", preco: "R$ 25,00", imagem: "/assets/body_splash/8183_verde/IMG_8183_verde_mini.PNG" },
 
-  { id: 17, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8185_azul/IMG_8185_azul.PNG" },
-  { id: 18, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8185_azul/IMG_8185_mini.PNG" },
+  { id: 17, codigo: "BS17", nome: "Body Splash Azul Escuro - Blueberry & Baunilha", aroma: "Blueberry & Baunilha", desc: "Frutado e adocicado, combinação exótica única.", tamanho: "Grande (160ml)", beneficio: "Fixador", cor: "#1e90ff", preco: "R$ 70,00", imagem: "/assets/body_splash/8185_azul/IMG_8185_azul.PNG" },
+  { id: 18, codigo: "BS18", nome: "Body Splash Azul Escuro - Blueberry & Baunilha", aroma: "Blueberry & Baunilha", desc: "Frutado e adocicado, combinação exótica única.", tamanho: "Mini (30ml)", beneficio: "Fixador", cor: "#1e90ff", preco: "R$ 25,00", imagem: "/assets/body_splash/8185_azul/IMG_8185_mini.PNG" },
 
-  { id: 19, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8245_vermelho/IMG_8245_vermelho.PNG" },
-  { id: 20, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8245_vermelho/IMG_8245_vermelho_mini.PNG" },
- 
+  { id: 19, codigo: "BS19", nome: "Body Splash Vermelho - Morango & Framboesa", aroma: "Morango & Framboesa", desc: "Frutado intenso e sedutor, aroma envolvente.", tamanho: "Grande (160ml)", beneficio: "Fixador", cor: "#e74c3c", preco: "R$ 70,00", imagem: "/assets/body_splash/8245_vermelho/IMG_8245_vermelho.PNG" },
+  { id: 20, codigo: "BS20", nome: "Body Splash Vermelho - Morango & Framboesa", aroma: "Morango & Framboesa", desc: "Frutado intenso e sedutor, aroma envolvente.", tamanho: "Mini (30ml)", beneficio: "Fixador", cor: "#e74c3c", preco: "R$ 25,00", imagem: "/assets/body_splash/8245_vermelho/IMG_8245_vermelho_mini.PNG" },
 ];
 
 const geleiasDebanho = [
@@ -102,27 +101,54 @@ interface Produto {
   desc: string;
   preco: string;
   imagem: string;
+  codigo?: string;
+  tamanho?: string;
+  aroma?: string;
+  beneficio?: string;
+  cor?: string;
 }
 
 function ProdutoCard({ produto, badge }: { produto: Produto; badge?: string }) {
+  // Padrão: 300x400px (imagem de referência)
   return (
-    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white border-0 shadow-md w-fit mx-auto">
-      <div className="overflow-hidden bg-gray-100 min-h-40">
+    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white border-0 shadow-md w-fit mx-auto" style={{ width: 300 }}>
+      <div
+        className="overflow-hidden bg-gray-100 flex items-center justify-center"
+        style={{ width: 300, height: 400 }}
+      >
         <img
           src={produto.imagem}
           alt={produto.nome}
-          className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
+          className="object-contain hover:scale-105 transition-transform duration-300"
+          style={{ width: 300, height: 400, maxWidth: 300, maxHeight: 400 }}
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = "none";
           }}
         />
       </div>
       <CardContent className="p-4">
-        <div className="flex items-start justify-between gap-2 mb-1">
-          <h3 style={{ fontFamily: "Floane, serif" }} className="font-semibold text-gray-800 text-sm leading-tight">
-            {produto.nome}
-          </h3>
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <div className="flex-1">
+            <h3 style={{ fontFamily: "Floane, serif" }} className="font-semibold text-gray-800 text-sm leading-tight">
+              {produto.nome}
+            </h3>
+            {produto.codigo && (
+              <span className="block text-xs text-gray-400 font-mono">Cód: {produto.codigo}</span>
+            )}
+          </div>
           {badge && <Badge className="text-white text-xs shrink-0" style={{ backgroundColor: PINK }}>{badge}</Badge>}
+        </div>
+        <div className="flex flex-wrap gap-1 mb-2">
+          {produto.tamanho && (
+            <Badge variant="outline" className="text-xs py-0.5" style={{ borderColor: "#ddd", color: "#666" }}>
+              {produto.tamanho}
+            </Badge>
+          )}
+          {produto.beneficio && (
+            <Badge className="text-white text-xs py-0.5" style={{ backgroundColor: "#27ae60" }}>
+              {produto.beneficio}
+            </Badge>
+          )}
         </div>
         <p className="text-gray-500 text-xs mb-3 leading-relaxed">{produto.desc}</p>
         <div className="flex items-center justify-between">
@@ -132,7 +158,9 @@ function ProdutoCard({ produto, badge }: { produto: Produto; badge?: string }) {
             className="text-white text-xs px-3 py-1 h-7"
             style={{ backgroundColor: PINK }}
             onClick={() => {
-              const msg = encodeURIComponent(`Olá! Gostaria de comprar: ${produto.nome} (${produto.preco})`);
+              const msg = encodeURIComponent(
+                `Olá! Gostaria de comprar: ${produto.nome} (${produto.preco})${produto.codigo ? `\nCódigo: ${produto.codigo}` : ""}`
+              );
               window.open(`https://wa.me/5519991743043?text=${msg}`, "_blank");
             }}
           >
@@ -335,6 +363,44 @@ export default function Index() {
               </button>
             ))}
           </div>
+
+          {/* Body Splash Hero Section */}
+          {categoriaAtiva === "bodySplash" && (
+            <div className="mb-10 p-6 rounded-lg" style={{ backgroundColor: BLUE }}>
+              <div className="text-center mb-6">
+                <h3 style={{ fontFamily: "Floane, serif", color: PINK }} className="text-2xl font-bold mb-2">
+                  Fragrâncias Exclusivas Yami
+                </h3>
+                <p className="text-gray-600 text-sm max-w-2xl mx-auto">
+                  Escolha seu Body Splash ideal: cada cor representa um aroma único com benefícios específicos. Disponível em tamanho Grande (160ml) e Mini (30ml) para você experimentar.
+                </p>
+              </div>
+              
+              {/* Sugestões de Combos */}
+              <div>
+                <h4 style={{ fontFamily: "Floane, serif", color: PINK }} className="font-bold text-sm mb-3 text-center">
+                  💝 Kits Recomendados
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  <div className="bg-white p-3 rounded-lg border-l-4" style={{ borderColor: PINK }}>
+                    <p className="text-xs font-bold text-gray-800 mb-1">Kit Relaxamento</p>
+                    <p className="text-xs text-gray-600 mb-2">Lavanda & Baunilha (Azul) + Floral & Lavanda (Roxo)</p>
+                    <span className="text-xs font-bold" style={{ color: PINK }}>Combo: R$ 140,00</span>
+                  </div>
+                  <div className="bg-white p-3 rounded-lg border-l-4" style={{ borderColor: PINK }}>
+                    <p className="text-xs font-bold text-gray-800 mb-1">Kit Energia</p>
+                    <p className="text-xs text-gray-600 mb-2">Citrus & Mel (Laranja) + Hortelã & Eucalipto (Verde)</p>
+                    <span className="text-xs font-bold" style={{ color: PINK }}>Combo: R$ 140,00</span>
+                  </div>
+                  <div className="bg-white p-3 rounded-lg border-l-4" style={{ borderColor: PINK }}>
+                    <p className="text-xs font-bold text-gray-800 mb-1">Kit Descoberta</p>
+                    <p className="text-xs text-gray-600 mb-2">Tamanho Mini (75ml) - 4 cores diferentes</p>
+                    <span className="text-xs font-bold" style={{ color: PINK }}>Combo: R$ 80,00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Products Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
