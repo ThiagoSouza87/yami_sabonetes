@@ -50,7 +50,7 @@ const bodySplash = [
   { id: 4, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8175_laranja/IMG_8175_laranja_mini.PNG" },
 
   { id: 5, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8179_roxo/IMG_8179_roxo.PNG" },
-  { id: 6, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8179_roxo/IMG_8179_roxo.PNG" },
+  { id: 6, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8179_roxo/IMG_8179_roxo_mini.PNG" },
 
   { id: 7, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo.PNG" },
   { id: 8, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo_mini.PNG" },
@@ -69,6 +69,9 @@ const bodySplash = [
 
   { id: 17, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8185_azul/IMG_8185_azul.PNG" },
   { id: 18, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8185_azul/IMG_8185_mini.PNG" },
+
+  { id: 19, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 70,00", imagem: "/assets/body_splash/8245_vermelho/IMG_8245_vermelho.PNG" },
+  { id: 20, nome: "Body Splash Lavanda & Baunilha", desc: "Aroma relaxante e duradouro, perfeito para o dia a dia.", preco: "R$ 25,00", imagem: "/assets/body_splash/8245_vermelho/IMG_8245_vermelho_mini.PNG" },
  
 ];
 
