@@ -136,7 +136,7 @@ export default function ClubeSabonete() {
       <header className="py-4 px-6 sticky top-0 z-50 shadow-sm" style={{ backgroundColor: BLUE }}>
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/assets/yami-logo.jpg" alt="Yami Sabonetes" className="h-12 w-12 rounded-full object-cover" />
+            <img src="/assets/yami-logo-main.jpg" alt="Yami Sabonetes" className="h-12 w-12 rounded-full object-cover" />
             <div>
               <h1 style={{ fontFamily: "Floane, serif", color: PINK }} className="text-xl font-bold leading-tight">
                 Clube Yami

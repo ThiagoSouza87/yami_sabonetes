@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingBag, Wind, Droplets, Waves, Instagram, MessageCircle, Mail, MapPin, Sparkles, Star, ChevronRight } from "lucide-react";
+import { ShoppingBag, Wind, Droplets, Waves, Instagram, MessageCircle, Mail, MapPin, Sparkles, Star, ChevronRight, ChevronLeft } from "lucide-react";
 
 // ─── Brand Constants ─────────────────────────────────────────────────────────
 const PINK = "#c26072";
@@ -42,36 +42,150 @@ const sabonetes = [
   { id: 30, nome: "Sabonete Floral", desc: "Blend especial de flores silvestres.", preco: "R$ 15,00", imagem: "/assets/soap-maracuja.jpg" },
 ];
 
-const bodySplash = [
-  { id: 1, codigo: "BS01", nome: "Body Splash Azul - Lavanda & Baunilha", aroma: "Lavanda & Baunilha", desc: "Relaxante e duradouro, aroma clássico que acalma.", tamanho: "Grande (160ml)", beneficio: "Relaxante", cor: "#3498db", preco: "R$ 70,00", imagem: "/assets/body_splash/8174_azul2/IMG_8174_azul.PNG" },
-  { id: 2, codigo: "BS02", nome: "Body Splash Azul - Lavanda & Baunilha", aroma: "Lavanda & Baunilha", desc: "Relaxante e duradouro, aroma clássico que acalma.", tamanho: "Mini (30ml)", beneficio: "Relaxante", cor: "#3498db", preco: "R$ 25,00", imagem: "/assets/body_splash/8174_azul2/IMG_8174_mini.PNG" },
+// ─── Body Splash Agrupado (por produto) ────────────────────────────────────────
+// Cada grupo tem "tamanhos" (define preço/SKU e o seletor) e "fotos" (o que o
+// carrossel percorre). Cada foto é marcada com o tamanho que representa, então o
+// botão de tamanho acende conforme a foto exibida — e vice-versa. As fotos "combo"
+// mostram os dois frascos juntos e são marcadas como 160ml.
+interface BodySplashTamanho {
+  tamanho: string;   // chave: "160ml" | "30ml"
+  label: string;     // rótulo exibido no seletor
+  preco: string;
+  codigo: string;
+}
 
-  { id: 3, codigo: "BS03", nome: "Body Splash Laranja - Citrus & Mel", aroma: "Citrus & Mel", desc: "Energizante e doce, perfeito para o dia.", tamanho: "Grande (160ml)", beneficio: "Energizante", cor: "#e67e22", preco: "R$ 70,00", imagem: "/assets/body_splash/8175_laranja/IMG_8175_laranja.PNG" },
-  { id: 4, codigo: "BS04", nome: "Body Splash Laranja - Citrus & Mel", aroma: "Citrus & Mel", desc: "Energizante e doce, perfeito para o dia.", tamanho: "Mini (30ml)", beneficio: "Energizante", cor: "#e67e22", preco: "R$ 25,00", imagem: "/assets/body_splash/8175_laranja/IMG_8175_laranja_mini.PNG" },
+interface BodySplashFoto {
+  imagem: string;
+  tamanho: string;   // referencia BodySplashTamanho.tamanho
+}
 
-  { id: 5, codigo: "BS05", nome: "Body Splash Roxo - Floral & Lavanda", aroma: "Floral & Lavanda", desc: "Sofisticado e elegante, aroma floral suave.", tamanho: "Grande (160ml)", beneficio: "Relaxante", cor: "#9b59b6", preco: "R$ 70,00", imagem: "/assets/body_splash/8179_roxo/IMG_8179_roxo.PNG" },
-  { id: 6, codigo: "BS06", nome: "Body Splash Roxo - Floral & Lavanda", aroma: "Floral & Lavanda", desc: "Sofisticado e elegante, aroma floral suave.", tamanho: "Mini (30ml)", beneficio: "Relaxante", cor: "#9b59b6", preco: "R$ 25,00", imagem: "/assets/body_splash/8179_roxo/IMG_8179_roxo_mini.PNG" },
+interface BodySplashGrupo {
+  id: number;
+  nome: string;
+  beneficio?: string;
+  desc: string;
+  tamanhos: BodySplashTamanho[];
+  fotos: BodySplashFoto[];
+}
 
-  { id: 7, codigo: "BS07", nome: "Body Splash Amarelo - Limão & Vanilla", aroma: "Limão & Vanilla", desc: "Refrescante com doçura, aroma balanceado.", tamanho: "Grande (160ml)", beneficio: "Refrescante", cor: "#f1c40f", preco: "R$ 70,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo.PNG" },
-  { id: 8, codigo: "BS08", nome: "Body Splash Amarelo - Limão & Vanilla", aroma: "Limão & Vanilla", desc: "Refrescante com doçura, aroma balanceado.", tamanho: "Mini (30ml)", beneficio: "Refrescante", cor: "#f1c40f", preco: "R$ 25,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo_mini.PNG" },
+const PRECO_160 = "R$ 70,00";
+const PRECO_30 = "R$ 30,00";
 
-  { id: 9, codigo: "BS09", nome: "Body Splash Amarelo - Limão & Vanilla", aroma: "Limão & Vanilla", desc: "Refrescante com doçura, aroma balanceado.", tamanho: "Grande (160ml)", beneficio: "Refrescante", cor: "#f1c40f", preco: "R$ 70,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo2.PNG" },
-  { id: 10, codigo: "BS10", nome: "Body Splash Amarelo - Limão & Vanilla", aroma: "Limão & Vanilla", desc: "Refrescante com doçura, aroma balanceado.", tamanho: "Mini (30ml)", beneficio: "Refrescante", cor: "#f1c40f", preco: "R$ 25,00", imagem: "/assets/body_splash/8180_amarelo/IMG_8180_amarelo_mini2.PNG" },
+const TAMANHOS_PADRAO = (codGrande: string, codMini: string): BodySplashTamanho[] => [
+  { tamanho: "160ml", label: "160ml", preco: PRECO_160, codigo: codGrande },
+  { tamanho: "30ml", label: "30ml", preco: PRECO_30, codigo: codMini },
+];
 
-  { id: 11, codigo: "BS11", nome: "Body Splash Rosa - Morango & Rosa", aroma: "Morango & Rosa", desc: "Doce e feminino, aroma frutado irresistível.", tamanho: "Grande (160ml)", beneficio: "Hidratante", cor: "#ff69b4", preco: "R$ 70,00", imagem: "/assets/body_splash/8181_rosa/IMG_8181_rosa.PNG" },
-  { id: 12, codigo: "BS12", nome: "Body Splash Rosa - Morango & Rosa", aroma: "Morango & Rosa", desc: "Doce e feminino, aroma frutado irresistível.", tamanho: "Mini (30ml)", beneficio: "Hidratante", cor: "#ff69b4", preco: "R$ 25,00", imagem: "/assets/body_splash/8181_rosa/IMG_8181_rosa_mini.PNG" },
-
-  { id: 13, codigo: "BS13", nome: "Body Splash Rosa - Morango & Rosa", aroma: "Morango & Rosa", desc: "Doce e feminino, aroma frutado irresistível.", tamanho: "Grande (160ml)", beneficio: "Hidratante", cor: "#ff69b4", preco: "R$ 70,00", imagem: "/assets/body_splash/8181_rosa/IMG_8181_rosa.PNG" },
-  { id: 14, codigo: "BS14", nome: "Body Splash Rosa - Morango & Rosa", aroma: "Morango & Rosa", desc: "Doce e feminino, aroma frutado irresistível.", tamanho: "Mini (30ml)", beneficio: "Hidratante", cor: "#ff69b4", preco: "R$ 25,00", imagem: "/assets/body_splash/8181_rosa/IMG_8181_rosa%20mini2.PNG" },
-
-  { id: 15, codigo: "BS15", nome: "Body Splash Verde - Hortelã & Eucalipto", aroma: "Hortelã & Eucalipto", desc: "Refrescante e tonificante, aroma mentolado puro.", tamanho: "Grande (160ml)", beneficio: "Energizante", cor: "#27ae60", preco: "R$ 70,00", imagem: "/assets/body_splash/8183_verde/IMG_8183_verde.PNG" },
-  { id: 16, codigo: "BS16", nome: "Body Splash Verde - Hortelã & Eucalipto", aroma: "Hortelã & Eucalipto", desc: "Refrescante e tonificante, aroma mentolado puro.", tamanho: "Mini (30ml)", beneficio: "Energizante", cor: "#27ae60", preco: "R$ 25,00", imagem: "/assets/body_splash/8183_verde/IMG_8183_verde_mini.PNG" },
-
-  { id: 17, codigo: "BS17", nome: "Body Splash Azul Escuro - Blueberry & Baunilha", aroma: "Blueberry & Baunilha", desc: "Frutado e adocicado, combinação exótica única.", tamanho: "Grande (160ml)", beneficio: "Fixador", cor: "#1e90ff", preco: "R$ 70,00", imagem: "/assets/body_splash/8185_azul/IMG_8185_azul.PNG" },
-  { id: 18, codigo: "BS18", nome: "Body Splash Azul Escuro - Blueberry & Baunilha", aroma: "Blueberry & Baunilha", desc: "Frutado e adocicado, combinação exótica única.", tamanho: "Mini (30ml)", beneficio: "Fixador", cor: "#1e90ff", preco: "R$ 25,00", imagem: "/assets/body_splash/8185_azul/IMG_8185_mini.PNG" },
-
-  { id: 19, codigo: "BS19", nome: "Body Splash Vermelho - Morango & Framboesa", aroma: "Morango & Framboesa", desc: "Frutado intenso e sedutor, aroma envolvente.", tamanho: "Grande (160ml)", beneficio: "Fixador", cor: "#e74c3c", preco: "R$ 70,00", imagem: "/assets/body_splash/8245_vermelho/IMG_8245_vermelho.PNG" },
-  { id: 20, codigo: "BS20", nome: "Body Splash Vermelho - Morango & Framboesa", aroma: "Morango & Framboesa", desc: "Frutado intenso e sedutor, aroma envolvente.", tamanho: "Mini (30ml)", beneficio: "Fixador", cor: "#e74c3c", preco: "R$ 25,00", imagem: "/assets/body_splash/8245_vermelho/IMG_8245_vermelho_mini.PNG" },
+const bodySplashGrupos: BodySplashGrupo[] = [
+  {
+    id: 1,
+    nome: "Body Splash A Vida é Bela",
+    desc: "Floral alegre e envolvente, perfume marcante para o dia a dia.",
+    tamanhos: TAMANHOS_PADRAO("BS01", "BS02"),
+    fotos: [
+      { imagem: "/assets/body_splash/a-vida-e-bela/a-vida-e-bela-160ml.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/a-vida-e-bela/a-vida-e-bela-combo.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/a-vida-e-bela/a-vida-e-bela-30ml.jpg", tamanho: "30ml" },
+      { imagem: "/assets/body_splash/a-vida-e-bela/a-vida-e-bela-30ml-v2.jpg", tamanho: "30ml" },
+    ],
+  },
+  {
+    id: 2,
+    nome: "Body Splash Flor de Jade",
+    desc: "Delicado e sofisticado, com notas florais suaves.",
+    tamanhos: TAMANHOS_PADRAO("BS03", "BS04"),
+    fotos: [
+      { imagem: "/assets/body_splash/flor-de-jade/flor-de-jade-160ml.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/flor-de-jade/flor-de-jade-30ml.jpg", tamanho: "30ml" },
+      { imagem: "/assets/body_splash/flor-de-jade/flor-de-jade-30ml-v2.png", tamanho: "30ml" },
+      { imagem: "/assets/body_splash/flor-de-jade/flor-de-jade-30ml-v3.jpg", tamanho: "30ml" },
+    ],
+  },
+  {
+    id: 3,
+    nome: "Body Splash Flor de Maçã",
+    desc: "Frutado e leve, aroma fresco e levemente adocicado.",
+    tamanhos: TAMANHOS_PADRAO("BS05", "BS06"),
+    fotos: [
+      { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-160ml.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-combo.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-30ml.png", tamanho: "30ml" },
+      { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-30ml-v2.jpg", tamanho: "30ml" },
+    ],
+  },
+  {
+    id: 4,
+    nome: "Body Splash Flor de Seda",
+    desc: "Suave e aveludado, fragrância elegante e duradoura.",
+    tamanhos: TAMANHOS_PADRAO("BS07", "BS08"),
+    fotos: [
+      { imagem: "/assets/body_splash/flor-de-seda/flor-de-seda-160ml.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/flor-de-seda/flor-de-seda-combo.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/flor-de-seda/flor-de-seda-30ml.png", tamanho: "30ml" },
+      { imagem: "/assets/body_splash/flor-de-seda/flor-de-seda-30ml-v2.jpg", tamanho: "30ml" },
+    ],
+  },
+  {
+    id: 5,
+    nome: "Body Splash Folha Seca",
+    desc: "Amadeirado e aconchegante, perfume terroso e marcante.",
+    tamanhos: TAMANHOS_PADRAO("BS09", "BS10"),
+    fotos: [
+      { imagem: "/assets/body_splash/folha-seca/folha-seca-160ml.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/folha-seca/folha-seca-combo.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/folha-seca/folha-seca-30ml.png", tamanho: "30ml" },
+      { imagem: "/assets/body_splash/folha-seca/folha-seca-30ml-v2.jpg", tamanho: "30ml" },
+    ],
+  },
+  {
+    id: 6,
+    nome: "Body Splash Jardim Secreto",
+    desc: "Floral misterioso, um buquê de flores irresistível.",
+    tamanhos: TAMANHOS_PADRAO("BS11", "BS12"),
+    fotos: [
+      { imagem: "/assets/body_splash/jardim-secreto/jardim-secreto-160ml.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/jardim-secreto/jardim-secreto-30ml.jpg", tamanho: "30ml" },
+      { imagem: "/assets/body_splash/jardim-secreto/jardim-secreto-30ml-v2.png", tamanho: "30ml" },
+      { imagem: "/assets/body_splash/jardim-secreto/jardim-secreto-30ml-v3.jpg", tamanho: "30ml" },
+      { imagem: "/assets/body_splash/jardim-secreto/jardim-secreto-30ml-v4.jpg", tamanho: "30ml" },
+    ],
+  },
+  {
+    id: 7,
+    nome: "Body Splash Jasmin",
+    desc: "Clássico e romântico, o perfume marcante do jasmim.",
+    tamanhos: TAMANHOS_PADRAO("BS13", "BS14"),
+    fotos: [
+      { imagem: "/assets/body_splash/jasmin/jasmin-160ml.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/jasmin/jasmin-combo.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/jasmin/jasmin-30ml.png", tamanho: "30ml" },
+      { imagem: "/assets/body_splash/jasmin/jasmin-30ml-v2.jpg", tamanho: "30ml" },
+    ],
+  },
+  {
+    id: 8,
+    nome: "Body Splash Orquídeas",
+    desc: "Exótico e refinado, fragrância floral luxuosa.",
+    tamanhos: TAMANHOS_PADRAO("BS15", "BS16"),
+    fotos: [
+      { imagem: "/assets/body_splash/orquideas/orquideas-160ml.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/orquideas/orquideas-combo.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/orquideas/orquideas-30ml.png", tamanho: "30ml" },
+      { imagem: "/assets/body_splash/orquideas/orquideas-30ml-v2.jpg", tamanho: "30ml" },
+    ],
+  },
+  {
+    id: 9,
+    nome: "Body Splash Pitanga Preta",
+    desc: "Frutado intenso e sedutor, aroma envolvente e único.",
+    tamanhos: TAMANHOS_PADRAO("BS17", "BS18"),
+    fotos: [
+      { imagem: "/assets/body_splash/pitanga-preta/pitanga-preta-160ml.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/pitanga-preta/pitanga-preta-combo.jpg", tamanho: "160ml" },
+      { imagem: "/assets/body_splash/pitanga-preta/pitanga-preta-30ml.png", tamanho: "30ml" },
+      { imagem: "/assets/body_splash/pitanga-preta/pitanga-preta-30ml-v2.jpg", tamanho: "30ml" },
+    ],
+  },
 ];
 
 const geleiasDebanho = [
@@ -172,18 +286,134 @@ function ProdutoCard({ produto, badge }: { produto: Produto; badge?: string }) {
   );
 }
 
+function BodySplashCard({ grupo, badge }: { grupo: BodySplashGrupo; badge?: string }) {
+  const [idx, setIdx] = useState(0);
+  const total = grupo.fotos.length;
+  const fotoAtual = grupo.fotos[idx];
+  const tamanhoAtual =
+    grupo.tamanhos.find((t) => t.tamanho === fotoAtual.tamanho) ?? grupo.tamanhos[0];
+
+  const prev = () => setIdx((i) => (i - 1 + total) % total);
+  const next = () => setIdx((i) => (i + 1) % total);
+  const selecionarTamanho = (tamanho: string) => {
+    const alvo = grupo.fotos.findIndex((f) => f.tamanho === tamanho);
+    if (alvo >= 0) setIdx(alvo);
+  };
+
+  return (
+    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white border-0 shadow-md w-fit mx-auto" style={{ width: 300 }}>
+      <div className="relative overflow-hidden bg-gray-100 flex items-center justify-center" style={{ width: 300, height: 400 }}>
+        <img
+          src={fotoAtual.imagem}
+          alt={`${grupo.nome} - ${tamanhoAtual.label}`}
+          className="object-contain transition-transform duration-300"
+          style={{ width: 300, height: 400, maxWidth: 300, maxHeight: 400 }}
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = "none";
+          }}
+        />
+        {total > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={prev}
+              aria-label="Imagem anterior"
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white shadow flex items-center justify-center transition-colors"
+            >
+              <ChevronLeft size={18} style={{ color: PINK }} />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Próxima imagem"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white shadow flex items-center justify-center transition-colors"
+            >
+              <ChevronRight size={18} style={{ color: PINK }} />
+            </button>
+            {/* indicadores de posição */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+              {grupo.fotos.map((_, i) => (
+                <span
+                  key={i}
+                  className="w-1.5 h-1.5 rounded-full transition-all"
+                  style={{ backgroundColor: i === idx ? PINK : "#d1d5db" }}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+      <CardContent className="p-4">
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <div className="flex-1">
+            <h3 style={{ fontFamily: "Floane, serif" }} className="font-semibold text-gray-800 text-sm leading-tight">
+              {grupo.nome}
+            </h3>
+            <span className="block text-xs text-gray-400 font-mono">Cód: {tamanhoAtual.codigo}</span>
+          </div>
+          {badge && <Badge className="text-white text-xs shrink-0" style={{ backgroundColor: PINK }}>{badge}</Badge>}
+        </div>
+
+        {/* Seletor de tamanho (sincronizado com o carrossel) */}
+        <div className="flex gap-2 mb-2">
+          {grupo.tamanhos.map((t) => {
+            const ativo = t.tamanho === fotoAtual.tamanho;
+            return (
+              <button
+                key={t.tamanho}
+                type="button"
+                onClick={() => selecionarTamanho(t.tamanho)}
+                className={`flex-1 text-xs py-1.5 rounded-md border font-medium transition-all ${
+                  ativo ? "text-white shadow-sm" : "bg-white text-gray-600 border-gray-200 hover:border-pink-300"
+                }`}
+                style={ativo ? { backgroundColor: PINK, borderColor: PINK } : {}}
+              >
+                {t.label}
+              </button>
+            );
+          })}
+        </div>
+
+        {grupo.beneficio && (
+          <div className="flex flex-wrap gap-1 mb-2">
+            <Badge className="text-white text-xs py-0.5" style={{ backgroundColor: "#27ae60" }}>
+              {grupo.beneficio}
+            </Badge>
+          </div>
+        )}
+        <p className="text-gray-500 text-xs mb-3 leading-relaxed">{grupo.desc}</p>
+        <div className="flex items-center justify-between">
+          <span className="font-bold text-sm" style={{ color: PINK }}>{tamanhoAtual.preco}</span>
+          <Button
+            size="sm"
+            className="text-white text-xs px-3 py-1 h-7"
+            style={{ backgroundColor: PINK }}
+            onClick={() => {
+              const msg = encodeURIComponent(
+                `Olá! Gostaria de comprar: ${grupo.nome} - ${tamanhoAtual.label} (${tamanhoAtual.preco})\nCódigo: ${tamanhoAtual.codigo}`
+              );
+              window.open(`https://wa.me/5519991743043?text=${msg}`, "_blank");
+            }}
+          >
+            Comprar
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
 type CategoriaKey = "sabonetes" | "bodySplash" | "geleias" | "sais";
 
 const categorias: { key: CategoriaKey; label: string; icon: React.ReactNode; count: number; badge?: string }[] = [
   { key: "sabonetes", label: "Sabonetes", icon: <ShoppingBag size={16} />, count: sabonetes.length },
-  { key: "bodySplash", label: "Body Splash", icon: <Wind size={16} />, count: bodySplash.length, badge: "Novo" },
+  { key: "bodySplash", label: "Body Splash", icon: <Wind size={16} />, count: bodySplashGrupos.length, badge: "Novo" },
   { key: "geleias", label: "Geleias de Banho", icon: <Droplets size={16} />, count: geleiasDebanho.length, badge: "Novo" },
   { key: "sais", label: "Sais de Banho", icon: <Waves size={16} />, count: saisDebanho.length, badge: "Novo" },
 ];
 
-const produtosPorCategoria: Record<CategoriaKey, Produto[]> = {
+const produtosPorCategoria: Record<Exclude<CategoriaKey, "bodySplash">, Produto[]> = {
   sabonetes,
-  bodySplash,
   geleias: geleiasDebanho,
   sais: saisDebanho,
 };
@@ -198,7 +428,7 @@ export default function Index() {
       <header className="py-4 px-6 sticky top-0 z-50 shadow-sm" style={{ backgroundColor: BLUE }}>
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/assets/yami-logo.jpg" alt="Yami Sabonetes" className="h-12 w-12 rounded-full object-cover" />
+            <img src="/assets/yami-logo-main.jpg" alt="Yami Sabonetes" className="h-12 w-12 rounded-full object-cover" />
             <div>
               <h1 style={{ fontFamily: "Floane, serif", color: PINK }} className="text-xl font-bold leading-tight">
                 Yami Sabonetes
@@ -394,7 +624,7 @@ export default function Index() {
                   </div>
                   <div className="bg-white p-3 rounded-lg border-l-4" style={{ borderColor: PINK }}>
                     <p className="text-xs font-bold text-gray-800 mb-1">Kit Descoberta</p>
-                    <p className="text-xs text-gray-600 mb-2">Tamanho Mini (75ml) - 4 cores diferentes</p>
+                    <p className="text-xs text-gray-600 mb-2">Tamanho Mini (30ml) - 4 cores diferentes</p>
                     <span className="text-xs font-bold" style={{ color: PINK }}>Combo: R$ 80,00</span>
                   </div>
                 </div>
@@ -403,10 +633,14 @@ export default function Index() {
           )}
 
           {/* Products Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {produtosPorCategoria[categoriaAtiva].map((produto) => (
-              <ProdutoCard key={produto.id} produto={produto} />
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-20 gap-y-10">
+            {categoriaAtiva === "bodySplash"
+              ? bodySplashGrupos.map((grupo) => (
+                  <BodySplashCard key={`grupo-${grupo.id}`} grupo={grupo} />
+                ))
+              : produtosPorCategoria[categoriaAtiva].map((produto) => (
+                  <ProdutoCard key={produto.id} produto={produto} />
+                ))}
           </div>
 
           <div className="text-center mt-10">

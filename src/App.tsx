@@ -9,7 +9,6 @@ import ClubeSabonete from './pages/ClubeSabonete';
 const queryClient = new QueryClient();
 
 const App = () => {
-  console.log('App component rendering');
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -17,8 +16,8 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="*" element={<NotFound />} />
             <Route path="/clube" element={<ClubeSabonete />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

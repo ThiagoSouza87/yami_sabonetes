@@ -180,7 +180,7 @@ devDependencies:
     version: 9.39.1
   '@metagptx/vite-plugin-source-locator':
     specifier: latest
-    version: 0.0.8(rollup@2.79.2)(vite@5.4.21)
+    version: 0.0.8(rollup@2.80.0)(vite@5.4.21)
   '@tailwindcss/aspect-ratio':
     specifier: ^0.4.2
     version: 0.4.2(tailwindcss@3.4.18)
@@ -924,7 +924,7 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  /@metagptx/vite-plugin-source-locator@0.0.8(rollup@2.79.2)(vite@5.4.21):
+  /@metagptx/vite-plugin-source-locator@0.0.8(rollup@2.80.0)(vite@5.4.21):
     resolution: {integrity: sha512-XFzKynBkTg+U7r0a3e5fEz3Xy2ah9B9VWSuCUX8vL3myZ3r49R3ljplhZGB/hCTBgWggAzSxC86FFPFUwIAyUA==}
     engines: {node: '>=14.0.0'}
     requiresBuild: true
@@ -941,7 +941,7 @@ packages:
       '@vue/compiler-sfc': 3.5.25
       estree-walker: 3.0.3
       magic-string: 0.30.21
-      rollup-plugin-terser: 7.0.2(rollup@2.79.2)
+      rollup-plugin-terser: 7.0.2(rollup@2.80.0)
       vite: 5.4.21(@types/node@22.19.1)
     transitivePeerDependencies:
       - rollup
@@ -2951,7 +2951,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.28.0
-      caniuse-lite: 1.0.30001757
+      caniuse-lite: 1.0.30001799
       fraction.js: 5.3.4
       normalize-range: 0.1.2
       picocolors: 1.1.1
@@ -2963,8 +2963,9 @@ packages:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
 
-  /baseline-browser-mapping@2.8.32:
-    resolution: {integrity: sha512-OPz5aBThlyLFgxyhdwf/s2+8ab3OvT7AdTNvKHBwpXomIYeXqpUUuT8LrdtxZSsWJ4R4CU1un4XGh5Ez3nlTpw==}
+  /baseline-browser-mapping@2.10.38:
+    resolution: {integrity: sha512-31/02mVB4yuQU6adKk5SlY6m+mxDwUq5KZkyYgnLrrKl7TEm1+3PyDtDBz2kOv/wxZz41GHsvV1A/u6RmiyBvw==}
+    engines: {node: '>=6.0.0'}
     hasBin: true
     dev: true
 
@@ -2996,8 +2997,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      baseline-browser-mapping: 2.8.32
-      caniuse-lite: 1.0.30001757
+      baseline-browser-mapping: 2.10.38
+      caniuse-lite: 1.0.30001799
       electron-to-chromium: 1.5.262
       node-releases: 2.0.27
       update-browserslist-db: 1.1.4(browserslist@4.28.0)
@@ -3016,8 +3017,8 @@ packages:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
 
-  /caniuse-lite@1.0.30001757:
-    resolution: {integrity: sha512-r0nnL/I28Zi/yjk1el6ilj27tKcdjLsNqAOZr0yVjWPrSQyHgKI2INaEWw21bAQSv2LXRt1XuCS/GomNpWOxsQ==}
+  /caniuse-lite@1.0.30001799:
+    resolution: {integrity: sha512-hG1bReV+OUU+MOqK4t/ZWI0tZOyz3rqS9XuhOUz1cIcbwBKjOyJEJuw9ER5JuNyqxNk8u/JUVbGibBOL1yrjFw==}
     dev: true
 
   /chalk@4.1.2:
@@ -4306,7 +4307,7 @@ packages:
     resolution: {integrity: sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
 
-  /rollup-plugin-terser@7.0.2(rollup@2.79.2):
+  /rollup-plugin-terser@7.0.2(rollup@2.80.0):
     resolution: {integrity: sha512-w3iIaU4OxcF52UUXiZNsNeuXIMDvFrr+ZXK6bFZ0Q60qyVfq4uLptoS4bbq3paG3x216eQllFZX7zt6TIImguQ==}
     deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
     peerDependencies:
@@ -4314,13 +4315,13 @@ packages:
     dependencies:
       '@babel/code-frame': 7.27.1
       jest-worker: 26.6.2
-      rollup: 2.79.2
+      rollup: 2.80.0
       serialize-javascript: 4.0.0
       terser: 5.44.1
     dev: true
 
-  /rollup@2.79.2:
-    resolution: {integrity: sha512-fS6iqSPZDs3dr/y7Od6y5nha8dW1YnbgtsyotCVvoFGKbERG++CVRFv1meyGDE1SNItQA8BrnCw7ScdAhRJ3XQ==}
+  /rollup@2.80.0:
+    resolution: {integrity: sha512-cIFJOD1DESzpjOBl763Kp1AH7UE/0fcdHe6rZXUdQ9c50uvgigvW97u3IcSeBwOkgqL/PXPBktBCh0KEu5L8XQ==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
