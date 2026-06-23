@@ -342,7 +342,7 @@ function SaboneteCard({ produto }: { produto: SaboneteProduto }) {
         <img
           src={produto.fotos[idx]}
           alt={produto.nome}
-          className="object-contain transition-transform duration-300"
+          className="object-cover object-center transition-transform duration-300"
           style={{ width: 300, height: 400, maxWidth: 300, maxHeight: 400 }}
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = "none";
