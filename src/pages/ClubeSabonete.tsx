@@ -602,7 +602,7 @@ export default function ClubeSabonete() {
                   <Instagram size={14} /> @yami_sabonetesartesanais
                 </a>
                 <div className="flex items-center gap-2 text-white/70 text-sm">
-                  <MapPin size={14} /> Moinhos – Povos Unidos, SP
+                  <MapPin size={14} /> Holambra, SP
                 </div>
               </div>
             </div>

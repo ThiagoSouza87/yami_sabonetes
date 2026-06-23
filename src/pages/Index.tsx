@@ -802,7 +802,7 @@ export default function Index() {
                 trazer o melhor da natureza para o seu ritual de banho.
               </p>
               <p className="text-gray-700 mb-6 leading-relaxed">
-                Sediada em Moinhos – Povos Unidos, SP, produzimos tudo de forma artesanal,
+                Sediada em Holambra, SP, produzimos tudo de forma artesanal,
                 sem conservantes artificiais, respeitando o meio ambiente e o seu bem-estar.
               </p>
               <div className="flex flex-wrap gap-3">
@@ -905,7 +905,7 @@ export default function Index() {
                   <Instagram size={14} /> @yami_sabonetesartesanais
                 </a>
                 <div className="flex items-center gap-2 text-white/80 text-sm">
-                  <MapPin size={14} /> Moinhos – Povos Unidos, SP
+                  <MapPin size={14} /> Holambra, SP
                 </div>
               </div>
             </div>
