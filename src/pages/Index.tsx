@@ -9,37 +9,80 @@ const PINK = "#c26072";
 const BLUE = "#c4dcf0";
 
 // ─── Product Data ─────────────────────────────────────────────────────────────
-const sabonetes = [
-  { id: 1, nome: "Sabonete de Lavanda", desc: "Relaxante e suave, ideal para o banho noturno.", preco: "R$ 15,00", imagem: "/assets/soap-lavanda.jpg" },
-  { id: 2, nome: "Sabonete de Mel", desc: "Hidratante natural com mel puro e aveia.", preco: "R$ 15,00", imagem: "/assets/soap-almonds.jpg" },
-  { id: 3, nome: "Sabonete de Carvão Ativado", desc: "Purificante profundo para pele oleosa.", preco: "R$ 15,00", imagem: "/assets/soap-dolomita.jpg" },
-  { id: 4, nome: "Sabonete de Camomila", desc: "Calmante e delicado para peles sensíveis.", preco: "R$ 15,00", imagem: "/assets/soap-camomila.jpg" },
-  { id: 5, nome: "Sabonete de Limão", desc: "Refrescante e clareador, aroma cítrico.", preco: "R$ 15,00", imagem: "/assets/soap-limao.jpg" },
-  { id: 6, nome: "Sabonete de Maracujá", desc: "Nutritivo com vitamina C natural.", preco: "R$ 15,00", imagem: "/assets/soap-maracuja.jpg" },
-  { id: 7, nome: "Sabonete de Alecrim", desc: "Energizante e estimulante para o couro cabeludo.", preco: "R$ 15,00", imagem: "/assets/soap-alecrim.jpg" },
-  { id: 8, nome: "Sabonete de Babosa", desc: "Regenerador com aloe vera orgânica.", preco: "R$ 15,00", imagem: "/assets/soap-babosa.jpg" },
-  { id: 9, nome: "Sabonete de Calêndula", desc: "Anti-inflamatório natural para pele irritada.", preco: "R$ 15,00", imagem: "/assets/soap-calendula.jpg" },
-  { id: 10, nome: "Sabonete de Erva-Doce", desc: "Suave e adocicado, aroma aconchegante.", preco: "R$ 15,00", imagem: "/assets/soap-erva-doce.jpg" },
-  { id: 11, nome: "Sabonete de Melaleuca", desc: "Antibacteriano natural com tea tree.", preco: "R$ 15,00", imagem: "/assets/soap-melaleuca.jpg" },
-  { id: 12, nome: "Sabonete de Melancia", desc: "Hidratante e refrescante para o verão.", preco: "R$ 15,00", imagem: "/assets/soap-melancia.jpg" },
-  { id: 13, nome: "Sabonete de Uva", desc: "Antioxidante com extrato de uva silvestre.", preco: "R$ 15,00", imagem: "/assets/soap-uva.jpg" },
-  { id: 14, nome: "Sabonete de Limpeza Energética", desc: "Com ervas e sal grosso para renovação.", preco: "R$ 15,00", imagem: "/assets/soap-limpeza-energetica.jpg" },
-  { id: 15, nome: "Sabonete Dolomita", desc: "Esfoliante suave com argila dolomita.", preco: "R$ 15,00", imagem: "/assets/soap-dolomita.jpg" },
-  { id: 16, nome: "Sabonete de Amêndoas", desc: "Ultra hidratante com óleo de amêndoas doces.", preco: "R$ 15,00", imagem: "/assets/soap-almonds.jpg" },
-  { id: 17, nome: "Sabonete de Rosa Mosqueta", desc: "Cicatrizante e regenerador para marcas.", preco: "R$ 15,00", imagem: "/assets/soap-babosa.jpg" },
-  { id: 18, nome: "Sabonete de Açaí", desc: "Rico em antioxidantes e vitamina E.", preco: "R$ 15,00", imagem: "/assets/soap-uva.jpg" },
-  { id: 19, nome: "Sabonete de Girassol", desc: "Nutritivo e suave para uso diário.", preco: "R$ 15,00", imagem: "/assets/soap-calendula.jpg" },
-  { id: 20, nome: "Sabonete de Baunilha", desc: "Aroma doce e envolvente, relaxamento total.", preco: "R$ 15,00", imagem: "/assets/soap-erva-doce.jpg" },
-  { id: 21, nome: "Sabonete de Hortelã", desc: "Refrescante e tonificante para o banho.", preco: "R$ 15,00", imagem: "/assets/soap-alecrim.jpg" },
-  { id: 22, nome: "Sabonete de Coco", desc: "Hidratante tropical com manteiga de coco.", preco: "R$ 15,00", imagem: "/assets/soap-almonds.jpg" },
-  { id: 23, nome: "Sabonete de Morango", desc: "Vitamina C natural para pele radiante.", preco: "R$ 15,00", imagem: "/assets/soap-melancia.jpg" },
-  { id: 24, nome: "Sabonete de Argila Verde", desc: "Detox profundo para pele oleosa.", preco: "R$ 15,00", imagem: "/assets/soap-melaleuca.jpg" },
-  { id: 25, nome: "Sabonete de Laranja", desc: "Energizante cítrico, aroma refrescante.", preco: "R$ 15,00", imagem: "/assets/soap-limao.jpg" },
-  { id: 26, nome: "Sabonete de Alfazema", desc: "Relaxante e terapêutico para o sono.", preco: "R$ 15,00", imagem: "/assets/soap-lavanda.jpg" },
-  { id: 27, nome: "Sabonete de Patchouli", desc: "Terroso e envolvente, longa duração.", preco: "R$ 15,00", imagem: "/assets/soap-limpeza-energetica.jpg" },
-  { id: 28, nome: "Sabonete de Leite de Cabra", desc: "Ultra suave para pele sensível.", preco: "R$ 15,00", imagem: "/assets/soap-camomila.jpg" },
-  { id: 29, nome: "Sabonete de Bamboo", desc: "Purificante com extrato de bambu.", preco: "R$ 15,00", imagem: "/assets/soap-dolomita.jpg" },
-  { id: 30, nome: "Sabonete Floral", desc: "Blend especial de flores silvestres.", preco: "R$ 15,00", imagem: "/assets/soap-maracuja.jpg" },
+// Sabonetes artesanais: cada produto tem seu próprio carrossel de fotos reais.
+interface SaboneteProduto {
+  id: number;
+  nome: string;
+  codigo: string;
+  desc: string;
+  preco: string;
+  fotos: string[];
+}
+
+const PRECO_SABONETE = "R$ 15,00";
+const img = (pasta: string, arquivo: string) => `/assets/sabonetes/${pasta}/${arquivo}`;
+
+const sabonetes: SaboneteProduto[] = [
+  {
+    id: 1, nome: "Sabonete de Amêndoa", codigo: "SAB01", preco: PRECO_SABONETE,
+    desc: "Rico em óleo de amêndoas doces: hidrata profundamente e deixa a pele macia e nutrida.",
+    fotos: [img("amendoa", "amendoa-1.jpg"), img("amendoa", "amendoa-2.jpg"), img("amendoa", "amendoa-3.jpg")],
+  },
+  {
+    id: 2, nome: "Sabonete de Argila Branca", codigo: "SAB02", preco: PRECO_SABONETE,
+    desc: "Limpeza suave que purifica sem ressecar — ideal para peles sensíveis e delicadas.",
+    fotos: [img("argila_branca", "argila_branca-1.png"), img("argila_branca", "argila_branca-2.jpeg"), img("argila_branca", "argila_branca-3.png"), img("argila_branca", "argila_branca-4.png"), img("argila_branca", "argila_branca-5.jpeg")],
+  },
+  {
+    id: 3, nome: "Sabonete de Argila Verde", codigo: "SAB03", preco: PRECO_SABONETE,
+    desc: "Ação detox que absorve a oleosidade, reduz cravos e purifica a pele.",
+    fotos: [img("argila_verde", "argila_verde-1.jpeg"), img("argila_verde", "argila_verde-2.jpeg")],
+  },
+  {
+    id: 4, nome: "Sabonete de Barbatimão", codigo: "SAB04", preco: PRECO_SABONETE,
+    desc: "Adstringente e cicatrizante natural: ajuda a firmar e a regenerar a pele.",
+    fotos: [img("babatimao", "babatimao-1.jpg"), img("babatimao", "babatimao-2.jpg"), img("babatimao", "babatimao-3.jpg"), img("babatimao", "babatimao-4.jpg")],
+  },
+  {
+    id: 5, nome: "Sabonete de Babosa", codigo: "SAB05", preco: PRECO_SABONETE,
+    desc: "Aloe vera que acalma, hidrata e auxilia na regeneração da pele.",
+    fotos: [img("babosa", "babosa-1.jpg"), img("babosa", "babosa-2.jpg"), img("babosa", "babosa-3.jpg")],
+  },
+  {
+    id: 6, nome: "Sabonete de Camomila", codigo: "SAB06", preco: PRECO_SABONETE,
+    desc: "Calmante e anti-irritação, suaviza peles sensíveis e avermelhadas.",
+    fotos: [img("camomila", "camomila-1.jpeg"), img("camomila", "camomila-2.jpeg")],
+  },
+  {
+    id: 7, nome: "Sabonete de Carvão Ativado", codigo: "SAB07", preco: PRECO_SABONETE,
+    desc: "Detox profundo que desobstrui os poros e controla a oleosidade e a acne.",
+    fotos: [img("carvao_ativado", "carvao_ativado-1.png"), img("carvao_ativado", "carvao_ativado-2.png"), img("carvao_ativado", "carvao_ativado-3.png")],
+  },
+  {
+    id: 8, nome: "Sabonete de Dolomita", codigo: "SAB08", preco: PRECO_SABONETE,
+    desc: "Esfoliação delicada que remove células mortas e renova a maciez da pele.",
+    fotos: [img("dolomita", "dolomita-1.jpeg"), img("dolomita", "dolomita-2.png"), img("dolomita", "dolomita-3.jpeg"), img("dolomita", "dolomita-4.jpeg")],
+  },
+  {
+    id: 9, nome: "Sabonete de Erva-Doce", codigo: "SAB09", preco: PRECO_SABONETE,
+    desc: "Suaviza e relaxa a pele, com aroma adocicado e aconchegante.",
+    fotos: [img("erva_doce", "erva_doce-1.png"), img("erva_doce", "erva_doce-2.png"), img("erva_doce", "erva_doce-3.png"), img("erva_doce", "erva_doce-4.jpeg"), img("erva_doce", "erva_doce-5.jpeg"), img("erva_doce", "erva_doce-6.jpeg")],
+  },
+  {
+    id: 10, nome: "Sabonete de Limpeza Energética", codigo: "SAB10", preco: PRECO_SABONETE,
+    desc: "Ervas e sal grosso que limpam, revigoram e renovam corpo e mente.",
+    fotos: [img("limpeza_energetica", "limpeza_energetica-1.png"), img("limpeza_energetica", "limpeza_energetica-2.png"), img("limpeza_energetica", "limpeza_energetica-3.jpeg"), img("limpeza_energetica", "limpeza_energetica-4.jpeg")],
+  },
+  {
+    id: 11, nome: "Sabonete de Manga", codigo: "SAB11", preco: PRECO_SABONETE,
+    desc: "Vitaminas que hidratam e dão viço à pele, com aroma tropical refrescante.",
+    fotos: [img("manga", "manga-1.jpeg"), img("manga", "manga-2.jpeg")],
+  },
+  {
+    id: 12, nome: "Sabonete de Mel & Fubá", codigo: "SAB12", preco: PRECO_SABONETE,
+    desc: "Esfoliante natural de mel e fubá: renova, nutre e deixa a pele macia.",
+    fotos: [img("mel_fuba", "mel_fuba-1.png"), img("mel_fuba", "mel_fuba-2.jpeg")],
+  },
 ];
 
 // ─── Body Splash Agrupado (por produto) ────────────────────────────────────────
@@ -286,6 +329,86 @@ function ProdutoCard({ produto, badge }: { produto: Produto; badge?: string }) {
   );
 }
 
+function SaboneteCard({ produto }: { produto: SaboneteProduto }) {
+  const [idx, setIdx] = useState(0);
+  const total = produto.fotos.length;
+
+  const prev = () => setIdx((i) => (i - 1 + total) % total);
+  const next = () => setIdx((i) => (i + 1) % total);
+
+  return (
+    <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white border-0 shadow-md w-fit mx-auto" style={{ width: 300 }}>
+      <div className="relative overflow-hidden bg-gray-100 flex items-center justify-center" style={{ width: 300, height: 400 }}>
+        <img
+          src={produto.fotos[idx]}
+          alt={produto.nome}
+          className="object-contain transition-transform duration-300"
+          style={{ width: 300, height: 400, maxWidth: 300, maxHeight: 400 }}
+          onError={(e) => {
+            (e.target as HTMLImageElement).style.display = "none";
+          }}
+        />
+        {total > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={prev}
+              aria-label="Imagem anterior"
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white shadow flex items-center justify-center transition-colors"
+            >
+              <ChevronLeft size={18} style={{ color: PINK }} />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              aria-label="Próxima imagem"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white/80 hover:bg-white shadow flex items-center justify-center transition-colors"
+            >
+              <ChevronRight size={18} style={{ color: PINK }} />
+            </button>
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+              {produto.fotos.map((_, i) => (
+                <span
+                  key={i}
+                  className="w-1.5 h-1.5 rounded-full transition-all"
+                  style={{ backgroundColor: i === idx ? PINK : "#d1d5db" }}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+      <CardContent className="p-4">
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <div className="flex-1">
+            <h3 style={{ fontFamily: "Floane, serif" }} className="font-semibold text-gray-800 text-sm leading-tight">
+              {produto.nome}
+            </h3>
+            <span className="block text-xs text-gray-400 font-mono">Cód: {produto.codigo}</span>
+          </div>
+        </div>
+        <p className="text-gray-500 text-xs mb-3 leading-relaxed">{produto.desc}</p>
+        <div className="flex items-center justify-between">
+          <span className="font-bold text-sm" style={{ color: PINK }}>{produto.preco}</span>
+          <Button
+            size="sm"
+            className="text-white text-xs px-3 py-1 h-7"
+            style={{ backgroundColor: PINK }}
+            onClick={() => {
+              const msg = encodeURIComponent(
+                `Olá! Gostaria de comprar: ${produto.nome} (${produto.preco})\nCódigo: ${produto.codigo}`
+              );
+              window.open(`https://wa.me/5519991743043?text=${msg}`, "_blank");
+            }}
+          >
+            Comprar
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
 function BodySplashCard({ grupo, badge }: { grupo: BodySplashGrupo; badge?: string }) {
   const [idx, setIdx] = useState(0);
   const total = grupo.fotos.length;
@@ -412,8 +535,7 @@ const categorias: { key: CategoriaKey; label: string; icon: React.ReactNode; cou
   { key: "sais", label: "Sais de Banho", icon: <Waves size={16} />, count: saisDebanho.length, badge: "Novo" },
 ];
 
-const produtosPorCategoria: Record<Exclude<CategoriaKey, "bodySplash">, Produto[]> = {
-  sabonetes,
+const produtosPorCategoria: Record<Exclude<CategoriaKey, "bodySplash" | "sabonetes">, Produto[]> = {
   geleias: geleiasDebanho,
   sais: saisDebanho,
 };
@@ -634,7 +756,11 @@ export default function Index() {
 
           {/* Products Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-20 gap-y-10">
-            {categoriaAtiva === "bodySplash"
+            {categoriaAtiva === "sabonetes"
+              ? sabonetes.map((produto) => (
+                  <SaboneteCard key={produto.id} produto={produto} />
+                ))
+              : categoriaAtiva === "bodySplash"
               ? bodySplashGrupos.map((grupo) => (
                   <BodySplashCard key={`grupo-${grupo.id}`} grupo={grupo} />
                 ))
@@ -690,7 +816,7 @@ export default function Index() {
             <div className="grid grid-cols-2 gap-3">
               {[
                 { num: "4", label: "Linhas de produtos" },
-                { num: "52+", label: "Produtos únicos" },
+                { num: "35+", label: "Produtos únicos" },
                 { num: "100%", label: "Natural" },
                 { num: "❤️", label: "Feito com amor" },
               ].map((stat) => (

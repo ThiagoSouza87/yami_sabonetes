@@ -209,7 +209,7 @@ export default function ClubeSabonete() {
       <section style={{ backgroundColor: BLUE }} className="py-12 px-6">
         <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
-            { num: "52+", label: "Produtos disponíveis" },
+            { num: "35+", label: "Produtos disponíveis" },
             { num: "4", label: "Linhas artesanais" },
             { num: "100%", label: "Natural & Artesanal" },
             { num: "❤️", label: "Feito com amor" },
