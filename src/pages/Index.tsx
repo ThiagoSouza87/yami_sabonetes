@@ -79,6 +79,11 @@ const sabonetes: SaboneteProduto[] = [
     fotos: [img("manga", "manga-1.jpeg"), img("manga", "manga-2.jpeg")],
   },
   {
+    id: 13, nome: "Sabonete de Maracujá", codigo: "SAB13", preco: PRECO_SABONETE,
+    desc: "Rico em vitamina C: revitaliza, tonifica e ajuda a controlar a oleosidade da pele.",
+    fotos: [img("maracuja", "maracuja-1.jpg"), img("maracuja", "maracuja-2.jpg")],
+  },
+  {
     id: 12, nome: "Sabonete de Mel & Fubá", codigo: "SAB12", preco: PRECO_SABONETE,
     desc: "Esfoliante natural de mel e fubá: renova, nutre e deixa a pele macia.",
     fotos: [img("mel_fuba", "mel_fuba-1.png"), img("mel_fuba", "mel_fuba-2.jpeg")],
