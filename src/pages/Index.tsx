@@ -41,7 +41,7 @@ const sabonetes: SaboneteProduto[] = [
   {
     id: 4, nome: "Sabonete de Barbatimão", codigo: "SAB04", preco: PRECO_SABONETE,
     desc: "Adstringente e cicatrizante natural: ajuda a firmar e a regenerar a pele.",
-    fotos: [img("babatimao", "babatimao-1.jpg"), img("babatimao", "babatimao-2.jpg"), img("babatimao", "babatimao-3.jpg"), img("babatimao", "babatimao-4.jpg")],
+    fotos: [img("babatimao", "babatimao-1.jpg")],
   },
   {
     id: 5, nome: "Sabonete de Babosa", codigo: "SAB05", preco: PRECO_SABONETE,
@@ -51,7 +51,7 @@ const sabonetes: SaboneteProduto[] = [
   {
     id: 6, nome: "Sabonete de Camomila", codigo: "SAB06", preco: PRECO_SABONETE,
     desc: "Calmante e anti-irritação, suaviza peles sensíveis e avermelhadas.",
-    fotos: [img("camomila", "camomila-1.jpeg"), img("camomila", "camomila-2.jpeg")],
+    fotos: [img("camomila", "camomila-1.jpg"), img("camomila", "camomila-2.jpg")],
   },
   {
     id: 7, nome: "Sabonete de Carvão Ativado", codigo: "SAB07", preco: PRECO_SABONETE,
@@ -61,7 +61,7 @@ const sabonetes: SaboneteProduto[] = [
   {
     id: 8, nome: "Sabonete de Dolomita", codigo: "SAB08", preco: PRECO_SABONETE,
     desc: "Esfoliação delicada que remove células mortas e renova a maciez da pele.",
-    fotos: [img("dolomita", "dolomita-1.jpeg"), img("dolomita", "dolomita-2.png"), img("dolomita", "dolomita-3.jpeg"), img("dolomita", "dolomita-4.jpeg")],
+    fotos: [img("dolomita", "dolomita-1.jpg"), img("dolomita", "dolomita-2.jpeg"), img("dolomita", "dolomita-3.jpeg"), img("dolomita", "dolomita-4.jpeg")],
   },
   {
     id: 9, nome: "Sabonete de Erva-Doce", codigo: "SAB09", preco: PRECO_SABONETE,
@@ -76,7 +76,7 @@ const sabonetes: SaboneteProduto[] = [
   {
     id: 11, nome: "Sabonete de Manga", codigo: "SAB11", preco: PRECO_SABONETE,
     desc: "Vitaminas que hidratam e dão viço à pele, com aroma tropical refrescante.",
-    fotos: [img("manga", "manga-1.jpeg"), img("manga", "manga-2.jpeg")],
+    fotos: [img("manga", "manga-1.jpg"), img("manga", "manga-2.jpeg")],
   },
   {
     id: 13, nome: "Sabonete de Maracujá", codigo: "SAB13", preco: PRECO_SABONETE,
