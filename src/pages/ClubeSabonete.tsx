@@ -67,7 +67,7 @@ const planos = [
     emoji: "✨",
     desc: "Nossa caixa mais amada, com mix de produtos.",
     itens: ["2 sabonetes artesanais", "1 body splash (30ml)", "1 geleia de banho", "Embrulho premium", "Bônus surpresa"],
-    precos: { mensal: "R$ 99,90", trimestral: "R$ 89,90", anual: "R$ 9,90" },
+    precos: { mensal: "R$ 99,90", trimestral: "R$ 89,90", anual: "R$ 79,90" },
     destaque: true,
     cor: PINK,
   },
