@@ -31,17 +31,17 @@ const sabonetes: SaboneteProduto[] = [
   {
     id: 2, nome: "Sabonete de Argila Branca", codigo: "SAB02", preco: PRECO_SABONETE,
     desc: "Limpeza suave que purifica sem ressecar — ideal para peles sensíveis e delicadas.",
-    fotos: [img("argila_branca", "argila_branca-1.png"), img("argila_branca", "argila_branca-2.jpeg"), img("argila_branca", "argila_branca-3.png"), img("argila_branca", "argila_branca-4.png"), img("argila_branca", "argila_branca-5.jpeg")],
+    fotos: [img("argila_branca", "argila_branca-1.jpg"), img("argila_branca", "argila_branca-2.jpg"), img("argila_branca", "argila_branca-3.jpg")],
   },
   {
     id: 3, nome: "Sabonete de Argila Verde", codigo: "SAB03", preco: PRECO_SABONETE,
     desc: "Ação detox que absorve a oleosidade, reduz cravos e purifica a pele.",
-    fotos: [img("argila_verde", "argila_verde-1.jpeg"), img("argila_verde", "argila_verde-2.jpeg")],
+    fotos: [img("argila_verde", "argila_verde-1.jpg"), img("argila_verde", "argila_verde-2.jpg"), img("argila_verde", "argila_verde-3.jpg")],
   },
   {
     id: 4, nome: "Sabonete de Barbatimão", codigo: "SAB04", preco: PRECO_SABONETE,
     desc: "Adstringente e cicatrizante natural: ajuda a firmar e a regenerar a pele.",
-    fotos: [img("babatimao", "babatimao-1.jpg")],
+    fotos: [img("babatimao", "babatimao-1.jpg"), img("babatimao", "babatimao-2.jpg"), img("babatimao", "babatimao-3.jpg")],
   },
   {
     id: 5, nome: "Sabonete de Babosa", codigo: "SAB05", preco: PRECO_SABONETE,
@@ -51,32 +51,32 @@ const sabonetes: SaboneteProduto[] = [
   {
     id: 6, nome: "Sabonete de Camomila", codigo: "SAB06", preco: PRECO_SABONETE,
     desc: "Calmante e anti-irritação, suaviza peles sensíveis e avermelhadas.",
-    fotos: [img("camomila", "camomila-1.jpg"), img("camomila", "camomila-2.jpg")],
+    fotos: [img("camomila", "camomila-1.jpg"), img("camomila", "camomila-2.jpg"), img("camomila", "camomila-3.jpg")],
   },
   {
     id: 7, nome: "Sabonete de Carvão Ativado", codigo: "SAB07", preco: PRECO_SABONETE,
     desc: "Detox profundo que desobstrui os poros e controla a oleosidade e a acne.",
-    fotos: [img("carvao_ativado", "carvao_ativado-1.png"), img("carvao_ativado", "carvao_ativado-2.png"), img("carvao_ativado", "carvao_ativado-3.png")],
+    fotos: [img("carvao_ativado", "carvao_ativado-1.jpg"), img("carvao_ativado", "carvao_ativado-2.jpg"), img("carvao_ativado", "carvao_ativado-3.jpg")],
   },
   {
     id: 8, nome: "Sabonete de Dolomita", codigo: "SAB08", preco: PRECO_SABONETE,
     desc: "Esfoliação delicada que remove células mortas e renova a maciez da pele.",
-    fotos: [img("dolomita", "dolomita-1.jpg"), img("dolomita", "dolomita-2.jpeg"), img("dolomita", "dolomita-3.jpeg"), img("dolomita", "dolomita-4.jpeg")],
+    fotos: [img("dolomita", "dolomita-1.jpg"), img("dolomita", "dolomita-2.jpg"), img("dolomita", "dolomita-3.jpg")],
   },
   {
     id: 9, nome: "Sabonete de Erva-Doce", codigo: "SAB09", preco: PRECO_SABONETE,
     desc: "Suaviza e relaxa a pele, com aroma adocicado e aconchegante.",
-    fotos: [img("erva_doce", "erva_doce-1.png"), img("erva_doce", "erva_doce-2.png"), img("erva_doce", "erva_doce-3.png"), img("erva_doce", "erva_doce-4.jpeg"), img("erva_doce", "erva_doce-5.jpeg"), img("erva_doce", "erva_doce-6.jpeg")],
+    fotos: [img("erva_doce", "erva_doce-1.jpg"), img("erva_doce", "erva_doce-2.jpg"), img("erva_doce", "erva_doce-3.jpg")],
   },
   {
     id: 10, nome: "Sabonete de Limpeza Energética", codigo: "SAB10", preco: PRECO_SABONETE,
     desc: "Ervas e sal grosso que limpam, revigoram e renovam corpo e mente.",
-    fotos: [img("limpeza_energetica", "limpeza_energetica-1.png"), img("limpeza_energetica", "limpeza_energetica-2.png"), img("limpeza_energetica", "limpeza_energetica-3.jpeg"), img("limpeza_energetica", "limpeza_energetica-4.jpeg")],
+    fotos: [img("limpeza_energetica", "limpeza_energetica-1.jpg"), img("limpeza_energetica", "limpeza_energetica-2.jpg"), img("limpeza_energetica", "limpeza_energetica-3.jpg")],
   },
   {
     id: 11, nome: "Sabonete de Manga", codigo: "SAB11", preco: PRECO_SABONETE,
     desc: "Vitaminas que hidratam e dão viço à pele, com aroma tropical refrescante.",
-    fotos: [img("manga", "manga-1.jpg"), img("manga", "manga-2.jpeg")],
+    fotos: [img("manga", "manga-1.jpg"), img("manga", "manga-2.jpg")],
   },
   {
     id: 13, nome: "Sabonete de Maracujá", codigo: "SAB13", preco: PRECO_SABONETE,
@@ -86,7 +86,52 @@ const sabonetes: SaboneteProduto[] = [
   {
     id: 12, nome: "Sabonete de Mel & Fubá", codigo: "SAB12", preco: PRECO_SABONETE,
     desc: "Esfoliante natural de mel e fubá: renova, nutre e deixa a pele macia.",
-    fotos: [img("mel_fuba", "mel_fuba-1.png"), img("mel_fuba", "mel_fuba-2.jpeg")],
+    fotos: [img("mel_fuba", "mel_fuba-1.jpg"), img("mel_fuba", "mel_fuba-2.jpg")],
+  },
+  {
+    id: 14, nome: "Sabonete de Açafrão", codigo: "SAB14", preco: PRECO_SABONETE,
+    desc: "Antioxidante e iluminador: uniformiza o tom e traz viço à pele.",
+    fotos: [img("acafrao", "acafrao-1.jpg"), img("acafrao", "acafrao-2.jpg"), img("acafrao", "acafrao-3.jpg")],
+  },
+  {
+    id: 15, nome: "Sabonete de Açafrão & Dolomita", codigo: "SAB15", preco: PRECO_SABONETE,
+    desc: "Une o poder antioxidante do açafrão à esfoliação suave da dolomita.",
+    fotos: [img("acafrao_dolomita", "acafrao_dolomita-1.jpg"), img("acafrao_dolomita", "acafrao_dolomita-2.jpg"), img("acafrao_dolomita", "acafrao_dolomita-3.jpg")],
+  },
+  {
+    id: 16, nome: "Sabonete de Alecrim", codigo: "SAB16", preco: PRECO_SABONETE,
+    desc: "Estimulante e tonificante, revigora e refresca a pele.",
+    fotos: [img("alecrim", "alecrim-1.jpg"), img("alecrim", "alecrim-2.jpg"), img("alecrim", "alecrim-3.jpg")],
+  },
+  {
+    id: 17, nome: "Sabonete de Aveia", codigo: "SAB17", preco: PRECO_SABONETE,
+    desc: "Calmante e levemente esfoliante, ideal para peles sensíveis e ressecadas.",
+    fotos: [img("aveia", "aveia-1.jpg"), img("aveia", "aveia-2.jpg"), img("aveia", "aveia-3.jpg")],
+  },
+  {
+    id: 18, nome: "Sabonete de Calêndula", codigo: "SAB18", preco: PRECO_SABONETE,
+    desc: "Anti-inflamatório natural que acalma e ajuda a regenerar peles irritadas.",
+    fotos: [img("calendula", "calendula-1.jpg"), img("calendula", "calendula-2.jpg"), img("calendula", "calendula-3.jpg")],
+  },
+  {
+    id: 19, nome: "Sabonete de Argila Rosa & Branca", codigo: "SAB19", preco: PRECO_SABONETE,
+    desc: "Dupla argila que limpa suavemente e revitaliza peles sensíveis.",
+    fotos: [img("argila_rosa_branca", "argila_rosa_branca-1.jpg"), img("argila_rosa_branca", "argila_rosa_branca-2.jpg"), img("argila_rosa_branca", "argila_rosa_branca-3.jpg")],
+  },
+  {
+    id: 20, nome: "Sabonete Floral", codigo: "SAB20", preco: PRECO_SABONETE,
+    desc: "Blend floral delicado que perfuma e suaviza a pele.",
+    fotos: [img("florais", "floral-1.jpg"), img("florais", "floral-2.jpg")],
+  },
+  {
+    id: 21, nome: "Sabonete de Rosa Branca", codigo: "SAB21", preco: PRECO_SABONETE,
+    desc: "Suave e hidratante, com aroma floral delicado de rosas brancas.",
+    fotos: [img("florais", "rosa_branca-1.jpg")],
+  },
+  {
+    id: 22, nome: "Sabonete de Rosa Vermelha", codigo: "SAB22", preco: PRECO_SABONETE,
+    desc: "Tonificante e perfumado, com o aroma marcante das rosas vermelhas.",
+    fotos: [img("florais", "rosa_vermelha-1.jpg")],
   },
 ];
 
@@ -821,7 +866,7 @@ export default function Index() {
             <div className="grid grid-cols-2 gap-3">
               {[
                 { num: "4", label: "Linhas de produtos" },
-                { num: "35+", label: "Produtos únicos" },
+                { num: "45+", label: "Produtos únicos" },
                 { num: "100%", label: "Natural" },
                 { num: "❤️", label: "Feito com amor" },
               ].map((stat) => (
