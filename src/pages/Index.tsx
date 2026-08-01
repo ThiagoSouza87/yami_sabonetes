@@ -330,15 +330,21 @@ const geleiasDebanho = [
   { id: 6, nome: "Geleia de Banho Detox", desc: "Carvão ativado e argila para purificação total.", preco: "R$ 40,00", imagem: "/assets/soap-dolomita.jpg" },
 ];
 
-const saisDebanho = [
-  { id: 1, nome: "Sal de Banho Relaxante", desc: "Sal do Himalaia com lavanda e camomila para relaxamento total.", preco: "R$ 45,00", imagem: "/assets/soap-lavanda.jpg" },
-  { id: 2, nome: "Sal de Banho Detox", desc: "Sais minerais com carvão ativado e limão para purificação.", preco: "R$ 45,00", imagem: "/assets/soap-limao.jpg" },
-  { id: 3, nome: "Sal de Banho Floral", desc: "Pétalas de rosas e sal grosso para ritual de autocuidado.", preco: "R$ 45,00", imagem: "/assets/soap-calendula.jpg" },
-  { id: 4, nome: "Sal de Banho Energizante", desc: "Hortelã, eucalipto e sal do mar para renovar as energias.", preco: "R$ 45,00", imagem: "/assets/soap-alecrim.jpg" },
-  { id: 5, nome: "Sal de Banho Tropical", desc: "Coco, maracujá e sais minerais para banho refrescante.", preco: "R$ 45,00", imagem: "/assets/soap-maracuja.jpg" },
-  { id: 6, nome: "Sal de Banho Anti-Estresse", desc: "Blend de ervas e sais terapêuticos para aliviar tensões.", preco: "R$ 45,00", imagem: "/assets/soap-babosa.jpg" },
-  { id: 7, nome: "Sal de Banho Limpeza Energética", desc: "Com ervas protecionais e sal grosso para renovação.", preco: "R$ 45,00", imagem: "/assets/soap-limpeza-energetica.jpg" },
-  { id: 8, nome: "Sal de Banho Mel & Leite", desc: "Suave esfoliação com sais finos e mel puro.", preco: "R$ 45,00", imagem: "/assets/soap-almonds.jpg" },
+// ─── Sais de Banho (mesmo modelo do Body Splash: seletor de tamanho + preço) ────
+const saisGrupos: BodySplashGrupo[] = [
+  {
+    id: 1,
+    nome: "Sal de Banho Pitanga Preta",
+    desc: "Relaxa e perfuma o banho com a fragrância marcante e envolvente da pitanga preta.",
+    tamanhos: [
+      { tamanho: "50g", label: "50g", preco: "R$ 50,00", codigo: "SAL01" },
+      { tamanho: "25g", label: "25g", preco: "R$ 25,00", codigo: "SAL02" },
+    ],
+    fotos: [
+      { imagem: "/assets/sais/pitanga_preta/pitanga_preta-grande.jpg", tamanho: "50g" },
+      { imagem: "/assets/sais/pitanga_preta/pitanga_preta-pequeno.jpg", tamanho: "25g" },
+    ],
+  },
 ];
 
 // ─── Components ───────────────────────────────────────────────────────────────
@@ -622,12 +628,11 @@ const categorias: { key: CategoriaKey; label: string; icon: React.ReactNode; cou
   { key: "sabonetes", label: "Sabonetes", icon: <ShoppingBag size={16} />, count: sabonetes.length },
   { key: "bodySplash", label: "Body Splash", icon: <Wind size={16} />, count: bodySplashGrupos.length, badge: "Novo" },
   { key: "geleias", label: "Geleias de Banho", icon: <Droplets size={16} />, count: geleiasDebanho.length, badge: "Novo" },
-  { key: "sais", label: "Sais de Banho", icon: <Waves size={16} />, count: saisDebanho.length, badge: "Novo" },
+  { key: "sais", label: "Sais de Banho", icon: <Waves size={16} />, count: saisGrupos.length, badge: "Novo" },
 ];
 
-const produtosPorCategoria: Record<Exclude<CategoriaKey, "bodySplash" | "sabonetes">, Produto[]> = {
+const produtosPorCategoria: Record<Exclude<CategoriaKey, "bodySplash" | "sabonetes" | "sais">, Produto[]> = {
   geleias: geleiasDebanho,
-  sais: saisDebanho,
 };
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
@@ -853,6 +858,10 @@ export default function Index() {
               : categoriaAtiva === "bodySplash"
               ? bodySplashGrupos.map((grupo) => (
                   <BodySplashCard key={`grupo-${grupo.id}`} grupo={grupo} />
+                ))
+              : categoriaAtiva === "sais"
+              ? saisGrupos.map((grupo) => (
+                  <BodySplashCard key={`sal-${grupo.id}`} grupo={grupo} />
                 ))
               : produtosPorCategoria[categoriaAtiva].map((produto) => (
                   <ProdutoCard key={produto.id} produto={produto} />
