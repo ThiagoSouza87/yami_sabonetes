@@ -652,7 +652,8 @@ type CategoriaKey = "sabonetes" | "bodySplash" | "geleias" | "sais";
 const categorias: { key: CategoriaKey; label: string; icon: React.ReactNode; count: number; badge?: string }[] = [
   { key: "sabonetes", label: "Sabonetes", icon: <ShoppingBag size={16} />, count: sabonetes.length },
   { key: "bodySplash", label: "Body Splash", icon: <Wind size={16} />, count: bodySplashGrupos.length, badge: "Novo" },
-  { key: "geleias", label: "Geleias de Banho", icon: <Droplets size={16} />, count: geleiasDebanho.length, badge: "Novo" },
+  // Geleias de Banho temporariamente oculta (em definição) — reative descomentando esta linha:
+  // { key: "geleias", label: "Geleias de Banho", icon: <Droplets size={16} />, count: geleiasDebanho.length, badge: "Novo" },
   { key: "sais", label: "Sais de Banho", icon: <Waves size={16} />, count: saisGrupos.length, badge: "Novo" },
 ];
 
