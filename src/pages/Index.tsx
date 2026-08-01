@@ -332,13 +332,13 @@ const geleiasDebanho = [
 
 // ─── Sais de Banho (mesmo modelo do Body Splash: seletor de tamanho + preço) ────
 const TAMANHOS_SAL = (codGrande: string, codPequeno: string): BodySplashTamanho[] => [
-  { tamanho: "100g", label: "100g", preco: "R$ 50,00", codigo: codGrande },
-  { tamanho: "50g", label: "50g", preco: "R$ 25,00", codigo: codPequeno },
+  { tamanho: "300g", label: "300g", preco: "R$ 50,00", codigo: codGrande },
+  { tamanho: "100g", label: "100g", preco: "R$ 25,00", codigo: codPequeno },
 ];
 
 const salFotos = (pasta: string) => [
-  { imagem: `/assets/sais/${pasta}/${pasta}-grande.jpg`, tamanho: "100g" },
-  { imagem: `/assets/sais/${pasta}/${pasta}-pequeno.jpg`, tamanho: "50g" },
+  { imagem: `/assets/sais/${pasta}/${pasta}-grande.jpg`, tamanho: "300g" },
+  { imagem: `/assets/sais/${pasta}/${pasta}-pequeno.jpg`, tamanho: "100g" },
 ];
 
 const saisGrupos: BodySplashGrupo[] = [
