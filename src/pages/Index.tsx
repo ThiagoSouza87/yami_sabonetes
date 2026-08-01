@@ -144,7 +144,7 @@ const sabonetes: SaboneteProduto[] = [
     fotos: [img("hibisco", "hibisco-1.jpg"), img("hibisco", "hibisco-2.jpg"), img("hibisco", "hibisco-3.jpg")],
   },
   {
-    id: 25, nome: "Sabonete Infantil", codigo: "SAB25", preco: PRECO_SABONETE,
+    id: 25, nome: "Sabonete Infantil", codigo: "SAB25", preco: "R$ 8,00",
     desc: "Fórmula suave e delicada, ideal para a pele sensível das crianças.",
     fotos: [img("infantil", "infantil-1.jpg"), img("infantil", "infantil-2.jpg"), img("infantil", "infantil-3.jpg"), img("infantil", "infantil-4.jpg"), img("infantil", "infantil-5.jpg")],
   },
