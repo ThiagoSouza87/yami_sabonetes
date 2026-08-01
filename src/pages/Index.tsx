@@ -19,7 +19,7 @@ interface SaboneteProduto {
   fotos: string[];
 }
 
-const PRECO_SABONETE = "R$ 15,00";
+const PRECO_SABONETE = "R$ 17,00";
 const img = (pasta: string, arquivo: string) => `/assets/sabonetes/${pasta}/${arquivo}`;
 
 const sabonetes: SaboneteProduto[] = [
@@ -179,9 +179,9 @@ const sabonetes: SaboneteProduto[] = [
 // Cada grupo tem "tamanhos" (define preço/SKU e o seletor) e "fotos" (o que o
 // carrossel percorre). Cada foto é marcada com o tamanho que representa, então o
 // botão de tamanho acende conforme a foto exibida — e vice-versa. As fotos "combo"
-// mostram os dois frascos juntos e são marcadas como 100ml.
+// mostram os dois frascos juntos e são marcadas como 110ml.
 interface BodySplashTamanho {
-  tamanho: string;   // chave: "100ml" | "30ml"
+  tamanho: string;   // chave: "110ml" | "30ml"
   label: string;     // rótulo exibido no seletor
   preco: string;
   codigo: string;
@@ -201,11 +201,11 @@ interface BodySplashGrupo {
   fotos: BodySplashFoto[];
 }
 
-const PRECO_160 = "R$ 70,00";
+const PRECO_GRANDE = "R$ 60,00";
 const PRECO_30 = "R$ 30,00";
 
 const TAMANHOS_PADRAO = (codGrande: string, codMini: string): BodySplashTamanho[] => [
-  { tamanho: "100ml", label: "100ml", preco: PRECO_160, codigo: codGrande },
+  { tamanho: "110ml", label: "110ml", preco: PRECO_GRANDE, codigo: codGrande },
   { tamanho: "30ml", label: "30ml", preco: PRECO_30, codigo: codMini },
 ];
 
@@ -216,8 +216,8 @@ const bodySplashGrupos: BodySplashGrupo[] = [
     desc: "Floral alegre e envolvente, perfume marcante para o dia a dia.",
     tamanhos: TAMANHOS_PADRAO("BS01", "BS02"),
     fotos: [
-      { imagem: "/assets/body_splash/a-vida-e-bela/a-vida-e-bela-100ml.jpg", tamanho: "100ml" },
-      { imagem: "/assets/body_splash/a-vida-e-bela/a-vida-e-bela-combo.jpg", tamanho: "100ml" },
+      { imagem: "/assets/body_splash/a-vida-e-bela/a-vida-e-bela-110ml.jpg", tamanho: "110ml" },
+      { imagem: "/assets/body_splash/a-vida-e-bela/a-vida-e-bela-combo.jpg", tamanho: "110ml" },
       { imagem: "/assets/body_splash/a-vida-e-bela/a-vida-e-bela-30ml.jpg", tamanho: "30ml" },
       { imagem: "/assets/body_splash/a-vida-e-bela/a-vida-e-bela-30ml-v2.jpg", tamanho: "30ml" },
     ],
@@ -228,7 +228,7 @@ const bodySplashGrupos: BodySplashGrupo[] = [
     desc: "Delicado e sofisticado, com notas florais suaves.",
     tamanhos: TAMANHOS_PADRAO("BS03", "BS04"),
     fotos: [
-      { imagem: "/assets/body_splash/flor-de-jade/flor-de-jade-100ml.jpg", tamanho: "100ml" },
+      { imagem: "/assets/body_splash/flor-de-jade/flor-de-jade-110ml.jpg", tamanho: "110ml" },
       { imagem: "/assets/body_splash/flor-de-jade/flor-de-jade-30ml.jpg", tamanho: "30ml" },
       { imagem: "/assets/body_splash/flor-de-jade/flor-de-jade-30ml-v2.png", tamanho: "30ml" },
       { imagem: "/assets/body_splash/flor-de-jade/flor-de-jade-30ml-v3.jpg", tamanho: "30ml" },
@@ -240,8 +240,8 @@ const bodySplashGrupos: BodySplashGrupo[] = [
     desc: "Frutado e leve, aroma fresco e levemente adocicado.",
     tamanhos: TAMANHOS_PADRAO("BS05", "BS06"),
     fotos: [
-      { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-100ml.jpg", tamanho: "100ml" },
-      { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-combo.jpg", tamanho: "100ml" },
+      { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-110ml.jpg", tamanho: "110ml" },
+      { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-combo.jpg", tamanho: "110ml" },
       { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-30ml.png", tamanho: "30ml" },
       { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-30ml-v2.jpg", tamanho: "30ml" },
     ],
@@ -252,8 +252,8 @@ const bodySplashGrupos: BodySplashGrupo[] = [
     desc: "Suave e aveludado, fragrância elegante e duradoura.",
     tamanhos: TAMANHOS_PADRAO("BS07", "BS08"),
     fotos: [
-      { imagem: "/assets/body_splash/flor-de-seda/flor-de-seda-100ml.jpg", tamanho: "100ml" },
-      { imagem: "/assets/body_splash/flor-de-seda/flor-de-seda-combo.jpg", tamanho: "100ml" },
+      { imagem: "/assets/body_splash/flor-de-seda/flor-de-seda-110ml.jpg", tamanho: "110ml" },
+      { imagem: "/assets/body_splash/flor-de-seda/flor-de-seda-combo.jpg", tamanho: "110ml" },
       { imagem: "/assets/body_splash/flor-de-seda/flor-de-seda-30ml.png", tamanho: "30ml" },
       { imagem: "/assets/body_splash/flor-de-seda/flor-de-seda-30ml-v2.jpg", tamanho: "30ml" },
     ],
@@ -264,8 +264,8 @@ const bodySplashGrupos: BodySplashGrupo[] = [
     desc: "Amadeirado e aconchegante, perfume terroso e marcante.",
     tamanhos: TAMANHOS_PADRAO("BS09", "BS10"),
     fotos: [
-      { imagem: "/assets/body_splash/folha-seca/folha-seca-100ml.jpg", tamanho: "100ml" },
-      { imagem: "/assets/body_splash/folha-seca/folha-seca-combo.jpg", tamanho: "100ml" },
+      { imagem: "/assets/body_splash/folha-seca/folha-seca-110ml.jpg", tamanho: "110ml" },
+      { imagem: "/assets/body_splash/folha-seca/folha-seca-combo.jpg", tamanho: "110ml" },
       { imagem: "/assets/body_splash/folha-seca/folha-seca-30ml.png", tamanho: "30ml" },
       { imagem: "/assets/body_splash/folha-seca/folha-seca-30ml-v2.jpg", tamanho: "30ml" },
     ],
@@ -276,7 +276,7 @@ const bodySplashGrupos: BodySplashGrupo[] = [
     desc: "Floral misterioso, um buquê de flores irresistível.",
     tamanhos: TAMANHOS_PADRAO("BS11", "BS12"),
     fotos: [
-      { imagem: "/assets/body_splash/jardim-secreto/jardim-secreto-100ml.jpg", tamanho: "100ml" },
+      { imagem: "/assets/body_splash/jardim-secreto/jardim-secreto-110ml.jpg", tamanho: "110ml" },
       { imagem: "/assets/body_splash/jardim-secreto/jardim-secreto-30ml.jpg", tamanho: "30ml" },
       { imagem: "/assets/body_splash/jardim-secreto/jardim-secreto-30ml-v2.png", tamanho: "30ml" },
       { imagem: "/assets/body_splash/jardim-secreto/jardim-secreto-30ml-v3.jpg", tamanho: "30ml" },
@@ -289,8 +289,8 @@ const bodySplashGrupos: BodySplashGrupo[] = [
     desc: "Clássico e romântico, o perfume marcante do jasmim.",
     tamanhos: TAMANHOS_PADRAO("BS13", "BS14"),
     fotos: [
-      { imagem: "/assets/body_splash/jasmin/jasmin-100ml.jpg", tamanho: "100ml" },
-      { imagem: "/assets/body_splash/jasmin/jasmin-combo.jpg", tamanho: "100ml" },
+      { imagem: "/assets/body_splash/jasmin/jasmin-110ml.jpg", tamanho: "110ml" },
+      { imagem: "/assets/body_splash/jasmin/jasmin-combo.jpg", tamanho: "110ml" },
       { imagem: "/assets/body_splash/jasmin/jasmin-30ml.png", tamanho: "30ml" },
       { imagem: "/assets/body_splash/jasmin/jasmin-30ml-v2.jpg", tamanho: "30ml" },
     ],
@@ -301,8 +301,8 @@ const bodySplashGrupos: BodySplashGrupo[] = [
     desc: "Exótico e refinado, fragrância floral luxuosa.",
     tamanhos: TAMANHOS_PADRAO("BS15", "BS16"),
     fotos: [
-      { imagem: "/assets/body_splash/orquideas/orquideas-100ml.jpg", tamanho: "100ml" },
-      { imagem: "/assets/body_splash/orquideas/orquideas-combo.jpg", tamanho: "100ml" },
+      { imagem: "/assets/body_splash/orquideas/orquideas-110ml.jpg", tamanho: "110ml" },
+      { imagem: "/assets/body_splash/orquideas/orquideas-combo.jpg", tamanho: "110ml" },
       { imagem: "/assets/body_splash/orquideas/orquideas-30ml.png", tamanho: "30ml" },
       { imagem: "/assets/body_splash/orquideas/orquideas-30ml-v2.jpg", tamanho: "30ml" },
     ],
@@ -313,8 +313,8 @@ const bodySplashGrupos: BodySplashGrupo[] = [
     desc: "Frutado intenso e sedutor, aroma envolvente e único.",
     tamanhos: TAMANHOS_PADRAO("BS17", "BS18"),
     fotos: [
-      { imagem: "/assets/body_splash/pitanga-preta/pitanga-preta-100ml.jpg", tamanho: "100ml" },
-      { imagem: "/assets/body_splash/pitanga-preta/pitanga-preta-combo.jpg", tamanho: "100ml" },
+      { imagem: "/assets/body_splash/pitanga-preta/pitanga-preta-110ml.jpg", tamanho: "110ml" },
+      { imagem: "/assets/body_splash/pitanga-preta/pitanga-preta-combo.jpg", tamanho: "110ml" },
       { imagem: "/assets/body_splash/pitanga-preta/pitanga-preta-30ml.png", tamanho: "30ml" },
       { imagem: "/assets/body_splash/pitanga-preta/pitanga-preta-30ml-v2.jpg", tamanho: "30ml" },
     ],
@@ -814,7 +814,7 @@ export default function Index() {
                   Fragrâncias Exclusivas Yami
                 </h3>
                 <p className="text-gray-600 text-sm max-w-2xl mx-auto">
-                  Escolha seu Body Splash ideal: cada cor representa um aroma único com benefícios específicos. Disponível em tamanho Grande (100ml) e Mini (30ml) para você experimentar.
+                  Escolha seu Body Splash ideal: cada cor representa um aroma único com benefícios específicos. Disponível em tamanho Grande (110ml) e Mini (30ml) para você experimentar.
                 </p>
               </div>
               
