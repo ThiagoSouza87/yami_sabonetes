@@ -86,7 +86,7 @@ const sabonetes: SaboneteProduto[] = [
   {
     id: 12, nome: "Sabonete de Mel & Fubá", codigo: "SAB12", preco: PRECO_SABONETE,
     desc: "Esfoliante natural de mel e fubá: renova, nutre e deixa a pele macia.",
-    fotos: [img("mel_fuba", "mel_fuba-1.jpg"), img("mel_fuba", "mel_fuba-2.jpg")],
+    fotos: [img("mel_fuba", "mel_fuba-1.jpg"), img("mel_fuba", "mel_fuba-2.jpg"), img("mel_fuba", "mel_fuba-3.jpg")],
   },
   {
     id: 14, nome: "Sabonete de Açafrão", codigo: "SAB14", preco: PRECO_SABONETE,
@@ -132,6 +132,46 @@ const sabonetes: SaboneteProduto[] = [
     id: 22, nome: "Sabonete de Rosa Vermelha", codigo: "SAB22", preco: PRECO_SABONETE,
     desc: "Tonificante e perfumado, com o aroma marcante das rosas vermelhas.",
     fotos: [img("florais", "rosa_vermelha-1.jpg")],
+  },
+  {
+    id: 23, nome: "Sabonete Giovanna Baby", codigo: "SAB23", preco: PRECO_SABONETE,
+    desc: "Espuma suave e perfumada, com o aroma delicado e aconchegante de Giovanna Baby.",
+    fotos: [img("giovanna_baby", "giovanna_baby-1.jpg"), img("giovanna_baby", "giovanna_baby-2.jpg"), img("giovanna_baby", "giovanna_baby-3.jpg")],
+  },
+  {
+    id: 24, nome: "Sabonete de Hibisco", codigo: "SAB24", preco: PRECO_SABONETE,
+    desc: "Rico em antioxidantes, firma e renova a pele com ação natural anti-idade.",
+    fotos: [img("hibisco", "hibisco-1.jpg"), img("hibisco", "hibisco-2.jpg"), img("hibisco", "hibisco-3.jpg")],
+  },
+  {
+    id: 25, nome: "Sabonete Infantil", codigo: "SAB25", preco: PRECO_SABONETE,
+    desc: "Fórmula suave e delicada, ideal para a pele sensível das crianças.",
+    fotos: [img("infantil", "infantil-1.jpg"), img("infantil", "infantil-2.jpg"), img("infantil", "infantil-3.jpg"), img("infantil", "infantil-4.jpg"), img("infantil", "infantil-5.jpg")],
+  },
+  {
+    id: 26, nome: "Sabonete de Lavanda", codigo: "SAB26", preco: PRECO_SABONETE,
+    desc: "Relaxante e calmante, suaviza a pele e acalma os sentidos.",
+    fotos: [img("lavanda", "lavanda-1.jpg"), img("lavanda", "lavanda-2.jpg"), img("lavanda", "lavanda-3.jpg")],
+  },
+  {
+    id: 27, nome: "Sabonete de Maçã Verde", codigo: "SAB27", preco: PRECO_SABONETE,
+    desc: "Refrescante e antioxidante, tonifica a pele com aroma frutado de maçã verde.",
+    fotos: [img("maca_verde", "maca_verde-1.jpg"), img("maca_verde", "maca_verde-2.jpg"), img("maca_verde", "maca_verde-3.jpg")],
+  },
+  {
+    id: 28, nome: "Sabonete de Melancia", codigo: "SAB28", preco: PRECO_SABONETE,
+    desc: "Hidratante e refrescante, com vitaminas que dão viço à pele.",
+    fotos: [img("melancia", "melancia-1.jpg"), img("melancia", "melancia-2.jpg"), img("melancia", "melancia-3.jpg")],
+  },
+  {
+    id: 29, nome: "Sabonete Oceano", codigo: "SAB29", preco: PRECO_SABONETE,
+    desc: "Refrescante com aroma marcante do mar, revigora corpo e mente.",
+    fotos: [img("oceano", "oceano-1.jpg"), img("oceano", "oceano-2.jpg"), img("oceano", "oceano-3.jpg")],
+  },
+  {
+    id: 30, nome: "Sabonete Whisky de Violeta", codigo: "SAB30", preco: PRECO_SABONETE,
+    desc: "Aroma sofisticado e marcante, com a elegância envolvente da violeta.",
+    fotos: [img("whisky_violeta", "whisky_violeta-1.jpg"), img("whisky_violeta", "whisky_violeta-2.jpg"), img("whisky_violeta", "whisky_violeta-3.jpg")],
   },
 ];
 
@@ -866,7 +906,7 @@ export default function Index() {
             <div className="grid grid-cols-2 gap-3">
               {[
                 { num: "4", label: "Linhas de produtos" },
-                { num: "45+", label: "Produtos únicos" },
+                { num: "50+", label: "Produtos únicos" },
                 { num: "100%", label: "Natural" },
                 { num: "❤️", label: "Feito com amor" },
               ].map((stat) => (
