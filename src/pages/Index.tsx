@@ -331,19 +331,44 @@ const geleiasDebanho = [
 ];
 
 // ─── Sais de Banho (mesmo modelo do Body Splash: seletor de tamanho + preço) ────
+const TAMANHOS_SAL = (codGrande: string, codPequeno: string): BodySplashTamanho[] => [
+  { tamanho: "100g", label: "100g", preco: "R$ 50,00", codigo: codGrande },
+  { tamanho: "50g", label: "50g", preco: "R$ 25,00", codigo: codPequeno },
+];
+
+const salFotos = (pasta: string) => [
+  { imagem: `/assets/sais/${pasta}/${pasta}-grande.jpg`, tamanho: "100g" },
+  { imagem: `/assets/sais/${pasta}/${pasta}-pequeno.jpg`, tamanho: "50g" },
+];
+
 const saisGrupos: BodySplashGrupo[] = [
   {
     id: 1,
     nome: "Sal de Banho Pitanga Preta",
     desc: "Relaxa e perfuma o banho com a fragrância marcante e envolvente da pitanga preta.",
-    tamanhos: [
-      { tamanho: "50g", label: "50g", preco: "R$ 50,00", codigo: "SAL01" },
-      { tamanho: "25g", label: "25g", preco: "R$ 25,00", codigo: "SAL02" },
-    ],
-    fotos: [
-      { imagem: "/assets/sais/pitanga_preta/pitanga_preta-grande.jpg", tamanho: "50g" },
-      { imagem: "/assets/sais/pitanga_preta/pitanga_preta-pequeno.jpg", tamanho: "25g" },
-    ],
+    tamanhos: TAMANHOS_SAL("SAL01", "SAL02"),
+    fotos: salFotos("pitanga_preta"),
+  },
+  {
+    id: 2,
+    nome: "Sal de Banho Chá Verde",
+    desc: "Antioxidante e revigorante, o chá verde relaxa e purifica no banho.",
+    tamanhos: TAMANHOS_SAL("SAL03", "SAL04"),
+    fotos: salFotos("cha_verde"),
+  },
+  {
+    id: 3,
+    nome: "Sal de Banho Lavanda",
+    desc: "Sais relaxantes de lavanda que acalmam o corpo e a mente.",
+    tamanhos: TAMANHOS_SAL("SAL05", "SAL06"),
+    fotos: salFotos("lavanda"),
+  },
+  {
+    id: 4,
+    nome: "Sal de Banho Oceano",
+    desc: "Fragrância marinha refrescante que revigora e renova as energias.",
+    tamanhos: TAMANHOS_SAL("SAL07", "SAL08"),
+    fotos: salFotos("oceano"),
   },
 ];
 
