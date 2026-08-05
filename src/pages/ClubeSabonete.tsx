@@ -31,7 +31,7 @@ const categoriasCaixa: { key: CategoriaKey; label: string; emoji: string; icon: 
     emoji: "🌸",
     icon: <Wind size={18} />,
     desc: "Perfumes corporais suaves e duradouros, feitos com óleos essenciais naturais.",
-    itens: ["Body Splash Lavanda & Baunilha", "Body Splash Floral Primavera", "Body Splash Cítrico Energizante", "Body Splash Rosa Selvagem"],
+    itens: ["Body Splash A Vida é Bela", "Body Splash Flor de Jade", "Body Splash Flor de Seda", "Body Splash Folha Seca", "Body Splash Jardim Secreto", "Body Splash Jasmin", "Body Splash Orquídeas", "Body Splash Pitanga Preta"],
   },
   // Geleias de Banho temporariamente oculta (em definição) — reative descomentando este bloco:
   // {
