@@ -33,14 +33,15 @@ const categoriasCaixa: { key: CategoriaKey; label: string; emoji: string; icon: 
     desc: "Perfumes corporais suaves e duradouros, feitos com óleos essenciais naturais.",
     itens: ["Body Splash Lavanda & Baunilha", "Body Splash Floral Primavera", "Body Splash Cítrico Energizante", "Body Splash Rosa Selvagem"],
   },
-  {
-    key: "geleias",
-    label: "Geleias de Banho",
-    emoji: "🫧",
-    icon: <Droplets size={18} />,
-    desc: "Textura gelatinosa luxuosa que hidrata e perfuma enquanto você se banha.",
-    itens: ["Geleia de Lavanda", "Geleia de Mel & Leite", "Geleia de Morango", "Geleia Floral", "Geleia de Coco"],
-  },
+  // Geleias de Banho temporariamente oculta (em definição) — reative descomentando este bloco:
+  // {
+  //   key: "geleias",
+  //   label: "Geleias de Banho",
+  //   emoji: "🫧",
+  //   icon: <Droplets size={18} />,
+  //   desc: "Textura gelatinosa luxuosa que hidrata e perfuma enquanto você se banha.",
+  //   itens: ["Geleia de Lavanda", "Geleia de Mel & Leite", "Geleia de Morango", "Geleia Floral", "Geleia de Coco"],
+  // },
   {
     key: "sais",
     label: "Sais de Banho",
@@ -66,7 +67,7 @@ const planos = [
     nome: "Encantado",
     emoji: "✨",
     desc: "Nossa caixa mais amada, com mix de produtos.",
-    itens: ["2 sabonetes artesanais", "1 body splash (30ml)", "1 geleia de banho", "Embrulho premium", "Bônus surpresa"],
+    itens: ["2 sabonetes artesanais", "1 body splash (30ml)", "Embrulho premium", "Bônus surpresa"],
     precos: { mensal: "R$ 90,00", trimestral: "R$ 85,00", anual: "R$ 80,00" },
     destaque: true,
     cor: PINK,
@@ -75,7 +76,7 @@ const planos = [
     nome: "Ritual",
     emoji: "👑",
     desc: "A experiência completa de spa em casa.",
-    itens: ["3 sabonetes artesanais", "1 body splash (30ml)", "1 geleia de banho", "1 sal de banho (100g)", "Embrulho luxo", "Bônus surpresa", "Frete grátis"],
+    itens: ["3 sabonetes artesanais", "1 body splash (30ml)", "1 sal de banho (100g)", "Embrulho luxo", "Bônus surpresa", "Frete grátis"],
     precos: { mensal: "R$ 145,00", trimestral: "R$ 140,00", anual: "R$ 130,00" },
     destaque: false,
     cor: "#c4a24a",
@@ -165,7 +166,6 @@ export default function ClubeSabonete() {
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 text-8xl">🧼</div>
           <div className="absolute top-20 right-20 text-6xl">🌸</div>
-          <div className="absolute bottom-10 left-1/4 text-7xl">🫧</div>
           <div className="absolute bottom-20 right-1/3 text-5xl">🪨</div>
         </div>
         <div className="relative z-10 max-w-3xl mx-auto">
@@ -179,7 +179,7 @@ export default function ClubeSabonete() {
             Receba toda mês<br />uma caixa de amor
           </h2>
           <p className="text-white/90 text-xl mb-3 max-w-2xl mx-auto">
-            Sabonetes, body splash, geleias e sais de banho artesanais entregues na sua porta.
+            Sabonetes, body splash e sais de banho artesanais entregues na sua porta.
           </p>
           <p className="text-white/70 text-base mb-8">
             A partir de <strong className="text-white">R$ 70,00/mês</strong> — cancele quando quiser
@@ -468,7 +468,7 @@ export default function ClubeSabonete() {
               {
                 nome: "Juliana M.",
                 tempo: "Assinante há 1 ano",
-                texto: "Não consigo mais imaginar meu banho sem os produtos Yami. A geleia de banho de lavanda então… é de outro mundo! Recomendo o plano Ritual de olhos fechados.",
+                texto: "Não consigo mais imaginar meu banho sem os produtos Yami. O sal de banho de lavanda então… é de outro mundo! Recomendo o plano Ritual de olhos fechados.",
                 plano: "Plano Ritual",
                 stars: 5,
               },
@@ -541,7 +541,7 @@ export default function ClubeSabonete() {
       {/* CTA Final */}
       <section className="py-20 px-6 text-white text-center" style={{ backgroundColor: PINK }}>
         <div className="max-w-2xl mx-auto">
-          <div className="text-5xl mb-4">🧼🌸🫧🪨</div>
+          <div className="text-5xl mb-4">🧼🌸🪨</div>
           <h2 style={{ fontFamily: "Floane, serif" }} className="text-3xl md:text-4xl font-bold mb-4">
             Transforme seu banho em um ritual
           </h2>
