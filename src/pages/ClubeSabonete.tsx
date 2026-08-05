@@ -196,7 +196,7 @@ export default function ClubeSabonete() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white/10 px-8"
+              className="border-white text-white bg-transparent hover:bg-white/10 hover:text-white px-8"
               onClick={() => window.open("https://wa.me/5519991743043?text=Olá! Tenho dúvidas sobre o Clube do Sabonete.", "_blank")}
             >
               <MessageCircle size={16} className="mr-2" /> Tirar Dúvidas
@@ -564,7 +564,7 @@ export default function ClubeSabonete() {
             <Button
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white/10"
+              className="border-white text-white bg-transparent hover:bg-white/10 hover:text-white"
               onClick={() => document.getElementById("planos")?.scrollIntoView({ behavior: "smooth" })}
             >
               Ver todos os planos

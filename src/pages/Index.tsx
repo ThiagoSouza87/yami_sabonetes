@@ -69,8 +69,8 @@ const sabonetes: SaboneteProduto[] = [
     fotos: [img("erva_doce", "erva_doce-1.jpg"), img("erva_doce", "erva_doce-2.jpg"), img("erva_doce", "erva_doce-3.jpg")],
   },
   {
-    id: 10, nome: "Sabonete de Limpeza Energética", codigo: "SAB10", preco: PRECO_SABONETE,
-    desc: "Ervas e sal grosso que limpam, revigoram e renovam corpo e mente.",
+    id: 10, nome: "Sabonete de Alecrim & Sal Grosso", codigo: "SAB10", preco: PRECO_SABONETE,
+    desc: "Alecrim e sal grosso que limpam, revigoram e renovam corpo e mente.",
     fotos: [img("limpeza_energetica", "limpeza_energetica-1.jpg"), img("limpeza_energetica", "limpeza_energetica-2.jpg"), img("limpeza_energetica", "limpeza_energetica-3.jpg")],
   },
   {
