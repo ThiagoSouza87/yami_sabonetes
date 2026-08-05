@@ -58,7 +58,7 @@ const planos = [
     emoji: "🌿",
     desc: "Perfeito para começar sua jornada de autocuidado.",
     itens: ["2 sabonetes artesanais", "1 body splash (30ml)", "Embrulho presenteável"],
-    precos: { mensal: "R$ 59,90", trimestral: "R$ 54,90", anual: "R$ 49,90" },
+    precos: { mensal: "R$ 70,00", trimestral: "R$ 65,00", anual: "R$ 60,00" },
     destaque: false,
     cor: "#8fbe8f",
   },
@@ -67,7 +67,7 @@ const planos = [
     emoji: "✨",
     desc: "Nossa caixa mais amada, com mix de produtos.",
     itens: ["2 sabonetes artesanais", "1 body splash (30ml)", "1 geleia de banho", "Embrulho premium", "Bônus surpresa"],
-    precos: { mensal: "R$ 99,90", trimestral: "R$ 89,90", anual: "R$ 79,90" },
+    precos: { mensal: "R$ 90,00", trimestral: "R$ 85,00", anual: "R$ 80,00" },
     destaque: true,
     cor: PINK,
   },
@@ -76,7 +76,7 @@ const planos = [
     emoji: "👑",
     desc: "A experiência completa de spa em casa.",
     itens: ["3 sabonetes artesanais", "1 body splash (30ml)", "1 geleia de banho", "1 sal de banho (100g)", "Embrulho luxo", "Bônus surpresa", "Frete grátis"],
-    precos: { mensal: "R$ 149,90", trimestral: "R$ 134,90", anual: "R$ 119,90" },
+    precos: { mensal: "R$ 145,00", trimestral: "R$ 140,00", anual: "R$ 130,00" },
     destaque: false,
     cor: "#c4a24a",
   },
@@ -124,8 +124,8 @@ export default function ClubeSabonete() {
 
   const descontos: Record<Periodo, string> = {
     mensal: "",
-    trimestral: "Economize 8%",
-    anual: "Economize 17%",
+    trimestral: "Economize até 7%",
+    anual: "Economize até 14%",
   };
 
   const categoriaInfo = categoriasCaixa.find((c) => c.key === categoriaAtiva)!;
@@ -182,7 +182,7 @@ export default function ClubeSabonete() {
             Sabonetes, body splash, geleias e sais de banho artesanais entregues na sua porta.
           </p>
           <p className="text-white/70 text-base mb-8">
-            A partir de <strong className="text-white">R$ 59,90/mês</strong> — cancele quando quiser
+            A partir de <strong className="text-white">R$ 70,00/mês</strong> — cancele quando quiser
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button
