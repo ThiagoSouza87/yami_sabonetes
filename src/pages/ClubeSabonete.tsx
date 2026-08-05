@@ -23,7 +23,7 @@ const categoriasCaixa: { key: CategoriaKey; label: string; emoji: string; icon: 
     emoji: "🧼",
     icon: <ShoppingBag size={18} />,
     desc: "Nossos sabonetes artesanais são feitos com ingredientes 100% naturais, em barras únicas e perfumadas.",
-    itens: ["Sabonete de Lavanda", "Sabonete de Mel & Aveia", "Sabonete de Carvão Ativado", "Sabonete de Camomila", "Sabonete de Maracujá"],
+    itens: ["Sabonete de Dolomita", "Sabonete de Camomila", "Sabonete de Carvão Ativado", "Sabonete de Mel & Fubá", "Sabonete de Argila Verde", "Sabonete de Maracujá", "Sabonete de Calêndula", "Sabonete de Babosa"],
   },
   {
     key: "bodySplash",
@@ -48,7 +48,7 @@ const categoriasCaixa: { key: CategoriaKey; label: string; emoji: string; icon: 
     emoji: "🪨",
     icon: <Waves size={18} />,
     desc: "Sais minerais e do Himalaia com óleos e ervas para um banho terapêutico.",
-    itens: ["Sal de Banho Relaxante", "Sal de Banho Detox", "Sal Floral com Pétalas", "Sal Energizante", "Sal Limpeza Energética"],
+    itens: ["Sal de Banho Pitanga Preta", "Sal de Banho Chá Verde", "Sal de Banho Lavanda", "Sal de Banho Oceano"],
   },
 ];
 
