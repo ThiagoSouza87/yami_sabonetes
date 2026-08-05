@@ -235,18 +235,6 @@ const bodySplashGrupos: BodySplashGrupo[] = [
     ],
   },
   {
-    id: 3,
-    nome: "Body Splash Flor de Maçã",
-    desc: "Frutado e leve, aroma fresco e levemente adocicado.",
-    tamanhos: TAMANHOS_PADRAO("BS05", "BS06"),
-    fotos: [
-      { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-110ml.jpg", tamanho: "110ml" },
-      { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-combo.jpg", tamanho: "110ml" },
-      { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-30ml.png", tamanho: "30ml" },
-      { imagem: "/assets/body_splash/flor-de-maca/flor-de-maca-30ml-v2.jpg", tamanho: "30ml" },
-    ],
-  },
-  {
     id: 4,
     nome: "Body Splash Flor de Seda",
     desc: "Suave e aveludado, fragrância elegante e duradoura.",
