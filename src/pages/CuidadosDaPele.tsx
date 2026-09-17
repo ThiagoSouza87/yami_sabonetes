@@ -380,17 +380,16 @@ export default function CuidadosDaPele() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
-            <img src="/assets/sabonetes/dolomita/dolomita-1.jpg" alt="Sabonete de Dolomita" onError={esconderImg} className="w-full h-72 object-cover rounded-2xl shadow-lg" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {dolomitaBeneficios.map((b) => (
-                <div key={b.titulo} className="bg-white rounded-2xl p-4 shadow-sm border" style={{ borderColor: BLUE }}>
-                  <div className="text-2xl mb-1">{b.emoji}</div>
-                  <h3 style={{ fontFamily: "Floane, serif", color: PINK }} className="font-bold text-sm mb-1">{b.titulo}</h3>
-                  <p className="text-gray-500 text-xs leading-relaxed">{b.desc}</p>
-                </div>
-              ))}
-            </div>
+          <img src="/assets/banner-yami.jpg" alt="Sabonete de Dolomita Yami com pó de dolomita e sal" onError={esconderImg} className="w-full rounded-2xl shadow-lg mb-8" />
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            {dolomitaBeneficios.map((b) => (
+              <div key={b.titulo} className="bg-white rounded-2xl p-4 shadow-sm border" style={{ borderColor: BLUE }}>
+                <div className="text-2xl mb-1">{b.emoji}</div>
+                <h3 style={{ fontFamily: "Floane, serif", color: PINK }} className="font-bold text-sm mb-1">{b.titulo}</h3>
+                <p className="text-gray-500 text-xs leading-relaxed">{b.desc}</p>
+              </div>
+            ))}
           </div>
 
           <div className="bg-white rounded-2xl p-6 shadow-sm border flex flex-col md:flex-row items-start md:items-center gap-4 justify-between" style={{ borderColor: BLUE }}>
