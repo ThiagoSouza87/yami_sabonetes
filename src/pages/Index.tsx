@@ -753,7 +753,7 @@ function FreteModal({ aberto, onFechar }: { aberto: boolean; onFechar: () => voi
                 </div>
               </div>
             ))}
-            <p className="text-xs text-gray-400 mt-2">💰 Preços já com desconto. Estimativa para 1 unidade — para vários itens, fale conosco no WhatsApp.</p>
+            <p className="text-xs text-gray-400 mt-2">💰 Preços já com desconto, para 1 sabonete. A mesma caixa comporta até 4 — para 2 a 4 unidades, fale conosco no WhatsApp.</p>
           </div>
         )}
       </div>
