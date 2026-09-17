@@ -77,7 +77,6 @@ const ingredientes = [
   { emoji: "🌺", nome: "Hibisco", desc: "Rico em antioxidantes e AHAs naturais, firma, renova e traz viço — o 'botox natural' das peles maduras." },
   { emoji: "🌼", nome: "Camomila", desc: "Anti-inflamatória e calmante, reduz vermelhidão e irritações. A escolha perfeita para pele sensível." },
   { emoji: "🌻", nome: "Calêndula", desc: "Cicatrizante e regeneradora, ideal para pele irritada, seca ou com pequenas lesões." },
-  { emoji: "🫙", nome: "Base Glicerinada", desc: "Umectante natural que hidrata enquanto limpa, sem remover os óleos essenciais da pele." },
 ];
 
 const hibiscoBeneficios = [
@@ -92,6 +91,20 @@ const dolomitaBeneficios = [
   { emoji: "✨", titulo: "Esfoliação delicada", desc: "Remove células mortas suavemente, revelando uma pele mais lisa e renovada" },
   { emoji: "🎯", titulo: "Refina os poros", desc: "Ajuda a suavizar a aparência dos poros e a refinar a textura da pele" },
   { emoji: "🕊️", titulo: "Maciez aveludada", desc: "Toque sedoso sem ressecar — indicado para todos os tipos de pele" },
+];
+
+const carvaoBeneficios = [
+  { emoji: "🧲", titulo: "Limpeza profunda", desc: "Atrai e remove impurezas e toxinas do fundo dos poros" },
+  { emoji: "💧", titulo: "Controla a oleosidade", desc: "Absorve o excesso de sebo e reduz o brilho da pele" },
+  { emoji: "🫧", titulo: "Desobstrui os poros", desc: "Ajuda a prevenir cravos e espinhas no dia a dia" },
+  { emoji: "⚖️", titulo: "Purifica sem agredir", desc: "Deixa a pele fresca, limpa e equilibrada" },
+];
+
+const acafraoBeneficios = [
+  { emoji: "🩹", titulo: "Ação cicatrizante", desc: "Auxilia na regeneração e na recuperação da pele" },
+  { emoji: "🌿", titulo: "Anti-inflamatório", desc: "Acalma irritações e ajuda a reduzir vermelhidões" },
+  { emoji: "💛", titulo: "Antioxidante", desc: "Combate os radicais livres e devolve o viço" },
+  { emoji: "🎯", titulo: "Uniformiza o tom", desc: "Ajuda a suavizar marcas e a igualar a pele" },
 ];
 
 interface Rotina {
@@ -464,6 +477,107 @@ export default function CuidadosDaPele() {
         </div>
       </section>
 
+      {/* Destaque: Carvão Ativado (limpeza profunda / peles oleosas) */}
+      <section id="carvao-destaque" className="py-16 px-6" style={{ background: "linear-gradient(135deg, #dbe9f7, #ffffff)" }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <Badge className="mb-3 text-white" style={{ backgroundColor: PINK }}>🖤 Limpeza profunda</Badge>
+            <h2 style={{ fontFamily: "Floane, serif", color: PINK }} className="text-3xl md:text-4xl font-bold mb-3">
+              Sabonete de Carvão Ativado
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Um verdadeiro ímã de impurezas: o carvão ativado faz uma{" "}
+              <strong style={{ color: PINK }}>limpeza profunda</strong>, remove o excesso de oleosidade e desobstrui os
+              poros — ideal para peles oleosas e acneicas.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
+            <img src="/assets/sabonetes/carvao_ativado/carvao_ativado-1.jpg" alt="Sabonete de Carvão Ativado" onError={esconderImg} className="w-full h-72 object-cover rounded-2xl shadow-lg" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {carvaoBeneficios.map((b) => (
+                <div key={b.titulo} className="bg-white rounded-2xl p-4 shadow-sm border" style={{ borderColor: BLUE }}>
+                  <div className="text-2xl mb-1">{b.emoji}</div>
+                  <h3 style={{ fontFamily: "Floane, serif", color: PINK }} className="font-bold text-sm mb-1">{b.titulo}</h3>
+                  <p className="text-gray-500 text-xs leading-relaxed">{b.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl p-6 shadow-sm border flex flex-col md:flex-row items-start md:items-center gap-4 justify-between" style={{ borderColor: BLUE }}>
+            <div className="flex items-start gap-3">
+              <Sparkles size={22} className="mt-1 shrink-0" style={{ color: PINK }} />
+              <div>
+                <h4 style={{ fontFamily: "Floane, serif", color: PINK }} className="font-bold mb-1">Como usar</h4>
+                <p className="text-gray-600 text-sm leading-relaxed max-w-xl">
+                  Use no rosto 3 a 4x por semana, à noite, massageando sobre a pele úmida por cerca de 30 segundos.
+                  Enxágue e finalize com o seu hidratante.
+                </p>
+              </div>
+            </div>
+            <Button
+              size="lg"
+              className="text-white font-bold shrink-0 px-6"
+              style={{ backgroundColor: PINK }}
+              onClick={() => window.open(wa("Olá! Quero o Sabonete de Carvão Ativado (limpeza profunda). 🖤"), "_blank")}
+            >
+              Quero o Carvão Ativado
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Destaque: Açafrão (ação cicatrizante) */}
+      <section id="acafrao-destaque" className="py-16 px-6 text-white" style={{ background: `linear-gradient(135deg, ${PINK}, #d4849a)` }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <Badge className="mb-3 bg-white/20 text-white border-white/30">💛 Poder cicatrizante</Badge>
+            <h2 style={{ fontFamily: "Floane, serif" }} className="text-3xl md:text-4xl font-bold mb-3">
+              Sabonete de Açafrão
+            </h2>
+            <p className="text-white/90 max-w-2xl mx-auto">
+              Rico em propriedades antioxidantes e anti-inflamatórias, o açafrão auxilia na{" "}
+              <strong>cicatrização</strong>, acalma a pele e ajuda a uniformizar o tom.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
+            <img src="/assets/sabonetes/acafrao/acafrao-3.jpg" alt="Sabonete de Açafrão" onError={esconderImg} className="w-full h-72 object-cover rounded-2xl shadow-lg" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {acafraoBeneficios.map((b) => (
+                <div key={b.titulo} className="bg-white/10 rounded-2xl p-4 border border-white/20">
+                  <div className="text-2xl mb-1">{b.emoji}</div>
+                  <h3 style={{ fontFamily: "Floane, serif" }} className="font-bold text-sm mb-1">{b.titulo}</h3>
+                  <p className="text-white/80 text-xs leading-relaxed">{b.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white/10 rounded-2xl p-6 border border-white/20 flex flex-col md:flex-row items-start md:items-center gap-4 justify-between">
+            <div className="flex items-start gap-3">
+              <Sparkles size={22} className="mt-1 shrink-0" />
+              <div>
+                <h4 style={{ fontFamily: "Floane, serif" }} className="font-bold mb-1">Como usar</h4>
+                <p className="text-white/85 text-sm leading-relaxed max-w-xl">
+                  Use 3x por semana, massageando sobre a pele úmida. Deixe agir por 1 minuto para potencializar a ação
+                  e enxágue.
+                </p>
+              </div>
+            </div>
+            <Button
+              size="lg"
+              className="bg-white font-bold shrink-0 px-6"
+              style={{ color: PINK }}
+              onClick={() => window.open(wa("Olá! Quero o Sabonete de Açafrão (ação cicatrizante). 💛"), "_blank")}
+            >
+              Quero o Sabonete de Açafrão
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Rotinas de Skincare */}
       <section className="py-16 px-6" style={{ backgroundColor: BLUE }}>
         <div className="max-w-5xl mx-auto">
@@ -594,6 +708,8 @@ export default function CuidadosDaPele() {
                 <li><a href="/clube" className="text-white/70 hover:text-white text-sm transition-colors">Clube do Sabonete</a></li>
                 <li><a href="#tipos" className="text-white/70 hover:text-white text-sm transition-colors">Tipos de Pele</a></li>
                 <li><a href="#dolomita-destaque" className="text-white/70 hover:text-white text-sm transition-colors">Mais vendido: Dolomita</a></li>
+                <li><a href="#carvao-destaque" className="text-white/70 hover:text-white text-sm transition-colors">Carvão Ativado</a></li>
+                <li><a href="#acafrao-destaque" className="text-white/70 hover:text-white text-sm transition-colors">Açafrão</a></li>
                 <li><a href="#destaque" className="text-white/70 hover:text-white text-sm transition-colors">Destaque: Hibisco</a></li>
               </ul>
             </div>
