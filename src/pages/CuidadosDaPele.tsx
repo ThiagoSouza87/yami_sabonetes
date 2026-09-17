@@ -87,6 +87,13 @@ const hibiscoBeneficios = [
   { emoji: "🎯", titulo: "Uniformiza o tom", desc: "Suaviza manchas e deixa a pele com aparência mais uniforme" },
 ];
 
+const dolomitaBeneficios = [
+  { emoji: "🤍", titulo: "Efeito porcelana", desc: "Uniformiza o tom e alisa a textura, deixando a pele com aspecto de porcelana" },
+  { emoji: "✨", titulo: "Esfoliação delicada", desc: "Remove células mortas suavemente, revelando uma pele mais lisa e renovada" },
+  { emoji: "🎯", titulo: "Refina os poros", desc: "Ajuda a suavizar a aparência dos poros e a refinar a textura da pele" },
+  { emoji: "🕊️", titulo: "Maciez aveludada", desc: "Toque sedoso sem ressecar — indicado para todos os tipos de pele" },
+];
+
 interface Rotina {
   emoji: string;
   nome: string;
@@ -359,6 +366,56 @@ export default function CuidadosDaPele() {
         </div>
       </section>
 
+      {/* Destaque: Sabonete de Dolomita (mais vendido / pele de porcelana) */}
+      <section id="dolomita-destaque" className="py-16 px-6" style={{ background: "linear-gradient(135deg, #dbe9f7, #ffffff)" }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <Badge className="mb-3 text-white" style={{ backgroundColor: PINK }}>⭐ Nosso mais vendido</Badge>
+            <h2 style={{ fontFamily: "Floane, serif", color: PINK }} className="text-3xl md:text-4xl font-bold mb-3">
+              Sabonete de Dolomita
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              O queridinho da casa: a esfoliação suave da argila dolomita alisa, uniformiza e revela o famoso{" "}
+              <strong style={{ color: PINK }}>efeito "pele de porcelana"</strong> — lisa, macia e luminosa.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
+            <img src="/assets/sabonetes/dolomita/dolomita-1.jpg" alt="Sabonete de Dolomita" onError={esconderImg} className="w-full h-72 object-cover rounded-2xl shadow-lg" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {dolomitaBeneficios.map((b) => (
+                <div key={b.titulo} className="bg-white rounded-2xl p-4 shadow-sm border" style={{ borderColor: BLUE }}>
+                  <div className="text-2xl mb-1">{b.emoji}</div>
+                  <h3 style={{ fontFamily: "Floane, serif", color: PINK }} className="font-bold text-sm mb-1">{b.titulo}</h3>
+                  <p className="text-gray-500 text-xs leading-relaxed">{b.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl p-6 shadow-sm border flex flex-col md:flex-row items-start md:items-center gap-4 justify-between" style={{ borderColor: BLUE }}>
+            <div className="flex items-start gap-3">
+              <Sparkles size={22} className="mt-1 shrink-0" style={{ color: PINK }} />
+              <div>
+                <h4 style={{ fontFamily: "Floane, serif", color: PINK }} className="font-bold mb-1">Como usar</h4>
+                <p className="text-gray-600 text-sm leading-relaxed max-w-xl">
+                  Use sobre a pele úmida com movimentos circulares suaves, 2 a 3x por semana. Enxágue e sinta a maciez —
+                  no rosto, evite a área dos olhos.
+                </p>
+              </div>
+            </div>
+            <Button
+              size="lg"
+              className="text-white font-bold shrink-0 px-6"
+              style={{ backgroundColor: PINK }}
+              onClick={() => window.open(wa("Olá! Quero o Sabonete de Dolomita (efeito pele de porcelana). 🤍"), "_blank")}
+            >
+              Quero o Sabonete de Dolomita
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Destaque: Sabonete de Hibisco (anti-idade) */}
       <section id="destaque" className="py-16 px-6 text-white" style={{ background: `linear-gradient(135deg, ${PINK}, #d4849a)` }}>
         <div className="max-w-5xl mx-auto">
@@ -537,6 +594,7 @@ export default function CuidadosDaPele() {
                 <li><a href="/" className="text-white/70 hover:text-white text-sm transition-colors">← Voltar à Loja</a></li>
                 <li><a href="/clube" className="text-white/70 hover:text-white text-sm transition-colors">Clube do Sabonete</a></li>
                 <li><a href="#tipos" className="text-white/70 hover:text-white text-sm transition-colors">Tipos de Pele</a></li>
+                <li><a href="#dolomita-destaque" className="text-white/70 hover:text-white text-sm transition-colors">Mais vendido: Dolomita</a></li>
                 <li><a href="#destaque" className="text-white/70 hover:text-white text-sm transition-colors">Destaque: Hibisco</a></li>
               </ul>
             </div>
