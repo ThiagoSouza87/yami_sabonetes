@@ -716,7 +716,7 @@ function FreteModal({ aberto, onFechar }: { aberto: boolean; onFechar: () => voi
           </h3>
           <button type="button" onClick={onFechar} aria-label="Fechar"><X size={20} className="text-gray-400 hover:text-gray-600" /></button>
         </div>
-        <p className="text-gray-500 text-sm mb-4">Valor aproximado para <strong>até 4 sabonetes</strong> (mesma caixa). Informe seu CEP:</p>
+        <p className="text-gray-500 text-sm mb-4">Vamos ver quanto custa pra sua caixinha chegar até você? 💕 Ela comporta <strong>até 4 sabonetes</strong>. É só colocar o seu CEP:</p>
         <div className="flex gap-2 mb-3">
           <input
             value={cep}
@@ -753,7 +753,7 @@ function FreteModal({ aberto, onFechar }: { aberto: boolean; onFechar: () => voi
                 </div>
               </div>
             ))}
-            <p className="text-xs text-gray-400 mt-2">💰 Valor aproximado, já com desconto — válido para até 4 sabonetes na mesma caixa. Para 5 ou mais unidades, fale conosco no WhatsApp.</p>
+            <p className="text-xs text-gray-400 mt-2">🌸 Valor aproximado e já com desconto especial pra você — vale para até 4 sabonetes na mesma caixinha. Quer levar 5 ou mais? Chama a gente no WhatsApp 💬</p>
           </div>
         )}
       </div>
