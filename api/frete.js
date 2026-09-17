@@ -3,9 +3,9 @@
 // (configurada no painel da Vercel). Nunca exponha o token no frontend.
 
 const ORIGEM_CEP = "13827118"; // CEP de origem (Yami Sabonetes)
-const CAIXA = { height: 10, width: 20, length: 30, weight: 0.3 }; // caixa padrão: 1 sabonete (cm / kg)
+const CAIXA = { height: 12, width: 13, length: 18, weight: 0.3 }; // caixa padrão: 1 sabonete — 12x18x13 cm, 0,3 kg
 const SUPERFRETE_URL = "https://api.superfrete.com/api/v0/calculator";
-const SERVICOS = "1,2,17"; // PAC, SEDEX, Mini Envios
+const SERVICOS = "1,2,3,17,31,33"; // Correios (PAC, SEDEX, Mini) + Jadlog, Loggi, J&T
 
 const soDigitos = (s) => (s || "").replace(/\D/g, "");
 
@@ -59,9 +59,11 @@ export default async function handler(req, res) {
         nome: s.name,
         empresa: (s.company && s.company.name) || "",
         preco: Number(s.price),
+        desconto: Number(s.discount) || 0,
         prazoMin: (s.delivery_range && s.delivery_range.min) ?? s.delivery_time,
         prazoMax: (s.delivery_range && s.delivery_range.max) ?? s.delivery_time,
-      }));
+      }))
+      .sort((a, b) => a.preco - b.preco); // mais barato primeiro
 
     return res.status(200).json({ opcoes });
   } catch (e) {

@@ -670,7 +670,7 @@ const produtosPorCategoria: Record<Exclude<CategoriaKey, "bodySplash" | "sabonet
 };
 
 // ─── Modal de Cálculo de Frete ─────────────────────────────────────────────────
-interface FreteOpcao { nome: string; empresa: string; preco: number; prazoMin: number; prazoMax: number; }
+interface FreteOpcao { nome: string; empresa: string; preco: number; desconto: number; prazoMin: number; prazoMax: number; }
 
 function FreteModal({ aberto, onFechar }: { aberto: boolean; onFechar: () => void }) {
   const [cep, setCep] = useState("");
@@ -743,10 +743,17 @@ function FreteModal({ aberto, onFechar }: { aberto: boolean; onFechar: () => voi
                     {o.empresa} · {o.prazoMin === o.prazoMax ? `${o.prazoMax} dia(s)` : `${o.prazoMin}–${o.prazoMax} dias`} úteis
                   </p>
                 </div>
-                <span className="font-bold" style={{ color: PINK }}>R$ {o.preco.toFixed(2).replace(".", ",")}</span>
+                <div className="text-right shrink-0">
+                  <span className="font-bold block" style={{ color: PINK }}>R$ {o.preco.toFixed(2).replace(".", ",")}</span>
+                  {o.desconto > 0 && (
+                    <span className="text-[10px] font-medium" style={{ color: "#27ae60" }}>
+                      economize R$ {o.desconto.toFixed(2).replace(".", ",")}
+                    </span>
+                  )}
+                </div>
               </div>
             ))}
-            <p className="text-xs text-gray-400 mt-2">Valores estimados para 1 unidade. Para vários itens, fale conosco no WhatsApp.</p>
+            <p className="text-xs text-gray-400 mt-2">💰 Preços já com desconto. Estimativa para 1 unidade — para vários itens, fale conosco no WhatsApp.</p>
           </div>
         )}
       </div>
