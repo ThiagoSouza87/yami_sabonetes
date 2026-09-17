@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type SyntheticEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -37,33 +37,54 @@ interface TipoPele {
   produtos: string[];
 }
 
+// Mapa nome do sabonete -> foto principal (do catálogo)
+const fotoSabonete: Record<string, string> = {
+  "Carvão Ativado": "/assets/sabonetes/carvao_ativado/carvao_ativado-1.jpg",
+  "Argila Verde": "/assets/sabonetes/argila_verde/argila_verde-1.jpg",
+  "Argila Rosa & Branca": "/assets/sabonetes/argila_rosa_branca/argila_rosa_branca-1.jpg",
+  "Argila Rosa": "/assets/sabonetes/argila_rosa_branca/argila_rosa_branca-1.jpg",
+  "Açafrão": "/assets/sabonetes/acafrao/acafrao-1.jpg",
+  "Açafrão & Dolomita": "/assets/sabonetes/acafrao_dolomita/acafrao_dolomita-1.jpg",
+  "Dolomita": "/assets/sabonetes/dolomita/dolomita-1.jpg",
+  "Dolomita (Argila Branca)": "/assets/sabonetes/dolomita/dolomita-1.jpg",
+  "Hibisco": "/assets/sabonetes/hibisco/hibisco-1.jpg",
+  "Camomila": "/assets/sabonetes/camomila/camomila-1.jpg",
+  "Calêndula": "/assets/sabonetes/calendula/calendula-1.jpg",
+  "Barbatimão": "/assets/sabonetes/babatimao/babatimao-1.jpg",
+  "Amêndoa": "/assets/sabonetes/amendoa/amendoa-1.jpg",
+  "Mel & Fubá": "/assets/sabonetes/mel_fuba/mel_fuba-1.jpg",
+  "Aveia": "/assets/sabonetes/aveia/aveia-1.jpg",
+  "Babosa": "/assets/sabonetes/babosa/babosa-1.jpg",
+  "Erva-Doce": "/assets/sabonetes/erva_doce/erva_doce-1.jpg",
+};
+const esconderImg = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.display = "none"; };
+
 const tiposPele: TipoPele[] = [
-  { tipo: "Pele Oleosa / Acneica", emoji: "🫧", sinais: "Brilho excessivo, poros dilatados, cravos, espinhas", produtos: ["Carvão Ativado", "Argila Verde", "Melaleuca", "Argila Azul"] },
-  { tipo: "Pele Seca", emoji: "🌾", sinais: "Sensação de aperto, descamação, vermelhidão", produtos: ["Mel & Aveia", "Amêndoas", "Leite de Cabra", "Óleo de Cerejeira"] },
+  { tipo: "Pele Oleosa / Acneica", emoji: "🫧", sinais: "Brilho excessivo, poros dilatados, cravos, espinhas", produtos: ["Carvão Ativado", "Argila Verde", "Barbatimão", "Açafrão & Dolomita"] },
+  { tipo: "Pele Seca", emoji: "🌾", sinais: "Sensação de aperto, descamação, vermelhidão", produtos: ["Amêndoa", "Mel & Fubá", "Aveia", "Babosa"] },
   { tipo: "Pele Sensível", emoji: "🌸", sinais: "Irritação fácil, vermelhidão, reação a produtos", produtos: ["Camomila", "Calêndula", "Babosa", "Erva-Doce"] },
-  { tipo: "Pele Mista", emoji: "⚖️", sinais: "Zona T oleosa, bochechas normais/secas", produtos: ["Dolomita", "Argila Rosa"] },
-  { tipo: "Pele com Manchas", emoji: "🌟", sinais: "Tom irregular, manchas solares, pós-inflamatórias", produtos: ["Limão", "Rosa Mosqueta", "Dolomita", "Óleo de Cerejeira"] },
-  { tipo: "Pele Madura", emoji: "🕊️", sinais: "Linhas finas, perda de firmeza, ressecamento", produtos: ["Óleo de Cerejeira", "Rosa Mosqueta", "Açaí"] },
+  { tipo: "Pele Mista", emoji: "⚖️", sinais: "Zona T oleosa, bochechas normais/secas", produtos: ["Dolomita", "Argila Rosa & Branca", "Argila Verde"] },
+  { tipo: "Pele com Manchas", emoji: "🌟", sinais: "Tom irregular, manchas solares, pós-inflamatórias", produtos: ["Açafrão", "Açafrão & Dolomita", "Dolomita", "Hibisco"] },
+  { tipo: "Pele Madura", emoji: "🕊️", sinais: "Linhas finas, perda de firmeza, ressecamento", produtos: ["Hibisco", "Amêndoa", "Açafrão"] },
 ];
 
 const ingredientes = [
   { emoji: "🖤", nome: "Carvão Ativado", desc: "Absorve impurezas e sebo em excesso, desintoxica os poros em profundidade. Ideal para pele oleosa e acneica." },
   { emoji: "💚", nome: "Argila Verde", desc: "Adstringente natural, controla oleosidade e tem ação antibacteriana. Perfeita para pele com tendência a acne." },
   { emoji: "🌸", nome: "Argila Rosa", desc: "Limpeza suave e equilibrada, ideal para pele mista ou sensível. Combina os benefícios da argila branca e vermelha." },
-  { emoji: "💙", nome: "Argila Azul", desc: "Rica em minerais, ação anti-inflamatória e calmante. Indicada para pele sensível, irritada ou com vermelhidão." },
+  { emoji: "💛", nome: "Açafrão", desc: "Antioxidante natural que ilumina, uniformiza o tom e ajuda a firmar. Ótimo para pele com manchas e madura." },
   { emoji: "🤍", nome: "Dolomita (Argila Branca)", desc: "Limpeza delicada e suave esfoliação. Uniformiza o tom e é adequada para todos os tipos de pele." },
+  { emoji: "🌺", nome: "Hibisco", desc: "Rico em antioxidantes e AHAs naturais, firma, renova e traz viço — o 'botox natural' das peles maduras." },
   { emoji: "🌼", nome: "Camomila", desc: "Anti-inflamatória e calmante, reduz vermelhidão e irritações. A escolha perfeita para pele sensível." },
   { emoji: "🌻", nome: "Calêndula", desc: "Cicatrizante e regeneradora, ideal para pele irritada, seca ou com pequenas lesões." },
   { emoji: "🫙", nome: "Base Glicerinada", desc: "Umectante natural que hidrata enquanto limpa, sem remover os óleos essenciais da pele." },
 ];
 
-const oleoBeneficios = [
-  { emoji: "🍊", titulo: "Rico em Vitamina C natural", desc: "Estimula a produção de colágeno e ilumina o tom da pele" },
-  { emoji: "🔁", titulo: "Ácidos Graxos Essenciais", desc: "Nutrem, regeneram e restauram a barreira cutânea" },
-  { emoji: "✨", titulo: "Reduz manchas e tom irregular", desc: "Ação despigmentante natural progressiva" },
-  { emoji: "🌿", titulo: "Regeneração tecidual", desc: "Auxilia na cicatrização e renovação celular" },
-  { emoji: "⏳", titulo: "Combate o envelhecimento precoce", desc: "Antioxidantes protegem contra radicais livres" },
-  { emoji: "💧", titulo: "Hidratação profunda", desc: "Textura seca ao toque, absorção rápida sem oleosidade" },
+const hibiscoBeneficios = [
+  { emoji: "🌺", titulo: "Antioxidante poderoso", desc: "Combate os radicais livres e previne o envelhecimento precoce" },
+  { emoji: "✨", titulo: "AHAs naturais", desc: "Renovam a pele suavemente, deixando-a mais lisa e luminosa" },
+  { emoji: "💪", titulo: "Firmeza e viço", desc: "Estimula a renovação e ajuda a firmar a pele madura" },
+  { emoji: "🎯", titulo: "Uniformiza o tom", desc: "Suaviza manchas e deixa a pele com aparência mais uniforme" },
 ];
 
 interface Rotina {
@@ -85,16 +106,16 @@ const rotinas: Rotina[] = [
     emoji: "🌸", nome: "Rotina Anti-Manchas",
     passos: [
       "Limpe com Sabonete de Dolomita — uniformiza sem agredir",
-      "3x por semana: Sabonete de Limão pela manhã (ação clareadora)",
-      "Noite: aplique Óleo de Cerejeira no rosto e pescoço",
+      "3x por semana: Sabonete de Açafrão pela manhã (ação iluminadora e antioxidante)",
+      "Alterne com Sabonete de Açafrão & Dolomita para renovar e uniformizar o tom",
     ],
   },
   {
     emoji: "🕊️", nome: "Rotina Anti-Idade",
     passos: [
-      "Limpe com Sabonete de Rosa Mosqueta — regenerador e nutritivo",
-      "Aplique Óleo de Cerejeira ainda com a pele úmida após o banho",
-      "Massageie em movimentos circulares ascendentes por 2 minutos",
+      "Limpe com Sabonete de Hibisco — antioxidante que firma e renova",
+      "Hidrate no banho com Sabonete de Amêndoa — nutre e deixa a pele macia",
+      "3x por semana: Sabonete de Açafrão para iluminar e dar viço",
     ],
   },
   {
@@ -109,8 +130,8 @@ const rotinas: Rotina[] = [
     emoji: "✨", nome: "Rotina Equilíbrio (Pele Mista)",
     passos: [
       "Sabonete de Dolomita na zona T (testa, nariz, queixo)",
-      "Sabonete de Argila Rosa no rosto todo 2x por semana",
-      "Óleo de Cerejeira apenas nas bochechas para hidratar sem oleosidade",
+      "Sabonete de Argila Rosa & Branca no rosto todo 2x por semana",
+      "Sabonete de Argila Verde só na zona T nos dias mais oleosos",
     ],
   },
 ];
@@ -181,9 +202,9 @@ export default function CuidadosDaPele() {
               size="lg"
               variant="outline"
               className="border-white text-white bg-transparent hover:bg-white/10 hover:text-white px-8"
-              onClick={() => document.getElementById("oleo-cerejeira")?.scrollIntoView({ behavior: "smooth" })}
+              onClick={() => document.getElementById("destaque")?.scrollIntoView({ behavior: "smooth" })}
             >
-              Conhecer o Óleo de Cerejeira
+              Conhecer o Hibisco 🌺
             </Button>
           </div>
         </div>
@@ -271,9 +292,9 @@ export default function CuidadosDaPele() {
                   <CardContent className="p-5">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <span className="text-3xl">{t.emoji}</span>
+                        <img src={fotoSabonete[t.produtos[0]]} alt={t.tipo} onError={esconderImg} className="w-14 h-14 rounded-full object-cover shrink-0 border-2" style={{ borderColor: BLUE }} />
                         <div>
-                          <h3 style={{ fontFamily: "Floane, serif", color: PINK }} className="font-bold">{t.tipo}</h3>
+                          <h3 style={{ fontFamily: "Floane, serif", color: PINK }} className="font-bold flex items-center gap-1"><span>{t.emoji}</span>{t.tipo}</h3>
                           <p className="text-gray-500 text-xs">{t.sinais}</p>
                         </div>
                       </div>
@@ -283,9 +304,12 @@ export default function CuidadosDaPele() {
                     {aberto && (
                       <div className="mt-4 pt-4 border-t" style={{ borderColor: BLUE }}>
                         <p className="text-xs font-bold mb-2" style={{ color: PINK }}>Produtos indicados:</p>
-                        <div className="flex flex-wrap gap-2 mb-4">
+                        <div className="grid grid-cols-2 gap-2 mb-4">
                           {t.produtos.map((p) => (
-                            <Badge key={p} variant="outline" className="text-xs py-1" style={{ borderColor: PINK, color: PINK }}>{p}</Badge>
+                            <div key={p} className="flex items-center gap-2 border rounded-lg p-2 bg-white" style={{ borderColor: BLUE }}>
+                              <img src={fotoSabonete[p]} alt={p} onError={esconderImg} className="w-9 h-9 rounded-md object-cover shrink-0" />
+                              <span className="text-xs font-medium text-gray-700 leading-tight">{p}</span>
+                            </div>
                           ))}
                         </div>
                         <Button
@@ -320,9 +344,12 @@ export default function CuidadosDaPele() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {ingredientes.map((ing) => (
-              <Card key={ing.nome} className="border-0 shadow-md hover:shadow-lg transition-shadow bg-white h-full">
+              <Card key={ing.nome} className="border-0 shadow-md hover:shadow-lg transition-shadow bg-white h-full overflow-hidden">
+                {fotoSabonete[ing.nome] ? (
+                  <img src={fotoSabonete[ing.nome]} alt={ing.nome} onError={esconderImg} className="w-full h-36 object-cover" />
+                ) : null}
                 <CardContent className="p-5">
-                  <div className="text-3xl mb-2">{ing.emoji}</div>
+                  <div className="text-2xl mb-2">{ing.emoji}</div>
                   <h3 style={{ fontFamily: "Floane, serif", color: PINK }} className="font-bold mb-2">{ing.nome}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{ing.desc}</p>
                 </CardContent>
@@ -332,27 +359,30 @@ export default function CuidadosDaPele() {
         </div>
       </section>
 
-      {/* Óleo de Cerejeira */}
-      <section id="oleo-cerejeira" className="py-16 px-6 text-white" style={{ background: `linear-gradient(135deg, ${PINK}, #d4849a)` }}>
+      {/* Destaque: Sabonete de Hibisco (anti-idade) */}
+      <section id="destaque" className="py-16 px-6 text-white" style={{ background: `linear-gradient(135deg, ${PINK}, #d4849a)` }}>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
-            <Badge className="mb-3 bg-white/20 text-white border-white/30">🌸 Lançamento</Badge>
+            <Badge className="mb-3 bg-white/20 text-white border-white/30">🌺 Queridinho anti-idade</Badge>
             <h2 style={{ fontFamily: "Floane, serif" }} className="text-3xl md:text-4xl font-bold mb-3">
-              Óleo Corporal de Cerejeira Yami
+              Sabonete de Hibisco
             </h2>
             <p className="text-white/90 max-w-2xl mx-auto">
-              Um óleo corporal premium, rico em vitamina C e antioxidantes, para nutrir, iluminar e regenerar a pele.
+              Conhecido como o "botox natural": rico em antioxidantes e AHAs, firma, renova e devolve o viço à pele madura.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-            {oleoBeneficios.map((b) => (
-              <div key={b.titulo} className="bg-white/10 backdrop-blur rounded-2xl p-5 border border-white/20">
-                <div className="text-3xl mb-2">{b.emoji}</div>
-                <h3 style={{ fontFamily: "Floane, serif" }} className="font-bold mb-1">{b.titulo}</h3>
-                <p className="text-white/80 text-sm leading-relaxed">{b.desc}</p>
-              </div>
-            ))}
+          <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
+            <img src="/assets/sabonetes/hibisco/hibisco-1.jpg" alt="Sabonete de Hibisco" onError={esconderImg} className="w-full h-72 object-cover rounded-2xl shadow-lg" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {hibiscoBeneficios.map((b) => (
+                <div key={b.titulo} className="bg-white/10 rounded-2xl p-4 border border-white/20">
+                  <div className="text-2xl mb-1">{b.emoji}</div>
+                  <h3 style={{ fontFamily: "Floane, serif" }} className="font-bold text-sm mb-1">{b.titulo}</h3>
+                  <p className="text-white/80 text-xs leading-relaxed">{b.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="bg-white/10 rounded-2xl p-6 border border-white/20 flex flex-col md:flex-row items-start md:items-center gap-4 justify-between">
@@ -361,8 +391,8 @@ export default function CuidadosDaPele() {
               <div>
                 <h4 style={{ fontFamily: "Floane, serif" }} className="font-bold mb-1">Como usar</h4>
                 <p className="text-white/85 text-sm leading-relaxed max-w-xl">
-                  Aplicar no corpo após o banho com a pele ainda levemente úmida. Massagear em movimentos circulares.
-                  Usar diariamente para melhores resultados.
+                  Use no rosto e no corpo durante o banho, massageando suavemente. Deixe agir por 1 minuto para
+                  potencializar a ação antioxidante. Ideal 3x por semana.
                 </p>
               </div>
             </div>
@@ -370,9 +400,9 @@ export default function CuidadosDaPele() {
               size="lg"
               className="bg-white font-bold shrink-0 px-6"
               style={{ color: PINK }}
-              onClick={() => window.open(wa("Olá! Quero o Óleo Corporal de Cerejeira Yami. 🌸"), "_blank")}
+              onClick={() => window.open(wa("Olá! Quero o Sabonete de Hibisco (anti-idade). 🌺"), "_blank")}
             >
-              Quero o Óleo de Cerejeira
+              Quero o Sabonete de Hibisco
             </Button>
           </div>
         </div>
@@ -507,7 +537,7 @@ export default function CuidadosDaPele() {
                 <li><a href="/" className="text-white/70 hover:text-white text-sm transition-colors">← Voltar à Loja</a></li>
                 <li><a href="/clube" className="text-white/70 hover:text-white text-sm transition-colors">Clube do Sabonete</a></li>
                 <li><a href="#tipos" className="text-white/70 hover:text-white text-sm transition-colors">Tipos de Pele</a></li>
-                <li><a href="#oleo-cerejeira" className="text-white/70 hover:text-white text-sm transition-colors">Óleo de Cerejeira</a></li>
+                <li><a href="#destaque" className="text-white/70 hover:text-white text-sm transition-colors">Destaque: Hibisco</a></li>
               </ul>
             </div>
           </div>
