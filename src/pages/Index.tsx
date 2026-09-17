@@ -1,12 +1,29 @@
-import { useState } from "react";
+import { useState, createContext, useContext } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingBag, Wind, Droplets, Waves, Instagram, MessageCircle, Mail, MapPin, Sparkles, Star, ChevronRight, ChevronLeft } from "lucide-react";
+import { ShoppingBag, Wind, Droplets, Waves, Instagram, MessageCircle, Mail, MapPin, Sparkles, Star, ChevronRight, ChevronLeft, Truck, X } from "lucide-react";
 
 // ─── Brand Constants ─────────────────────────────────────────────────────────
 const PINK = "#c26072";
 const BLUE = "#c4dcf0";
+
+// Contexto para abrir o modal de cálculo de frete a partir de qualquer card
+const FreteContext = createContext<() => void>(() => {});
+
+// Botão "Calcular frete" reutilizado nos cards de produto
+function BotaoFrete() {
+  const abrirFrete = useContext(FreteContext);
+  return (
+    <button
+      type="button"
+      onClick={abrirFrete}
+      className="mt-2 w-full text-xs flex items-center justify-center gap-1 text-gray-500 hover:text-pink-600 transition-colors"
+    >
+      <Truck size={13} /> Calcular frete
+    </button>
+  );
+}
 
 // ─── Product Data ─────────────────────────────────────────────────────────────
 // Sabonetes artesanais: cada produto tem seu próprio carrossel de fotos reais.
@@ -433,6 +450,7 @@ function ProdutoCard({ produto, badge }: { produto: Produto; badge?: string }) {
             Comprar
           </Button>
         </div>
+        <BotaoFrete />
       </CardContent>
     </Card>
   );
@@ -513,6 +531,7 @@ function SaboneteCard({ produto }: { produto: SaboneteProduto }) {
             Comprar
           </Button>
         </div>
+        <BotaoFrete />
       </CardContent>
     </Card>
   );
@@ -630,6 +649,7 @@ function BodySplashCard({ grupo, badge }: { grupo: BodySplashGrupo; badge?: stri
             Comprar
           </Button>
         </div>
+        <BotaoFrete />
       </CardContent>
     </Card>
   );
@@ -649,11 +669,98 @@ const produtosPorCategoria: Record<Exclude<CategoriaKey, "bodySplash" | "sabonet
   geleias: geleiasDebanho,
 };
 
+// ─── Modal de Cálculo de Frete ─────────────────────────────────────────────────
+interface FreteOpcao { nome: string; empresa: string; preco: number; prazoMin: number; prazoMax: number; }
+
+function FreteModal({ aberto, onFechar }: { aberto: boolean; onFechar: () => void }) {
+  const [cep, setCep] = useState("");
+  const [carregando, setCarregando] = useState(false);
+  const [erro, setErro] = useState("");
+  const [opcoes, setOpcoes] = useState<FreteOpcao[] | null>(null);
+
+  if (!aberto) return null;
+
+  const calcular = async () => {
+    const limpo = cep.replace(/\D/g, "");
+    if (limpo.length !== 8) { setErro("Digite um CEP válido com 8 dígitos."); return; }
+    setErro(""); setCarregando(true); setOpcoes(null);
+    try {
+      const r = await fetch("/api/frete", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ cep: limpo }),
+      });
+      const data = await r.json();
+      if (!r.ok) {
+        setErro(data.error || "Não foi possível calcular o frete.");
+      } else {
+        setOpcoes(data.opcoes || []);
+        if ((data.opcoes || []).length === 0) setErro("Nenhuma opção de frete para este CEP.");
+      }
+    } catch {
+      setErro("Erro de conexão. Tente novamente.");
+    }
+    setCarregando(false);
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      style={{ backgroundColor: "rgba(0,0,0,.5)" }}
+      onClick={onFechar}
+    >
+      <div className="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between mb-4">
+          <h3 style={{ fontFamily: "Floane, serif", color: PINK }} className="text-xl font-bold flex items-center gap-2">
+            <Truck size={20} /> Calcular frete
+          </h3>
+          <button type="button" onClick={onFechar} aria-label="Fechar"><X size={20} className="text-gray-400 hover:text-gray-600" /></button>
+        </div>
+        <p className="text-gray-500 text-sm mb-4">Estimativa para <strong>1 sabonete</strong> (caixa padrão). Informe seu CEP:</p>
+        <div className="flex gap-2 mb-3">
+          <input
+            value={cep}
+            onChange={(e) => setCep(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && calcular()}
+            placeholder="00000-000"
+            inputMode="numeric"
+            maxLength={9}
+            className="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none"
+            style={{ borderColor: "#ddd" }}
+          />
+          <Button className="text-white" style={{ backgroundColor: PINK }} disabled={carregando} onClick={calcular}>
+            {carregando ? "..." : "Calcular"}
+          </Button>
+        </div>
+        {erro && <p className="text-sm mb-2" style={{ color: "#c0392b" }}>{erro}</p>}
+        {opcoes && opcoes.length > 0 && (
+          <div className="space-y-2 mt-2">
+            {opcoes.map((o, i) => (
+              <div key={i} className="flex items-center justify-between border rounded-lg px-3 py-2" style={{ borderColor: BLUE }}>
+                <div>
+                  <p className="font-medium text-sm text-gray-800">{o.nome}</p>
+                  <p className="text-xs text-gray-500">
+                    {o.empresa} · {o.prazoMin === o.prazoMax ? `${o.prazoMax} dia(s)` : `${o.prazoMin}–${o.prazoMax} dias`} úteis
+                  </p>
+                </div>
+                <span className="font-bold" style={{ color: PINK }}>R$ {o.preco.toFixed(2).replace(".", ",")}</span>
+              </div>
+            ))}
+            <p className="text-xs text-gray-400 mt-2">Valores estimados para 1 unidade. Para vários itens, fale conosco no WhatsApp.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export default function Index() {
   const [categoriaAtiva, setCategoriaAtiva] = useState<CategoriaKey>("sabonetes");
+  const [freteAberto, setFreteAberto] = useState(false);
 
   return (
+    <FreteContext.Provider value={() => setFreteAberto(true)}>
     <div className="min-h-screen" style={{ fontFamily: "Aileron, sans-serif" }}>
       {/* Header */}
       <header className="py-4 px-6 sticky top-0 z-50 shadow-sm" style={{ backgroundColor: BLUE }}>
@@ -1043,5 +1150,7 @@ export default function Index() {
         </div>
       </footer>
     </div>
+    <FreteModal aberto={freteAberto} onFechar={() => setFreteAberto(false)} />
+    </FreteContext.Provider>
   );
 }
