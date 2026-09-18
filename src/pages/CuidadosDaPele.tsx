@@ -543,7 +543,7 @@ export default function CuidadosDaPele() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 items-center mb-8">
-            <img src="/assets/sabonetes/acafrao/acafrao-3.jpg" alt="Sabonete de Açafrão" onError={esconderImg} className="w-full h-72 object-cover rounded-2xl shadow-lg" />
+            <img src="/assets/sabonetes/acafrao/acafrao-destaque.jpg" alt="Sabonete de Açafrão" onError={esconderImg} className="w-full h-72 object-cover rounded-2xl shadow-lg" />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {acafraoBeneficios.map((b) => (
                 <div key={b.titulo} className="bg-white/10 rounded-2xl p-4 border border-white/20">
