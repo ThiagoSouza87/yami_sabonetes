@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -463,6 +463,15 @@ function SaboneteCard({ produto }: { produto: SaboneteProduto }) {
   const prev = () => setIdx((i) => (i - 1 + total) % total);
   const next = () => setIdx((i) => (i + 1) % total);
 
+  // Pré-carrega as imagens vizinhas para a troca ser instantânea (sem travar)
+  useEffect(() => {
+    if (total <= 1) return;
+    [idx + 1, idx - 1].forEach((i) => {
+      const src = produto.fotos[(i + total) % total];
+      if (src) { const im = new Image(); im.src = src; }
+    });
+  }, [idx, total, produto.fotos]);
+
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 bg-white border-0 shadow-md w-fit mx-auto" style={{ width: 300 }}>
       <div className="relative overflow-hidden bg-gray-100 flex items-center justify-center" style={{ width: 300, height: 400 }}>
@@ -546,6 +555,16 @@ function BodySplashCard({ grupo, badge }: { grupo: BodySplashGrupo; badge?: stri
 
   const prev = () => setIdx((i) => (i - 1 + total) % total);
   const next = () => setIdx((i) => (i + 1) % total);
+
+  // Pré-carrega as imagens vizinhas do carrossel (troca instantânea)
+  useEffect(() => {
+    if (total <= 1) return;
+    [idx + 1, idx - 1].forEach((i) => {
+      const foto = grupo.fotos[(i + total) % total];
+      if (foto) { const im = new Image(); im.src = foto.imagem; }
+    });
+  }, [idx, total, grupo.fotos]);
+
   const selecionarTamanho = (tamanho: string) => {
     const alvo = grupo.fotos.findIndex((f) => f.tamanho === tamanho);
     if (alvo >= 0) setIdx(alvo);
