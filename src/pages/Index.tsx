@@ -736,6 +736,13 @@ function FreteModal({ aberto, onFechar }: { aberto: boolean; onFechar: () => voi
           <button type="button" onClick={onFechar} aria-label="Fechar"><X size={20} className="text-gray-400 hover:text-gray-600" /></button>
         </div>
         <p className="text-gray-500 text-sm mb-4">Vamos ver quanto custa pra sua caixinha chegar até você? 💕 Ela comporta <strong>até 4 sabonetes</strong>. É só colocar o seu CEP:</p>
+        <div
+          className="flex items-center gap-2 rounded-lg px-3 py-2 mb-4 text-sm"
+          style={{ backgroundColor: "#eef9ef", color: "#1e8449", border: "1px solid #cfe9d2" }}
+        >
+          <span aria-hidden="true">🎁</span>
+          <span><strong>Frete grátis</strong> nas compras acima de <strong>R$ 150,00</strong>! 💕</span>
+        </div>
         <div className="flex gap-2 mb-3">
           <input
             value={cep}
