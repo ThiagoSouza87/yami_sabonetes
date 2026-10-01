@@ -1,6 +1,6 @@
 # Spec: Carrinho de compras (adicionar item + finalizar no WhatsApp)
 
-> Status: `aprovada`
+> Status: `implementada`
 > Autor: Thiago · Data: 2026-10-01
 
 ## 1. Contexto / Problema
@@ -56,14 +56,14 @@ pelo WhatsApp** com a lista e o total prontos.
   ```
 
 ## 7. Critérios de aceite (Given / When / Then)
-- [ ] **Dado** um card, **quando** clico "Adicionar", **então** o item entra com qtd 1 e aparece **toast**.
-- [ ] **Dado** um item já no carrinho, **quando** clico "Adicionar" de novo, **então** a qtd **incrementa** (não duplica).
-- [ ] **Dado** Body Splash/Sal com variante, **quando** adiciono 110ml e 30ml, **então** viram **2 itens distintos**.
-- [ ] **Dado** itens no carrinho, **então** o header da loja mostra o **total de unidades**.
-- [ ] **Dado** o drawer aberto, **quando** uso +/−/remover, **então** lista e total atualizam; **qtd 0 remove**.
-- [ ] **Dado** carrinho vazio, **então** o drawer mostra "vazio" e **finalizar fica desabilitado**.
-- [ ] **Dado** itens no carrinho, **quando** clico "Finalizar", **então** abre `wa.me` com **lista + total** corretos.
-- [ ] `pnpm run lint` e `pnpm run build` sem erros; testes da store/preço **verdes**.
+- [x] **Dado** um card, **quando** clico "Adicionar", **então** o item entra com qtd 1 e aparece **toast**.
+- [x] **Dado** um item já no carrinho, **quando** clico "Adicionar" de novo, **então** a qtd **incrementa** (não duplica).
+- [x] **Dado** Body Splash/Sal com variante, **quando** adiciono 110ml e 30ml, **então** viram **2 itens distintos**.
+- [x] **Dado** itens no carrinho, **então** o header da loja mostra o **total de unidades**.
+- [x] **Dado** o drawer aberto, **quando** uso +/−/remover, **então** lista e total atualizam; **qtd 0 remove**.
+- [x] **Dado** carrinho vazio, **então** o drawer mostra "vazio" e **finalizar fica desabilitado**.
+- [x] **Dado** itens no carrinho, **quando** clico "Finalizar", **então** abre `wa.me` com **lista + total** corretos.
+- [x] `pnpm run lint` e `pnpm run build` sem erros; testes da store/preço **verdes**.
 
 ## 8. Casos de borda
 - Variantes distintas = itens separados.
@@ -98,6 +98,9 @@ pelo WhatsApp** com a lista e o total prontos.
 - Projeto sem runner → esta feature adiciona **Vitest + RTL**.
 - Cards vivem em `Index.tsx`; integrar **sem quebrar os carrosséis** existentes.
 - `codigo` como chave (único por variante) → simples e cobre o caso de borda.
+- **Drawer = `Sheet` do shadcn** (Radix, `side="right"`), não vaul: o `Drawer` do projeto é bottom sheet e é difícil de testar no jsdom.
+- **`@testing-library/user-event`** adicionado às devDeps (testes de clique). `jsdom` fixado em 25 (o 30 quebra no Node 20).
+- Mantido o botão **"Comprar"** (compra direta) ao lado de "Adicionar" nos cards; número do WhatsApp centralizado em `linkWhatsApp` (`src/lib/pedido.ts`).
 - Em memória (Zustand sem `persist`) → atende o não-objetivo; menos complexidade.
 - Parsing de preço frágil se o formato mudar → mitigado por função pura testada.
 

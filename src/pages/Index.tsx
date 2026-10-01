@@ -2,6 +2,11 @@ import { useState, useEffect, createContext, useContext } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { BotaoAdicionar } from "@/components/carrinho/BotaoAdicionar";
+import { CarrinhoDrawer } from "@/components/carrinho/CarrinhoDrawer";
+import { CarrinhoHeader } from "@/components/carrinho/CarrinhoHeader";
+import { linkWhatsApp } from "@/lib/pedido";
+import { precoParaNumero } from "@/lib/preco";
 import { ShoppingBag, Wind, Droplets, Waves, Instagram, MessageCircle, Mail, MapPin, Sparkles, Star, ChevronRight, ChevronLeft, Truck, X } from "lucide-react";
 
 // ─── Brand Constants ─────────────────────────────────────────────────────────
@@ -441,10 +446,7 @@ function ProdutoCard({ produto, badge }: { produto: Produto; badge?: string }) {
             className="text-white text-xs px-3 py-1 h-7"
             style={{ backgroundColor: PINK }}
             onClick={() => {
-              const msg = encodeURIComponent(
-                `Olá! Gostaria de comprar: ${produto.nome} (${produto.preco})${produto.codigo ? `\nCódigo: ${produto.codigo}` : ""}`
-              );
-              window.open(`https://wa.me/5519991743043?text=${msg}`, "_blank");
+              window.open(linkWhatsApp(`Olá! Gostaria de comprar: ${produto.nome} (${produto.preco})${produto.codigo ? `\nCódigo: ${produto.codigo}` : ""}`), "_blank");
             }}
           >
             Comprar
@@ -526,19 +528,22 @@ function SaboneteCard({ produto }: { produto: SaboneteProduto }) {
         <p className="text-gray-500 text-xs mb-3 leading-relaxed">{produto.desc}</p>
         <div className="flex items-center justify-between">
           <span className="font-bold text-sm" style={{ color: PINK }}>{produto.preco}</span>
-          <Button
-            size="sm"
-            className="text-white text-xs px-3 py-1 h-7"
-            style={{ backgroundColor: PINK }}
-            onClick={() => {
-              const msg = encodeURIComponent(
-                `Olá! Gostaria de comprar: ${produto.nome} (${produto.preco})\nCódigo: ${produto.codigo}`
-              );
-              window.open(`https://wa.me/5519991743043?text=${msg}`, "_blank");
-            }}
-          >
-            Comprar
-          </Button>
+          <div className="flex gap-1">
+            <BotaoAdicionar
+              item={{ codigo: produto.codigo, nome: produto.nome, precoUnit: precoParaNumero(produto.preco) }}
+              color={PINK}
+            />
+            <Button
+              size="sm"
+              className="text-white text-xs px-3 py-1 h-7"
+              style={{ backgroundColor: PINK }}
+              onClick={() => {
+                window.open(linkWhatsApp(`Olá! Gostaria de comprar: ${produto.nome} (${produto.preco})\nCódigo: ${produto.codigo}`), "_blank");
+              }}
+            >
+              Comprar
+            </Button>
+          </div>
         </div>
         <BotaoFrete />
       </CardContent>
@@ -654,19 +659,27 @@ function BodySplashCard({ grupo, badge }: { grupo: BodySplashGrupo; badge?: stri
         <p className="text-gray-500 text-xs mb-3 leading-relaxed">{grupo.desc}</p>
         <div className="flex items-center justify-between">
           <span className="font-bold text-sm" style={{ color: PINK }}>{tamanhoAtual.preco}</span>
-          <Button
-            size="sm"
-            className="text-white text-xs px-3 py-1 h-7"
-            style={{ backgroundColor: PINK }}
-            onClick={() => {
-              const msg = encodeURIComponent(
-                `Olá! Gostaria de comprar: ${grupo.nome} - ${tamanhoAtual.label} (${tamanhoAtual.preco})\nCódigo: ${tamanhoAtual.codigo}`
-              );
-              window.open(`https://wa.me/5519991743043?text=${msg}`, "_blank");
-            }}
-          >
-            Comprar
-          </Button>
+          <div className="flex gap-1">
+            <BotaoAdicionar
+              item={{
+                codigo: tamanhoAtual.codigo,
+                nome: grupo.nome,
+                variante: tamanhoAtual.label,
+                precoUnit: precoParaNumero(tamanhoAtual.preco),
+              }}
+              color={PINK}
+            />
+            <Button
+              size="sm"
+              className="text-white text-xs px-3 py-1 h-7"
+              style={{ backgroundColor: PINK }}
+              onClick={() => {
+                window.open(linkWhatsApp(`Olá! Gostaria de comprar: ${grupo.nome} - ${tamanhoAtual.label} (${tamanhoAtual.preco})\nCódigo: ${tamanhoAtual.codigo}`), "_blank");
+              }}
+            >
+              Comprar
+            </Button>
+          </div>
         </div>
         <BotaoFrete />
       </CardContent>
@@ -791,6 +804,7 @@ function FreteModal({ aberto, onFechar }: { aberto: boolean; onFechar: () => voi
 export default function Index() {
   const [categoriaAtiva, setCategoriaAtiva] = useState<CategoriaKey>("sabonetes");
   const [freteAberto, setFreteAberto] = useState(false);
+  const [carrinhoAberto, setCarrinhoAberto] = useState(false);
 
   return (
     <FreteContext.Provider value={() => setFreteAberto(true)}>
@@ -821,17 +835,23 @@ export default function Index() {
             >
               Clube do Sabonete ✨
             </Button>
+            <CarrinhoHeader onClick={() => setCarrinhoAberto(true)} color={PINK} />
           </nav>
-          <Button
-            size="sm"
-            className="md:hidden text-white"
-            style={{ backgroundColor: PINK }}
-            onClick={() => window.location.href = "/clube"}
-          >
-            Clube ✨
-          </Button>
+          <div className="md:hidden flex items-center gap-2">
+            <CarrinhoHeader onClick={() => setCarrinhoAberto(true)} color={PINK} />
+            <Button
+              size="sm"
+              className="text-white"
+              style={{ backgroundColor: PINK }}
+              onClick={() => window.location.href = "/clube"}
+            >
+              Clube ✨
+            </Button>
+          </div>
         </div>
       </header>
+
+      <CarrinhoDrawer open={carrinhoAberto} onOpenChange={setCarrinhoAberto} />
 
       {/* Hero */}
       <section

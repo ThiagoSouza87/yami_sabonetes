@@ -5,8 +5,9 @@ Contexto que o Claude Code carrega em toda sessão. Mantenha curto e verdadeiro.
 ## Visão geral
 
 Storefront (SPA React) da **Yami Sabonetes** — sabonetes artesanais. Vitrine de
-produtos, páginas de conteúdo (Clube, Cuidados da Pele, Rotina) e uma
-**calculadora de frete** que chama uma função serverless. Deploy na **Vercel**.
+produtos, páginas de conteúdo (Clube, Cuidados da Pele, Rotina), um **carrinho**
+(finaliza o pedido pelo WhatsApp) e uma **calculadora de frete** que chama uma
+função serverless. Deploy na **Vercel**.
 
 ## Stack
 
@@ -25,16 +26,26 @@ pnpm run dev       # ambiente local (Vite)
 pnpm run build     # build de produção
 pnpm run lint      # eslint em ./src
 pnpm run preview   # servir o build
+pnpm test          # testes (Vitest, uma execução)
+pnpm run test:watch # testes em modo watch
 ```
 
-> ⚠️ **Ainda não há runner de testes** configurado. Se formos escrever testes,
-> proponha **Vitest + @testing-library/react** primeiro (e adicione o script `test`).
+> **Testes:** Vitest 2 + @testing-library/react (+ jest-dom, user-event), ambiente
+> `jsdom`. Config no bloco `test` de `vite.config.ts`; setup em `src/test/setup.ts`.
+> Testes ficam **ao lado do código** (`*.test.ts` / `*.test.tsx`). Mocke só fronteiras
+> externas (ex.: `sonner`, `window.open`), nunca a store ou módulos internos.
+> `jsdom` está **fixado em 25** (o 30 quebra no Node 20) e `vitest` em 2 (compatível
+> com Vite 5) — não atualize sem testar.
 
 ## Estrutura
 
 - `@/` é alias para `src/`.
 - `src/pages/` — páginas (`Index`, `ClubeSabonete`, `CuidadosDaPele`, `RotinaCuidados`, `NotFound`)
 - `src/components/` — componentes; `src/components/ui` = shadcn (não editar à toa)
+- `src/components/carrinho/` — carrinho: `BotaoAdicionar`, `CarrinhoHeader`, `CarrinhoDrawer` (Sheet à direita)
+- `src/store/carrinho.ts` — store Zustand `useCarrinho` (em memória, sem `persist`) + seletores `totalUnidades`/`totalValor`
+- `src/lib/preco.ts` (`precoParaNumero`, `formatarPreco`) · `src/lib/pedido.ts` (`linkWhatsApp`, `rotuloItem`, `montarMensagemPedido`, `urlWhatsApp`; **fonte única** do número do WhatsApp da loja)
+- `src/test/` — setup do Vitest
 - `src/hooks/`, `src/lib/utils.ts` (helper `cn`)
 - `api/frete.js` — serverless de frete
 - `public/` — imagens/assets · `dist/` — build (gerado)
@@ -45,6 +56,10 @@ pnpm run preview   # servir o build
 - UI via **shadcn** (`@/components/ui`) + **classes Tailwind** — evite CSS solto novo.
 - **Validação com zod**; **data fetching com React Query**; **estado global com Zustand**.
 - Imports pelo alias **`@/`**. Não re-exporte tipos que você já está importando.
+- **Carrinho:** item identificado por `codigo` (cada variante tem o seu). Preços do catálogo
+  ainda são strings (`"R$ 17,00"`) — converta com `precoParaNumero`. Links `wa.me` novos
+  usam `linkWhatsApp` de `@/lib/pedido`, não o número solto no código.
+- **Windows:** ao editar arquivos por script, grave **UTF-8 com LF** (`encoding='utf8', newline=''`).
 - Design responsivo, tons naturais (verde suave, bege, dourado/mel).
 
 ## Serverless & segredos (importante)
@@ -60,7 +75,7 @@ pnpm run preview   # servir o build
 - [ ] `pnpm run build` compila sem erros de tipo
 - [ ] Responsivo (mobile + desktop)
 - [ ] Nenhum segredo/token no bundle do client
-- [ ] Testes verdes *(quando houver runner configurado)*
+- [ ] `pnpm test` verde
 
 ## Git
 
