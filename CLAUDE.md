@@ -42,7 +42,7 @@ pnpm run test:watch # testes em modo watch
 - `@/` é alias para `src/`.
 - `src/pages/` — páginas (`Index`, `ClubeSabonete`, `CuidadosDaPele`, `RotinaCuidados`, `NotFound`)
 - `src/components/` — componentes; `src/components/ui` = shadcn (não editar à toa)
-- `src/components/carrinho/` — carrinho: `BotaoAdicionar`, `CarrinhoHeader`, `CarrinhoDrawer` (Sheet à direita)
+- `src/components/carrinho/` — carrinho: `BotaoAdicionar`, `CarrinhoHeader`, `CarrinhoModal` (Dialog centralizado) e `ItemThumbnail`
 - `src/store/carrinho.ts` — store Zustand `useCarrinho` (em memória, sem `persist`) + seletores `totalUnidades`/`totalValor`
 - `src/lib/preco.ts` (`precoParaNumero`, `formatarPreco`) · `src/lib/pedido.ts` (`linkWhatsApp`, `rotuloItem`, `montarMensagemPedido`, `urlWhatsApp`; **fonte única** do número do WhatsApp da loja)
 - `src/test/` — setup do Vitest

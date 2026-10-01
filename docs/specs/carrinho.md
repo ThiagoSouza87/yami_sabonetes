@@ -2,6 +2,7 @@
 
 > Status: `implementada`
 > Autor: Thiago · Data: 2026-10-01
+> **Evoluída por** `docs/specs/carrinho-modal.md`: o drawer lateral virou modal (`CarrinhoModal`), com thumbnails, "Limpar carrinho" e limpeza/fechamento ao finalizar.
 
 ## 1. Contexto / Problema
 A loja lista produtos, mas não permite montar um pedido com vários itens — hoje a
@@ -39,7 +40,7 @@ pelo WhatsApp** com a lista e o total prontos.
   totalValor(itens): number    // Σ precoUnit*qtd
   ```
 - **Helpers de preço** — `src/lib/preco.ts`: `precoParaNumero("R$ 17,00")→17`, `formatarPreco(17)→"R$ 17,00"`.
-- **Componentes** — `src/components/carrinho/`: `BotaoAdicionar`, `CarrinhoHeader`, `CarrinhoDrawer`.
+- **Componentes** — `src/components/carrinho/`: `BotaoAdicionar`, `CarrinhoHeader`, `CarrinhoModal` *(era `CarrinhoDrawer`; ver `carrinho-modal.md`)*.
 - **Integração** — `src/pages/Index.tsx`: `SaboneteCard`, `BodySplashCard` (Body Splash **e** Sais), header da Index.
 - Sem API nova. Item identificado por **`codigo`** (variante BS.. vira item distinto).
 
@@ -90,7 +91,7 @@ pelo WhatsApp** com a lista e o total prontos.
 3. `src/store/carrinho.ts` (TDD)
 4. `BotaoAdicionar` + integração nos cards + toast
 5. `CarrinhoHeader` (ícone + badge) no header da Index
-6. `CarrinhoDrawer` (listar, +/−, remover, vazio, total)
+6. `CarrinhoModal` (listar, +/−, remover, vazio, total) *(originalmente `CarrinhoDrawer`)*
 7. Finalizar no WhatsApp (mensagem + total)
 8. Verificação (lint/build/testes + `/code-review` eixo Spec)
 

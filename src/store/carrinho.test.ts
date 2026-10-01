@@ -98,3 +98,23 @@ describe('seletores', () => {
     expect(totalValor(itens())).toBe(94); // 2x17 + 1x60 (exemplo da spec)
   });
 });
+
+describe('imagem (thumbnail)', () => {
+  const comImagem = { ...dolomita, imagem: '/assets/sabonetes/dolomita/1.jpg' };
+
+  it('adicionar guarda a imagem do item', () => {
+    acoes().adicionar(comImagem);
+    expect(itens()).toEqual([{ ...comImagem, qtd: 1 }]);
+  });
+
+  it('adicionar de novo mantém a imagem original e incrementa a qtd', () => {
+    acoes().adicionar(comImagem);
+    acoes().adicionar({ ...comImagem, imagem: '/outra.jpg' });
+    expect(itens()).toEqual([{ ...comImagem, qtd: 2 }]);
+  });
+
+  it('item sem imagem continua válido', () => {
+    acoes().adicionar(dolomita);
+    expect(itens()[0].imagem).toBeUndefined();
+  });
+});

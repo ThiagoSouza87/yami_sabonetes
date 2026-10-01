@@ -6,6 +6,7 @@ export interface ItemCarrinho {
   variante?: string;
   precoUnit: number;
   qtd: number;
+  imagem?: string;
 }
 
 interface CarrinhoState {

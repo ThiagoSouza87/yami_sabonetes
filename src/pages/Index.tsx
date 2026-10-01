@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BotaoAdicionar } from "@/components/carrinho/BotaoAdicionar";
-import { CarrinhoDrawer } from "@/components/carrinho/CarrinhoDrawer";
+import { CarrinhoModal } from "@/components/carrinho/CarrinhoModal";
 import { CarrinhoHeader } from "@/components/carrinho/CarrinhoHeader";
 import { linkWhatsApp } from "@/lib/pedido";
 import { precoParaNumero } from "@/lib/preco";
@@ -530,7 +530,12 @@ function SaboneteCard({ produto }: { produto: SaboneteProduto }) {
           <span className="font-bold text-sm" style={{ color: PINK }}>{produto.preco}</span>
           <div className="flex gap-1">
             <BotaoAdicionar
-              item={{ codigo: produto.codigo, nome: produto.nome, precoUnit: precoParaNumero(produto.preco) }}
+              item={{
+                codigo: produto.codigo,
+                nome: produto.nome,
+                precoUnit: precoParaNumero(produto.preco),
+                imagem: produto.fotos[0],
+              }}
               color={PINK}
             />
             <Button
@@ -666,6 +671,7 @@ function BodySplashCard({ grupo, badge }: { grupo: BodySplashGrupo; badge?: stri
                 nome: grupo.nome,
                 variante: tamanhoAtual.label,
                 precoUnit: precoParaNumero(tamanhoAtual.preco),
+                imagem: grupo.fotos[0].imagem,
               }}
               color={PINK}
             />
@@ -851,7 +857,7 @@ export default function Index() {
         </div>
       </header>
 
-      <CarrinhoDrawer open={carrinhoAberto} onOpenChange={setCarrinhoAberto} />
+      <CarrinhoModal open={carrinhoAberto} onOpenChange={setCarrinhoAberto} />
 
       {/* Hero */}
       <section
