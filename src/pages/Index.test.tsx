@@ -6,7 +6,8 @@ import { useCarrinho } from '@/store/carrinho';
 
 vi.mock('sonner', () => ({ toast: { success: vi.fn() } }));
 
-const FOTO_BS = '/assets/body_splash/a-vida-e-bela/a-vida-e-bela-110ml.jpg';
+const FOTO_BS_110 = '/assets/body_splash/a-vida-e-bela/a-vida-e-bela-110ml.jpg';
+const FOTO_BS_30 = '/assets/body_splash/a-vida-e-bela/a-vida-e-bela-30ml.jpg';
 
 beforeEach(() => useCarrinho.setState({ itens: [] }));
 
@@ -29,7 +30,7 @@ describe('Index — integração dos cards com o carrinho', () => {
     ]);
   });
 
-  it('Body Splash: 110ml e 30ml viram itens distintos (código/preço próprios) com a mesma 1ª foto', async () => {
+  it('Body Splash: 110ml e 30ml viram itens distintos, cada um com seu código, preço e a foto do próprio tamanho', async () => {
     render(<Index />);
     await userEvent.click(screen.getByRole('button', { name: /body splash/i }));
 
@@ -38,12 +39,12 @@ describe('Index — integração dos cards com o carrinho', () => {
     await userEvent.click(primeiroAdicionar());
 
     expect(itens()).toEqual([
-      { codigo: 'BS01', nome: 'Body Splash A Vida é Bela', variante: '110ml', precoUnit: 60, qtd: 1, imagem: FOTO_BS },
-      { codigo: 'BS02', nome: 'Body Splash A Vida é Bela', variante: '30ml', precoUnit: 30, qtd: 1, imagem: FOTO_BS },
+      { codigo: 'BS01', nome: 'Body Splash A Vida é Bela', variante: '110ml', precoUnit: 60, qtd: 1, imagem: FOTO_BS_110 },
+      { codigo: 'BS02', nome: 'Body Splash A Vida é Bela', variante: '30ml', precoUnit: 30, qtd: 1, imagem: FOTO_BS_30 },
     ]);
   });
 
-  it('Sais: o tamanho selecionado define código, variante e preço; a foto é a 1ª do produto', async () => {
+  it('Sais: o tamanho selecionado define código, variante, preço e a foto (100g → foto pequena)', async () => {
     render(<Index />);
     await userEvent.click(screen.getByRole('button', { name: /sais de banho/i }));
 
@@ -57,7 +58,7 @@ describe('Index — integração dos cards com o carrinho', () => {
         variante: '100g',
         precoUnit: 25,
         qtd: 1,
-        imagem: '/assets/sais/pitanga_preta/pitanga_preta-grande.jpg',
+        imagem: '/assets/sais/pitanga_preta/pitanga_preta-pequeno.jpg',
       },
     ]);
   });

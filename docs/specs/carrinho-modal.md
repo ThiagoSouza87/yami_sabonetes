@@ -47,8 +47,10 @@ Trocar o drawer por um **modal** com **thumbnail** de cada item, melhor hierarqu
 - **Componente:** `CarrinhoDrawer` → **`CarrinhoModal`** (`src/components/carrinho/CarrinhoModal.tsx`,
   mesmas props `open` / `onOpenChange`). Arquivo e testes antigos são renomeados.
 - **Integração** (`src/pages/Index.tsx`): `SaboneteCard` passa `imagem: produto.fotos[0]`;
-  `BodySplashCard` (Body Splash e Sais) passa `imagem: grupo.fotos[0].imagem`
-  (**sempre a 1ª foto do produto**, independente do tamanho). Header usa `CarrinhoModal`.
+  `BodySplashCard` (Body Splash e Sais) passa a **1ª foto do tamanho selecionado**
+  (`grupo.fotos.find(f => f.tamanho === tamanhoAtual.tamanho)`, com fallback para `fotos[0]`).
+  *(Revisado após o uso: antes era sempre `fotos[0]`, o que mostrava o frasco de 110ml para um item de 30ml.)*
+  Header usa `CarrinhoModal`.
 - Sem API nova, sem dependência nova (`Dialog` já está em `@/components/ui/dialog`).
 
 ## 6. Regras de negócio
@@ -61,7 +63,7 @@ Trocar o drawer por um **modal** com **thumbnail** de cada item, melhor hierarqu
 ## 7. Critérios de aceite (Given / When / Then)
 - [x] **Dado** um item com `imagem`, **quando** o modal abre, **então** a linha mostra o **thumbnail** (`alt` = nome).
 - [x] **Dado** um item sem `imagem` (ou imagem que falha ao carregar), **então** mostra o **placeholder**, sem quebrar o layout.
-- [x] **Dado** clicar "Adicionar" num card, **então** o item na store carrega a **1ª foto do produto** (Sabonete, Body Splash e Sais; variante 30ml usa a mesma foto do 110ml).
+- [x] **Dado** clicar "Adicionar" num card, **então** o item na store carrega a **1ª foto do produto** (Sabonete) ou a **1ª foto do tamanho selecionado** (Body Splash e Sais: 30ml mostra o frasco de 30ml, 110ml o de 110ml; Sais 300g/100g igual).
 - [x] **Dado** o mesmo `codigo` adicionado de novo, **então** a `imagem` original é mantida e a qtd incrementa.
 - [x] **Dado** `qtd > 1`, **então** a linha mostra preço unitário e subtotal; com `qtd = 1`, só o subtotal.
 - [x] **Dado** itens no carrinho, **então** o **Total** aparece em destaque no rodapé e acompanha +/−/remover.
@@ -86,7 +88,7 @@ Nenhuma nova. Sem env, sem serverless, sem segredos no client.
 - **Store (TDD):** `adicionar` guarda `imagem`; repetir mantém a original.
 - **Componente (RTL):** thumbnail/placeholder, preço unitário só com `qtd > 1`, total em destaque,
   limpar, vazio, finalizar (abre → limpa+fecha; bloqueado → preserva).
-- **Integração (`Index.test.tsx`):** 1ª foto nos 3 tipos de card (incl. 30ml = foto do 110ml).
+- **Integração (`Index.test.tsx`):** foto correta nos 3 tipos de card (Body Splash 110ml ≠ 30ml; Sais 300g ≠ 100g).
 - **Verificação visual** no navegador (desktop + mobile 375px) com vários itens e nome longo.
 
 ### Ordem de implementação (tasks)
@@ -101,7 +103,7 @@ Nenhuma nova. Sem env, sem serverless, sem segredos no client.
 
 ## 11. Riscos & decisões
 - **Modal em vez de drawer** (decisão do usuário): `Dialog` é mais simples de testar que o Sheet; no mobile ocupa quase a tela toda para não ficar apertado.
-- **1ª foto do produto** como thumbnail (decisão do usuário): estável e simples; 110ml e 30ml partilham a imagem — aceitável (a variante aparece em texto).
+- **Thumbnail**: Sabonete = 1ª foto do produto (decisão do usuário). Body Splash/Sais = 1ª foto do **tamanho selecionado** (revisão pós-uso: partilhar a foto do 110ml com o item de 30ml confundia). Não segue a foto exibida no carrossel (que pode ser a do combo), para ser estável por variante.
 - **Limpar ao finalizar** muda o comportamento anterior (carrinho permanecia cheio). Mitigado
   por só limpar quando a janela abriu; se o usuário não enviar a mensagem no WhatsApp, terá de remontar o pedido.
 - **Sem confirmação em "Limpar"**: ação de baixo custo (carrinho em memória), mas destrutiva; revisitar se virar queixa.
@@ -112,5 +114,5 @@ Nenhuma nova. Sem env, sem serverless, sem segredos no client.
 ## 12. Referências
 - `docs/specs/carrinho.md` · `src/components/carrinho/CarrinhoDrawer.tsx` · `src/store/carrinho.ts`
 - Print do usuário (carrinho atual: lista simples sem imagens).
-- Decisões (perguntas): thumbnail = 1ª foto do produto · modal centralizado/quase tela cheia no mobile ·
+- Decisões (perguntas): thumbnail = 1ª foto do produto (Sabonete) / do tamanho selecionado (Body Splash e Sais, revisado) · modal centralizado/quase tela cheia no mobile ·
   extras: subtotal + total em destaque, limpar carrinho, cores da marca, fechar+limpar ao finalizar.

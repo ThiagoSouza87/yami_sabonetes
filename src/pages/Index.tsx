@@ -671,7 +671,7 @@ function BodySplashCard({ grupo, badge }: { grupo: BodySplashGrupo; badge?: stri
                 nome: grupo.nome,
                 variante: tamanhoAtual.label,
                 precoUnit: precoParaNumero(tamanhoAtual.preco),
-                imagem: grupo.fotos[0].imagem,
+                imagem: (grupo.fotos.find((f) => f.tamanho === tamanhoAtual.tamanho) ?? grupo.fotos[0]).imagem,
               }}
               color={PINK}
             />
