@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound';
 import ClubeSabonete from './pages/ClubeSabonete';
 import RotinaCuidados from './pages/RotinaCuidados';
 import CuidadosDaPele from './pages/CuidadosDaPele';
+import AdminEstoque from './pages/AdminEstoque';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="/clube" element={<ClubeSabonete />} />
             <Route path="/rotina" element={<RotinaCuidados />} />
             <Route path="/cuidados" element={<CuidadosDaPele />} />
+            <Route path="/admin/estoque" element={<AdminEstoque />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

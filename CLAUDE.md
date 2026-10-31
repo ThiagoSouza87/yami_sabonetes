@@ -6,8 +6,9 @@ Contexto que o Claude Code carrega em toda sessão. Mantenha curto e verdadeiro.
 
 Storefront (SPA React) da **Yami Sabonetes** — sabonetes artesanais. Vitrine de
 produtos, páginas de conteúdo (Clube, Cuidados da Pele, Rotina), um **carrinho**
-(finaliza o pedido pelo WhatsApp) e uma **calculadora de frete** que chama uma
-função serverless. Deploy na **Vercel**.
+(finaliza o pedido pelo WhatsApp), uma **calculadora de frete** que chama uma
+função serverless e uma **tela interna de estoque** (`/admin/estoque`, protegida por senha).
+Deploy na **Vercel**.
 
 ## Stack
 
@@ -15,7 +16,7 @@ função serverless. Deploy na **Vercel**.
 - **Estado / dados:** Zustand (estado global), TanStack React Query (data fetching)
 - **Formulários / validação:** react-hook-form + **zod**
 - **Rotas:** react-router-dom · **Animação:** framer-motion · **Toasts:** sonner
-- **Serverless:** funções em `api/` (Vercel) — hoje `api/frete.js`
+- **Serverless:** funções em `api/` (Vercel) — hoje `api/frete.js` e `api/admin-login.js`
 - **Dados:** `@supabase/supabase-js` está nas dependências, mas **confirme antes de assumir que está integrado** — hoje só vi `SUPERFRETE_TOKEN` em uso.
 
 ## Comandos (gerenciador: **pnpm** — não use npm/yarn)
@@ -34,6 +35,8 @@ pnpm run test:watch # testes em modo watch
 > `jsdom`. Config no bloco `test` de `vite.config.ts`; setup em `src/test/setup.ts`.
 > Testes ficam **ao lado do código** (`*.test.ts` / `*.test.tsx`). Mocke só fronteiras
 > externas (ex.: `sonner`, `window.open`), nunca a store ou módulos internos.
+> Testes das funções serverless ficam em **`tests/api/`** (nunca dentro de `api/`: na Vercel todo arquivo
+> de `api/` vira uma função publicada).
 > `jsdom` está **fixado em 25** (o 30 quebra no Node 20) e `vitest` em 2 (compatível
 > com Vite 5) — não atualize sem testar.
 
@@ -45,7 +48,10 @@ pnpm run test:watch # testes em modo watch
 - `src/components/carrinho/` — carrinho: `BotaoAdicionar`, `CarrinhoHeader`, `CarrinhoModal` (Dialog centralizado) e `ItemThumbnail`
 - `src/store/carrinho.ts` — store Zustand `useCarrinho` (em memória, sem `persist`) + seletores `totalUnidades`/`totalValor`
 - `src/lib/preco.ts` (`precoParaNumero`, `formatarPreco`) · `src/lib/pedido.ts` (`linkWhatsApp`, `rotuloItem`, `montarMensagemPedido`, `urlWhatsApp`; **fonte única** do número do WhatsApp da loja)
-- `src/test/` — setup do Vitest
+- `src/data/catalogo.ts` — **catálogo único** (sabonetes, body splash, sais; usado pela vitrine e pelo estoque) · `src/data/skus.ts` (`listarSkus()`: 54 itens vendáveis, 1 por sabonete e 1 por tamanho)
+- `src/store/estoque.ts` — store Zustand `useEstoque` (`persist` em `localStorage`, chave `yami-estoque-v1`, validada com zod)
+- `src/components/admin/` + `src/pages/AdminEstoque.tsx` — tela `/admin/estoque` (`AdminGate` = login + sessão)
+- `src/test/` — setup do Vitest · `tests/api/` — testes das funções serverless
 - `src/hooks/`, `src/lib/utils.ts` (helper `cn`)
 - `api/frete.js` — serverless de frete
 - `public/` — imagens/assets · `dist/` — build (gerado)
@@ -68,6 +74,17 @@ pnpm run test:watch # testes em modo watch
   - Origem fixa **CEP 13827118**; caixa padrão **12×18×13 cm, 0,3 kg** (1 sabonete).
   - O token fica **só no servidor**, em `SUPERFRETE_TOKEN` (painel da Vercel).
   - **Nunca** exponha `SUPERFRETE_TOKEN` (nem outros segredos) no frontend.
+
+## Admin de estoque (`/admin/estoque`)
+
+- Rota **sem link público**. `api/admin-login.js`: **POST** `{ senha }` compara com `ADMIN_PASSWORD` (env,
+  **só servidor**) em tempo constante → `200 { ok: true }` / `401` / `405` / `500`. O client só libera o acesso
+  com **200 E corpo `{ ok: true }`**; a flag de sessão (`yami-admin-ok`) fica em `sessionStorage`, a senha nunca é guardada.
+- ⚠️ **Limitação assumida:** o estoque fica no `localStorage` **de cada navegador** (não é compartilhado nem
+  sincronizado) e a vitrine **não** o lê. A senha protege o acesso à *tela*, não os dados. Proteção real exige
+  banco + autorização no servidor (ex.: Supabase) — ver `docs/specs/admin-estoque.md` §11.
+- `pnpm run dev` (Vite) **não serve `api/`**: para testar o login de ponta a ponta use `vercel dev`; localmente a
+  senha vai em `.env.local` (ignorado pelo git; **não** use `.env`).
 
 ## Definition of Done
 
