@@ -3,9 +3,9 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { toast } from 'sonner';
 import { BotaoAdicionar } from '@/components/carrinho/BotaoAdicionar';
-import { useCarrinho } from '@/store/carrinho';
+import { MSG_QTD_MAXIMA, QTD_MAXIMA, useCarrinho } from '@/store/carrinho';
 
-vi.mock('sonner', () => ({ toast: { success: vi.fn() } }));
+vi.mock('sonner', () => ({ toast: { success: vi.fn(), warning: vi.fn() } }));
 
 const item = { codigo: 'SAB08', nome: 'Sabonete de Dolomita', precoUnit: 17 };
 
@@ -44,5 +44,28 @@ describe('BotaoAdicionar', () => {
 
     expect(useCarrinho.getState().itens.map((i) => i.codigo)).toEqual(['BS01', 'BS02']);
     expect(toast.success).toHaveBeenLastCalledWith(expect.stringContaining('30ml'));
+  });
+});
+
+describe('BotaoAdicionar — limite por item', () => {
+  it('CA9: com qtd 99, clicar mostra toast.warning (e NÃO toast.success) e a qtd segue 99', async () => {
+    useCarrinho.setState({ itens: [{ ...item, qtd: QTD_MAXIMA }] });
+    render(<BotaoAdicionar item={item} />);
+    await userEvent.click(screen.getByRole('button', { name: /adicionar/i }));
+
+    expect(toast.warning).toHaveBeenCalledTimes(1);
+    expect(toast.warning).toHaveBeenCalledWith(MSG_QTD_MAXIMA);
+    expect(toast.success).not.toHaveBeenCalled();
+    expect(useCarrinho.getState().itens[0].qtd).toBe(QTD_MAXIMA);
+  });
+
+  it('abaixo do limite: toast.success continua e não há aviso', async () => {
+    useCarrinho.setState({ itens: [{ ...item, qtd: QTD_MAXIMA - 1 }] });
+    render(<BotaoAdicionar item={item} />);
+    await userEvent.click(screen.getByRole('button', { name: /adicionar/i }));
+
+    expect(toast.success).toHaveBeenCalledTimes(1);
+    expect(toast.warning).not.toHaveBeenCalled();
+    expect(useCarrinho.getState().itens[0].qtd).toBe(QTD_MAXIMA);
   });
 });

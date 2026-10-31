@@ -62,7 +62,8 @@ pnpm run test:watch # testes em modo watch
 - UI via **shadcn** (`@/components/ui`) + **classes Tailwind** — evite CSS solto novo.
 - **Validação com zod**; **data fetching com React Query**; **estado global com Zustand**.
 - Imports pelo alias **`@/`**. Não re-exporte tipos que você já está importando.
-- **Carrinho:** item identificado por `codigo` (cada variante tem o seu). Preços do catálogo
+- **Carrinho:** item identificado por `codigo` (cada variante tem o seu); **máx. 99 unidades por item**
+  (`QTD_MAXIMA` em `src/store/carrinho.ts`; `adicionar`/`incrementar` retornam `boolean` e a UI avisa com `MSG_QTD_MAXIMA`). Preços do catálogo
   ainda são strings (`"R$ 17,00"`) — converta com `precoParaNumero`. Links `wa.me` novos
   usam `linkWhatsApp` de `@/lib/pedido`, não o número solto no código.
 - **Windows:** ao editar arquivos por script, grave **UTF-8 com LF** (`encoding='utf8', newline=''`).

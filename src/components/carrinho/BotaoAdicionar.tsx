@@ -1,7 +1,7 @@
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { rotuloItem } from '@/lib/pedido';
-import { useCarrinho, type ItemCarrinho } from '@/store/carrinho';
+import { MSG_QTD_MAXIMA, useCarrinho, type ItemCarrinho } from '@/store/carrinho';
 
 interface BotaoAdicionarProps {
   item: Omit<ItemCarrinho, 'qtd'>;
@@ -18,8 +18,8 @@ export function BotaoAdicionar({ item, color }: BotaoAdicionarProps) {
       className="text-xs px-3 py-1 h-7"
       style={color ? { borderColor: color, color } : undefined}
       onClick={() => {
-        adicionar(item);
-        toast.success(`${rotuloItem(item)} adicionado ao carrinho`);
+        if (adicionar(item)) toast.success(`${rotuloItem(item)} adicionado ao carrinho`);
+        else toast.warning(MSG_QTD_MAXIMA);
       }}
     >
       Adicionar

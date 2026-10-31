@@ -1,4 +1,5 @@
 import { Minus, Plus, ShoppingBag, Trash2 } from 'lucide-react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -11,7 +12,7 @@ import {
 import { ItemThumbnail } from '@/components/carrinho/ItemThumbnail';
 import { urlWhatsApp } from '@/lib/pedido';
 import { formatarPreco } from '@/lib/preco';
-import { totalUnidades, totalValor, useCarrinho } from '@/store/carrinho';
+import { MSG_QTD_MAXIMA, totalUnidades, totalValor, useCarrinho } from '@/store/carrinho';
 
 const PINK = '#c26072';
 
@@ -91,7 +92,9 @@ export function CarrinhoModal({ open, onOpenChange }: CarrinhoModalProps) {
                       variant="outline"
                       className="h-7 w-7 rounded-full"
                       aria-label={`Aumentar quantidade de ${item.nome}`}
-                      onClick={() => incrementar(item.codigo)}
+                      onClick={() => {
+                        if (!incrementar(item.codigo)) toast.warning(MSG_QTD_MAXIMA);
+                      }}
                     >
                       <Plus size={14} />
                     </Button>

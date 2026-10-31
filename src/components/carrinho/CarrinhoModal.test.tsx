@@ -2,7 +2,10 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { act, fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { CarrinhoModal } from '@/components/carrinho/CarrinhoModal';
-import { useCarrinho } from '@/store/carrinho';
+import { toast } from 'sonner';
+import { MSG_QTD_MAXIMA, QTD_MAXIMA, useCarrinho } from '@/store/carrinho';
+
+vi.mock('sonner', () => ({ toast: { success: vi.fn(), warning: vi.fn() } }));
 
 const dolomita = { codigo: 'SAB08', nome: 'Sabonete de Dolomita', precoUnit: 17 };
 const jasmin = { codigo: 'BS01', nome: 'Body Splash Jasmin', variante: '110ml', precoUnit: 60 };
@@ -13,7 +16,10 @@ const adicionar = (item: typeof dolomita | typeof jasmin, vezes = 1) =>
     for (let i = 0; i < vezes; i++) useCarrinho.getState().adicionar(item);
   });
 
-beforeEach(() => useCarrinho.setState({ itens: [] }));
+beforeEach(() => {
+  useCarrinho.setState({ itens: [] });
+  vi.mocked(toast.warning).mockClear();
+});
 
 describe('CarrinhoModal — vazio', () => {
   it('mostra mensagem de vazio e desabilita o finalizar', () => {
@@ -249,5 +255,47 @@ describe('CarrinhoModal — depois de finalizar', () => {
     expect(onOpenChange).not.toHaveBeenCalled();
     expect(screen.getByTestId('item-SAB08')).toBeInTheDocument();
     abrirJanela.mockRestore();
+  });
+});
+
+describe('CarrinhoModal — limite por item', () => {
+  it('CA8: com qtd 99, clicar em + mostra toast.warning e a qtd exibida segue 99', async () => {
+    abrir();
+    adicionar(dolomita);
+    act(() => useCarrinho.getState().setQtd('SAB08', QTD_MAXIMA));
+    const linha = screen.getByTestId('item-SAB08');
+    await userEvent.click(within(linha).getByRole('button', { name: /aumentar/i }));
+
+    expect(toast.warning).toHaveBeenCalledTimes(1);
+    expect(toast.warning).toHaveBeenCalledWith(MSG_QTD_MAXIMA);
+    expect(within(linha).getByTestId('qtd')).toHaveTextContent('99');
+    expect(useCarrinho.getState().itens[0].qtd).toBe(99);
+  });
+
+  it('abaixo do limite: + incrementa e não mostra aviso; chegar a 99 não avisa, o 100º tenta e avisa', async () => {
+    abrir();
+    adicionar(dolomita);
+    act(() => useCarrinho.getState().setQtd('SAB08', QTD_MAXIMA - 1));
+    const linha = screen.getByTestId('item-SAB08');
+    const mais = within(linha).getByRole('button', { name: /aumentar/i });
+
+    await userEvent.click(mais);
+    expect(within(linha).getByTestId('qtd')).toHaveTextContent('99');
+    expect(toast.warning).not.toHaveBeenCalled();
+
+    await userEvent.click(mais);
+    expect(toast.warning).toHaveBeenCalledTimes(1);
+  });
+
+  it('− a partir de 99 libera o + de novo, sem aviso', async () => {
+    abrir();
+    adicionar(dolomita);
+    act(() => useCarrinho.getState().setQtd('SAB08', QTD_MAXIMA));
+    const linha = screen.getByTestId('item-SAB08');
+
+    await userEvent.click(within(linha).getByRole('button', { name: /diminuir/i }));
+    await userEvent.click(within(linha).getByRole('button', { name: /aumentar/i }));
+    expect(within(linha).getByTestId('qtd')).toHaveTextContent('99');
+    expect(toast.warning).not.toHaveBeenCalled();
   });
 });

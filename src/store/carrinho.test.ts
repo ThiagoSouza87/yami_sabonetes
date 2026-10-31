@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { totalUnidades, totalValor, useCarrinho } from '@/store/carrinho';
+import { MSG_QTD_MAXIMA, QTD_MAXIMA, totalUnidades, totalValor, useCarrinho } from '@/store/carrinho';
 
 const dolomita = { codigo: 'S01', nome: 'Sabonete de Dolomita', precoUnit: 17 };
 const jasmin110 = { codigo: 'BS01', nome: 'Body Splash Jasmin', variante: '110ml', precoUnit: 60 };
@@ -116,5 +116,92 @@ describe('imagem (thumbnail)', () => {
   it('item sem imagem continua válido', () => {
     acoes().adicionar(dolomita);
     expect(itens()[0].imagem).toBeUndefined();
+  });
+});
+
+describe('limite por item (QTD_MAXIMA)', () => {
+  const noLimite = (item = dolomita) => {
+    acoes().adicionar(item);
+    acoes().setQtd(item.codigo, QTD_MAXIMA);
+  };
+
+  it('o limite é 99 e a mensagem usa o limite', () => {
+    expect(QTD_MAXIMA).toBe(99);
+    expect(MSG_QTD_MAXIMA).toBe('Máximo de 99 unidades por item');
+  });
+
+  it('CA1: com qtd 98, incrementar leva a 99 e retorna true', () => {
+    acoes().adicionar(dolomita);
+    acoes().setQtd('S01', 98);
+    expect(acoes().incrementar('S01')).toBe(true);
+    expect(itens()[0].qtd).toBe(99);
+  });
+
+  it('CA2: com qtd 99, incrementar mantém 99 e retorna false', () => {
+    noLimite();
+    expect(acoes().incrementar('S01')).toBe(false);
+    expect(itens()[0].qtd).toBe(99);
+  });
+
+  it('CA3: com qtd 99, adicionar o mesmo código mantém 99 e retorna false', () => {
+    noLimite();
+    expect(acoes().adicionar(dolomita)).toBe(false);
+    expect(itens()).toHaveLength(1);
+    expect(itens()[0].qtd).toBe(99);
+  });
+
+  it('CA4: item novo entra com qtd 1 e retorna true', () => {
+    expect(acoes().adicionar(dolomita)).toBe(true);
+    expect(itens()).toEqual([{ ...dolomita, qtd: 1 }]);
+  });
+
+  it('adicionar item já existente abaixo do limite incrementa e retorna true', () => {
+    acoes().adicionar(dolomita);
+    expect(acoes().adicionar(dolomita)).toBe(true);
+    expect(itens()[0].qtd).toBe(2);
+  });
+
+  it('CA5: setQtd acima do limite vira 99', () => {
+    acoes().adicionar(dolomita);
+    acoes().setQtd('S01', 5);
+    acoes().setQtd('S01', 150);
+    expect(itens()[0].qtd).toBe(99);
+  });
+
+  it('CA6: setQtd(99) fica em 99 (limite inclusivo)', () => {
+    acoes().adicionar(dolomita);
+    acoes().setQtd('S01', 5);
+    acoes().setQtd('S01', 99);
+    expect(itens()[0].qtd).toBe(99);
+  });
+
+  it('CA7: variantes são independentes — uma em 99 não trava a outra', () => {
+    noLimite(jasmin110);
+    acoes().adicionar(jasmin30);
+    expect(acoes().incrementar('BS01')).toBe(false);
+    expect(acoes().incrementar('BS02')).toBe(true);
+    expect(itens().find((i) => i.codigo === 'BS02')!.qtd).toBe(2);
+  });
+
+  it('decrementar a partir de 99 volta a permitir incrementar', () => {
+    noLimite();
+    acoes().decrementar('S01');
+    expect(itens()[0].qtd).toBe(98);
+    expect(acoes().incrementar('S01')).toBe(true);
+    expect(itens()[0].qtd).toBe(99);
+  });
+
+  it('setQtd com 0 ou negativo continua removendo o item', () => {
+    acoes().adicionar(dolomita);
+    acoes().setQtd('S01', 0);
+    expect(itens()).toEqual([]);
+    acoes().adicionar(dolomita);
+    acoes().setQtd('S01', -3);
+    expect(itens()).toEqual([]);
+  });
+
+  it('incrementar um código que não está no carrinho não cria item e retorna false', () => {
+    expect(acoes().incrementar('NAO_EXISTE')).toBe(false);
+    expect(itens()).toEqual([]);
   });
 });
